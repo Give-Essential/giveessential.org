@@ -9,9 +9,37 @@
 .faq-header {
     font-size: 2.5em;
     font-weight: bold;
+    padding-bottom: 2.5%;
 }
 
 .faq-container {
     display: flex;
     flex-direction: row;
+}
+
+.faq-nav {
+    margin-left: 2.5%;
+    height: fit-content;
+    padding: 10px;
+    background-color: #F4F4F4;
+    border-radius: 5px;
+}
+
+.faq-content {
+    margin-left: 2.5%;
+}
+
+.faq-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #F4F4F4;
+}
+
+.faq-section-title {
+    font-size: 1.25em;
+}
+
+.faq-item {
+    margin-bottom: 
 }

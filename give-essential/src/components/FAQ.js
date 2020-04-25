@@ -4,7 +4,11 @@ import {
   Nav,
   NavLink,
   NavItem,
-  UncontrolledCollapse
+  Collapse,
+  Card,
+  CardBody,
+  CardHeader,
+  CardText
 } from 'reactstrap';
 import '../css/FAQ.css';
 
@@ -66,17 +70,24 @@ const FAQ = (props) => {
           <div className="faq-content">
             {data.map((section, index) => (
               <div className="faq-section" id={`faq-section-${index}`}>
+                <div className="faq-section-title">
+                  {section.title}
+                </div>
                 {section.items.map((item) => (
-                  <div className="faq-item">
-                    <div className="faq-question">
+                  <Card className="faq-item">
+                    <CardHeader className="faq-question">
                       {item.question}
-                    </div>
-                    <div className="faq-answer">
-                      <ReactMarkdown>
-                        {item.answer}
-                      </ReactMarkdown>
-                    </div>
-                  </div>
+                    </CardHeader>
+                    <Collapse>
+                      <CardBody>
+                        <CardText className="faq-answer">
+                          <ReactMarkdown>
+                            {item.answer}
+                          </ReactMarkdown>
+                        </CardText>
+                      </CardBody>
+                    </Collapse>
+                  </Card>
                 ))}
               </div>
             ))}
