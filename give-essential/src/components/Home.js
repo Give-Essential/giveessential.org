@@ -2,21 +2,21 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/faqstyle.css'
 import '../css/style2.css'
+import Logo from '../img/newgraphics/logonotitle.png'
 
 export default function Home() {
     return (
-    <body>
         <div className="cover">
           <nav>
             <div className="mobile-nav">
-              <NavLink to="#" id="logo"><img id="logo" src="img/newgraphics/colornotitle.png" alt="site logo" /></NavLink>
+              <NavLink to="#" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
               <ul>
                 <li>
                   <label for="mobile-toggle"><i clascoms="fa fa-bars" ></i></label>
                   <input type="checkbox" id="mobile-toggle" />
                   <div className="mobile-popup-menu">
                     <div className="toggle-nav">
-                      <NavLink to="#" id="logo"><img id="logo" src="img/newgraphics/logonotitle.png" alt="site logo" /></NavLink>
+                      <NavLink to="#" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
                       <ul>
                         <li>
                           <label for="mobile-toggle"><i className="fa fa-times"></i></label>
@@ -41,7 +41,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="web-nav">
-              <NavLink to="/" id="logo"><img id="logo" src="img/newgraphics/logonotitle.png" alt="site logo" /></NavLink>
+              <NavLink to="/" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
               <ul>
                 <li><NavLink to="#work" >How does this work?</NavLink></li>
                 <li><NavLink to="#meet" >Meet the team</NavLink></li>
@@ -53,7 +53,7 @@ export default function Home() {
               </ul>
             </div>
           </nav>
-          <div className="container">
+          <div>
             <section className="main-container">
               <div className="content-box">
                 <div className="content-text-box">
@@ -70,17 +70,15 @@ export default function Home() {
                     className="css-button-rounded css-button-rounded-2">I want to donate</NavLink>
                     <br /><center><NavLink to="" onclick="window.open('https://www.facebook.com/GiveEssential/')">
                     <i className="fa fa-facebook-square"
-                        ></i></NavLink>  &nbsp&nbsp&nbsp
+                        ></i></NavLink>
                         <NavLink to="" onclick="window.open('https://instagram.com/GiveEssential')">
                           <i className="fa fa-instagram" ></i></NavLink>
-                          &nbsp&nbsp&nbsp
                       <NavLink to="" onclick="window.open('https://twitter.com/GiveEssential')">
                         <i className="fa fa-twitter" ></i></NavLink></center>
                 </div>
               </div>
             </section>      
             <section className="how">
-              <a name="how" className="who-hover" />
               <h3 className="how-text">
                 <center> How does this work? </center>
               </h3>
@@ -153,12 +151,10 @@ export default function Home() {
                 <p >Read about some of the essential workers you can help.</p>
               </center>
               <div className="how-text-box">
-                <iframe
-                  src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4iBqbwQPXMU25n0z2YuTK_59mhDvRMATPzX-hz1cxKb5ztsCIYFwA-I8UDxKmIc5HFwlGyM1Biglw/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                <iframe title="Google Doc" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4iBqbwQPXMU25n0z2YuTK_59mhDvRMATPzX-hz1cxKb5ztsCIYFwA-I8UDxKmIc5HFwlGyM1Biglw/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
               </div>      
             </section>
             <section className="press">
-              <a name="thank-you"></a>
               <div className="comp-text-box">
                 <div className="comp-text-box-header">
                   <h3 className=" how-text">In the news</h3>
@@ -166,27 +162,26 @@ export default function Home() {
                 <div className="comp-text-box-items">
                   <center>
                   <NavLink to="" onclick="window.open('https://www.nj.com/coronavirus/2020/04/need-supplies-have-some-to-donate-these-nj-college-students-found-a-way-pair-you-up.html')">
-                    <img border="18vw" alt="typeform" src="img/media/NJ.png" height="350vw" />
+                    <img border="18vw" alt="typeform" src={ require("../img/media/NJ.png") } height="350vw" />
                   </NavLink>
                   <NavLink to="" onclick="window.open('https://twitter.com/AnnMcLaneKuster/status/1251879134239866880')">
-                    <img border="18vw" alt="typeform" src="img/media/kuster.png" height="350vw" />
+                    <img border="18vw" alt="typeform" src={ require("../img/media/kuster.png") } height="350vw" />
                   </NavLink>
                   <NavLink to="" onclick="window.open('https://www.vnews.com/Volunteer-Spotlight-Dartmouth-students-launch-program-to-connect-essential-workers-with-volunteers-33949710')">
-                    <img border="18vw" alt="typeform" src="img/media/valleynews.png" height="350vw" />
+                    <img border="18vw" alt="typeform" src={ require("../img/media/valleynews.png") } height="350vw" />
                   </NavLink>
                   <NavLink to="" onclick="window.open('https://www.baynews9.com/fl/tampa/news/2020/04/21/college-students-create-website-to-help-essential-workers')">
-                    <img border="18vw" alt="typeform" src="img/media/baynews.png" width="350vw" />
+                    <img border="18vw" alt="typeform" src={ require("../img/media/baynews.png") } width="350vw" />
                   </NavLink>
                 </center>
                 </div>
               </div>
             </section>
       
-            <a name="meet" />
               <section className="who">
               <div className="meet-box">
                 <div className="image-box">
-                  <img alt="typeform" src="img/cofounders.png" />
+                  <img alt="typeform" src={ require("../img/cofounders.png") } />
                 </div>
                 <div className="meet-text-box">
                   <p>
@@ -241,6 +236,5 @@ export default function Home() {
             </div>
           </footer>
         </div>
-    </body>   
     );
 }
