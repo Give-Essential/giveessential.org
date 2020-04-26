@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
-  Nav,
-  NavItem,
-  UncontrolledCollapse,
-  Card,
-  CardBody,
-  CardHeader,
-  CardText
+  Nav, NavItem,
+  Collapse,
+  Card, CardBody, CardHeader, CardText,
+  ListGroup, ListGroupItem
 } from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import '../css/FAQ.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const data = [
   {
@@ -136,7 +135,35 @@ const data = [
   }
 ]
 
-const FAQ = (props) => {
+class FAQ extends React.Component {
+  constructor(props) {
+    super();
+
+    this.setState = this.setState.bind(this);
+
+    // setup states
+    var collapsedStates = {};
+    data.forEach((sec, secIndex) => {
+      sec.items.forEach((_item, itemIndex) => {
+        collapsedStates[`faq-${secIndex}-${itemIndex}`] = false;
+      });
+    });
+
+    this.state = {
+      collapsedStates: collapsedStates
+    };
+  }
+
+  toggleItem(secIndex, itemIndex) {
+    var temp = this.state.collapsedStates;
+    temp[`faq-${secIndex}-${itemIndex}`] = !temp[`faq-${secIndex}-${itemIndex}`];
+
+    this.setState({
+      collapsedStates: temp
+    });
+  }
+
+  render() {
     return (
       <div className="faq">
         <div className="faq-header">
@@ -144,15 +171,15 @@ const FAQ = (props) => {
         </div>
         <div className="faq-container">
           <div className="faq-nav">
-            <Nav vertical>
+            <ListGroup>
               {data.map((section, index) => (
-                <NavItem>
+                <ListGroupItem>
                   <AnchorLink href={`#faq-section-${index}`}>
                     {section.title}
                   </AnchorLink>
-                </NavItem>
+                </ListGroupItem>
               ))}
-            </Nav>
+            </ListGroup>
           </div>
           <div className="faq-content">
             {data.map((section, sectionIndex) => (
@@ -160,14 +187,17 @@ const FAQ = (props) => {
                 <div className="faq-section-title">
                   {section.title}
                 </div>
-                {section.items.map((item, itemIndex) => (
+                {section.items.map((item, itemIndex) => {
+                  return (
                   <Card className="faq-item">
                     <CardHeader 
                       className="faq-question"
-                      id={`faq-toggler-${sectionIndex}-${itemIndex}`}>
+                      onClick={() => this.toggleItem(sectionIndex, itemIndex)}>
                       {item.question}
+                      <FontAwesomeIcon icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} />
                     </CardHeader>
-                    <UncontrolledCollapse toggler={`#faq-toggler-${sectionIndex}-${itemIndex}`}>
+                    <Collapse 
+                      isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
                       <CardBody style={{ paddingBottom: 0 }}>
                         <CardText className="faq-answer">
                           <ReactMarkdown>
@@ -175,15 +205,16 @@ const FAQ = (props) => {
                           </ReactMarkdown>
                         </CardText>
                       </CardBody>
-                    </UncontrolledCollapse>
+                    </Collapse>
                   </Card>
-                ))}
+                )})}
               </div>
             ))}
           </div>
         </div>
       </div>
     );
+  }
 };
 
 export default FAQ;
