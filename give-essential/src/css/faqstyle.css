@@ -36,6 +36,7 @@
      width: 100%;
      background-color: #8cc9ba;
      box-shadow: 0px 0px 10px rgb(0,0,0,0.2);
+     z-index: 9999;
 }
  nav {
      font-size: 1.2rem;
@@ -84,7 +85,6 @@
  @media only screen and (max-width: 640px) {
      nav {
          font-size: 8vw;
-         z-index:4;
     }
      nav #logo {
          height: 14vw;
@@ -112,7 +112,6 @@
     }
      .web-nav {
          display:none;
-         z-index:2;
     }
      input[type=checkbox] {
          position: absolute;
@@ -131,7 +130,6 @@
          right:150vw;
          width: 100vw;
          height: 100vh;
-         z-index: 1;
          opacity: 0;
          align-items: center;
          transition-duration: 0.9s;

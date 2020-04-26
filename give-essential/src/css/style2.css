@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap');
 
 ::selection {
   background: #cccbb9;
@@ -16,12 +17,17 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 a:link {
   text-decoration: none;
   color: white;
 }
 
 a:hover {
+  text-decoration: none;
   color: white;
   opacity: 0.4;
   transition: 0.5s;
@@ -82,6 +88,7 @@ nav ul {
   padding: 1vw;
   color: #FFF;
   margin-right: 1vw;
+  margin-top: 15px;
 }
 
 nav ul li {
@@ -149,13 +156,12 @@ nav ul li .donate:hover {
 
   .web-nav {
     display: none;
-    z-index: 2;
+    z-index: 9999;
     width: 100vw;
   }
 
   .web-nav-f {
     display: none;
-    z-index: 2;
   }
 
   input[type=checkbox] {
@@ -177,7 +183,6 @@ nav ul li .donate:hover {
     right: 150vw;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
     opacity: 0;
     align-items: center;
     transition-duration: 0.9s;
@@ -228,7 +233,6 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 0;
   background-color: #8cc9ba;
   flex-direction: row;
   height:100vh;
@@ -240,7 +244,6 @@ footer {
   justify-content: space-around;
   align-items: center;
   height: 100vh;
-  z-index: 0;
   background-color: #dfedc5;
   color: #304741
 }
@@ -283,7 +286,7 @@ footer {
 }
 
 .css-button-rounded-1 {
-  background: #fd8e7b;
+  background: #ff6b6b;
 }
 
 .css-button-rounded-1:hover {
@@ -292,7 +295,7 @@ footer {
 }
 
 .css-button-rounded-2 {
-  background: #e2bf3c;
+  background: #ff9f43;
 }
 
 .css-button-rounded-2:hover {
@@ -303,23 +306,27 @@ footer {
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 4.2rem;
+  font-size: 3.8rem;
 }
 
 .maintext {
   color: white;
+  font-size: 3.8rem;
+  font-weight: 800;
 }
 
 h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 50px;
 }
 
 .tagtext {
   color: white;
   width:80%;
+  font-weight: 400;
+  font-size: 1.25rem;
 }
 
 @media screen and (max-width:700px) {
@@ -684,7 +691,7 @@ iframe {
 }
 
 .xop-btn-1:hover {
-  background: #ae6559;
+  background: #ee5253;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all .35s;
@@ -697,7 +704,7 @@ iframe {
   border: none;
   padding: 5%;
   width: 100%;
-  color: #ae6559;
+  color: #ee5253;
   font-size: 1em;
   font-weight: 600;
   margin-top: 2vh;
@@ -705,7 +712,7 @@ iframe {
 }
 
 .xop-btn-2:hover {
-  background: #ae6559;
+  background: #ee5253;
   color: #fff;
   cursor: pointer;
   -webkit-transition: all .35s;

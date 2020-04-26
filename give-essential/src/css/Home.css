@@ -1,0 +1,70 @@
+.about, .about a {
+    color: black;
+}
+
+.about img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.about {
+    margin-bottom: 50px;
+}
+
+.flex {
+    display: flex;
+}
+
+.center {
+    justify-content: center;
+}
+
+.content-links-box a:hover{
+    text-decoration: none;
+    color:black;
+}
+
+/* action boxes */
+
+.actionBox {
+    padding: 25px;
+    color: white;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.actionImage {
+    text-align: center;
+}
+
+.actionImage img {
+    width: 50px;
+}
+
+.actionBoxTitle h4 {
+    color: white;
+}
+
+.signUp {
+    background: #ff6b6b;
+}
+
+.createMatch {
+    background: #16a085;
+}
+
+.giftDelivery {
+    background: #ff9f43;
+}
+
+/* misc */
+
+.space {
+    margin-bottom: 30px;
+}
+
+i img {
+    width: 30px;
+    margin: 10px;
+    margin-top: 0;
+}
