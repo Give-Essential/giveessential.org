@@ -180,7 +180,7 @@ class FAQ extends React.Component {
     return (
       <div className="faq">
         <div className="faq-header">
-          {/* Frequently Asked Questions */}
+          Frequently Asked Questions
         </div>
         <div className={`faq-container ${isMobile ? 'mobile' : 'desktop'}`}>
           {isMobile ?

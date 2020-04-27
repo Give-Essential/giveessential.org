@@ -2,15 +2,20 @@
 
 .faq {
     font-family: 'Archivo', sans-serif;
-    padding: 2.5%;
+    padding-top: calc(10vh + 2.5%);
     color: black;
     background-color: #FAFAFA;
+
+    a {
+        color: blue;
+    }
 }
 
 .faq-header {
     font-size: 2.5em;
-    font-weight: bold;
+    font-weight: bolder;
     padding: 0 0 2.5% 2.5%;
+    text-align: center;
 }
 
 .faq-container {
@@ -31,7 +36,7 @@
 
 .faq-nav {
     position: sticky;
-    top: 2.5%;
+    top: calc(10vh + 2.5%);
     align-self: flex-start;
     z-index: 1;
 
