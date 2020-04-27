@@ -4,12 +4,14 @@ import {
   Nav, NavItem,
   Collapse,
   Card, CardBody, CardHeader, CardText,
-  ListGroup, ListGroupItem
+  ListGroup, ListGroupItem,
+  UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Dropdown
 } from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import '../css/FAQ.css';
+import '../css/FAQ.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { isMobile } from 'react-device-detect';
 
 const data = [
   {
@@ -139,7 +141,8 @@ class FAQ extends React.Component {
   constructor(props) {
     super();
 
-    this.setState = this.setState.bind(this);
+    this.toggleItem = this.toggleItem.bind(this);
+    this.toggleMobileNav = this.toggleMobileNav.bind(this)
 
     // setup states
     var collapsedStates = {};
@@ -150,7 +153,8 @@ class FAQ extends React.Component {
     });
 
     this.state = {
-      collapsedStates: collapsedStates
+      collapsedStates: collapsedStates,
+      mobileNavOpen: false
     };
   }
 
@@ -163,25 +167,65 @@ class FAQ extends React.Component {
     });
   }
 
+  toggleMobileNav(value) {
+    if (value == null) {
+      value = !this.state.mobileNavOpen
+    }
+
+    this.setState({
+      mobileNavOpen: value
+    })
+  }
+
   render() {
     return (
       <div className="faq">
         <div className="faq-header">
-          Frequently Asked Questions
+          {/* Frequently Asked Questions */}
         </div>
-        <div className="faq-container">
-          <div className="faq-nav">
-            <ListGroup>
-              {data.map((section, index) => (
-                <ListGroupItem>
+        <div className={`faq-container ${isMobile ? 'mobile' : 'desktop'}`}>
+          {isMobile ?
+            <div className="faq-nav mobile">
+              <Card style={{ backgroundColor: '#8CC9BA'}}>
+                <CardHeader 
+                  className="faq-nav-mobile-header"
+                  onClick={() => this.toggleMobileNav()}>
+                  Sections
+                  <FontAwesomeIcon icon={this.state.mobileNavOpen ? faAngleUp : faAngleDown} />
+                </CardHeader>
+                <Collapse isOpen={this.state.mobileNavOpen}>
+                  <CardBody style={{ padding: 0 }}>
+                    <ListGroup>
+                      {data.map((section, index) => (
+                        <AnchorLink 
+                          offset='300'
+                          href={`#faq-section-${index}`}
+                          onClick={() => this.toggleMobileNav(false)}>
+                          <ListGroupItem className="faq-nav-mobile-link">
+                            {section.title}
+                          </ListGroupItem>
+                        </AnchorLink>
+                      ))}
+                    </ListGroup>
+                  </CardBody>
+                </Collapse>
+              </Card>
+            </div>
+          :
+            <div className="faq-nav desktop">
+              <ListGroup>
+                {data.map((section, index) => (
                   <AnchorLink href={`#faq-section-${index}`}>
-                    {section.title}
+                    <ListGroupItem className="faq-nav-item">
+                      {section.title}
+                    </ListGroupItem>
                   </AnchorLink>
-                </ListGroupItem>
-              ))}
-            </ListGroup>
-          </div>
-          <div className="faq-content">
+                ))}
+              </ListGroup>
+            </div>
+          }
+          
+          <div className={`faq-content ${isMobile ? 'mobile' : 'desktop'}`}>
             {data.map((section, sectionIndex) => (
               <div className="faq-section" id={`faq-section-${sectionIndex}`}>
                 <div className="faq-section-title">
@@ -196,8 +240,7 @@ class FAQ extends React.Component {
                       {item.question}
                       <FontAwesomeIcon icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} />
                     </CardHeader>
-                    <Collapse 
-                      isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
+                    <Collapse isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
                       <CardBody style={{ paddingBottom: 0 }}>
                         <CardText className="faq-answer">
                           <ReactMarkdown>
