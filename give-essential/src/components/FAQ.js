@@ -5,7 +5,6 @@ import {
   Collapse,
   Card, CardBody, CardHeader, CardText,
   ListGroup, ListGroupItem,
-  UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Dropdown
 } from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import '../css/FAQ.scss';
