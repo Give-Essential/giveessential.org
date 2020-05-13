@@ -5,6 +5,8 @@ import '../css/Home.css'
 import { Container, Row, Col } from 'reactstrap';
 import Nav from './Nav';
 
+import Referral from './Referral';
+
 export default function Home() {
     return (
         <div className="cover">
@@ -150,7 +152,7 @@ export default function Home() {
                 </Container>
               </div>
             </section>
-      
+            <Referral />
             <section className="who">
               <Container className="about">
                 <Row>
