@@ -13,14 +13,13 @@ library.add(faAngleUp, faAngleDown);
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/faq" component={FAQ} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+          <div className="App">
+              <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/faq" component={FAQ} />
+              </Switch>
+          </div>
+      </BrowserRouter>
   );
 }
 

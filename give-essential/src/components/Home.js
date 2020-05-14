@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/style2.css'
 import '../css/Home.css'
@@ -6,10 +6,16 @@ import { Container, Row, Col } from 'reactstrap';
 import Nav from './Nav';
 
 import Referral from './Referral';
+import { Element  } from 'react-scroll'
+ 
+import Navigation from './Navigation';
 
-export default function Home() {
-    return (
+class Home extends Component {
+
+    render() {
+      return (
         <div className="cover">
+          <Navigation />
           <div>
             <section className="main-container">
               <div className="content-box">
@@ -21,20 +27,20 @@ export default function Home() {
               </div>
               <div className="picture-box">
                 <div className="content-links-box">
-                  <NavLink to="" onclick="window.open('https://giveessential.typeform.com/to/Mk76Bo')"
+                  <NavLink to="" onClick={(e) => window.open('https://giveessential.typeform.com/to/Mk76Bo')}
                     className="css-button-rounded css-button-rounded-1">I'm an essential worker</NavLink>
-                  <NavLink to="" onclick="window.open('https://giveessential.typeform.com/to/LWKggm')"
+                  <NavLink to="" onClick={(e) => window.open('https://giveessential.typeform.com/to/LWKggm')}
                     className="css-button-rounded css-button-rounded-2">I want to donate</NavLink>
-                    <br /><center><NavLink to="" onclick="window.open('https://www.facebook.com/GiveEssential/')">
-                    <i className="fa fa-facebook-square"
-                        ><img src={ require('../img/FB.svg') } alt="Facebook" /></i></NavLink>
-                        <NavLink to="" onclick="window.open('https://instagram.com/GiveEssential')">
-                          <i className="fa fa-instagram" ><img src={ require('../img/IN.svg') } alt="Facebook" /></i></NavLink>
-                      <NavLink to="" onclick="window.open('https://twitter.com/GiveEssential')">
-                        <i className="fa fa-twitter" ><img src={ require('../img/TW.svg') } alt="Facebook" /></i></NavLink></center>
+                    <br /><center><NavLink to="" onClick={(e) => window.open('https://www.facebook.com/GiveEssential/')}>
+                    <i className="fa fa-facebook-square"><img src={ require('../img/FB.svg') } alt="Facebook" /></i></NavLink>
+                    <NavLink to="" onClick={(e) => window.open('https://www.instagram.com/GiveEssential/')}>
+                    <i className="fa fa-instagram" ><img src={ require('../img/IN.svg') } alt="Facebook" /></i></NavLink>
+                    <NavLink to="" onClick={(e) => window.open('https://www.twitter.com/GiveEssential/')}>
+                    <i className="fa fa-twitter" ><img src={ require('../img/TW.svg') } alt="Facebook" /></i></NavLink></center>
                 </div>
               </div>
-            </section>      
+            </section>
+            <Element name="work" className="element"><br /></Element>
             <section className="how">
               <h3 className="how-text">
                 <center> How does this work? </center>
@@ -59,7 +65,7 @@ export default function Home() {
               </div>
               <h3 className="secondhow-text">
                 <center>I'm interested! What now?</center>
-              </h3>
+              </h3><br />
               <section className="interested">
               <Container className="interestedSteps">
                 <Row className="flex center">
@@ -110,7 +116,7 @@ export default function Home() {
                 </Row>
               </Container>
               </section>
-
+             
               <h3 className="secondhow-text">
                 <center>Featured Donation Requests</center>
               </h3>
@@ -129,22 +135,22 @@ export default function Home() {
                 <Container className="about">
                 <Row>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://www.nj.com/coronavirus/2020/04/need-supplies-have-some-to-donate-these-nj-college-students-found-a-way-pair-you-up.html')">
+                    <NavLink to="" onClick={(e) => window.open('https://www.nj.com/coronavirus/2020/04/need-supplies-have-some-to-donate-these-nj-college-students-found-a-way-pair-you-up.html')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/NJ.png") } height="350vw" />
                     </NavLink>
                   </Col>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://twitter.com/AnnMcLaneKuster/status/1251879134239866880')">
+                    <NavLink to="" onClick={(e) => window.open('https://twitter.com/AnnMcLaneKuster/status/1251879134239866880')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/kuster.png") } height="350vw" />
                     </NavLink>
                   </Col>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://www.vnews.com/Volunteer-Spotlight-Dartmouth-students-launch-program-to-connect-essential-workers-with-volunteers-33949710')">
+                    <NavLink to="" onClick={(e) => window.open('https://www.vnews.com/Volunteer-Spotlight-Dartmouth-students-launch-program-to-connect-essential-workers-with-volunteers-33949710')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/valleynews.png") } height="350vw" />
                     </NavLink>
                   </Col>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://www.baynews9.com/fl/tampa/news/2020/04/21/college-students-create-website-to-help-essential-workers')">
+                    <NavLink to="" onClick={(e) => window.open('https://www.baynews9.com/fl/tampa/news/2020/04/21/college-students-create-website-to-help-essential-workers')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/baynews.png") } width="350vw" />
                     </NavLink>
                   </Col>
@@ -153,6 +159,7 @@ export default function Home() {
               </div>
             </section>
             <Referral />
+            <Element name="meet" className="element"><br /></Element>
             <section className="who">
               <Container className="about">
                 <Row>
@@ -161,9 +168,7 @@ export default function Home() {
                   </Col>
                   <Col lg="6" sm="12">
                   <div>
-                    <p>
-                      <h3>Meet the co-founders</h3>
-                    </p>
+                    <h3>Meet the co-founders</h3>
                     <p>We're Amy and Rine, two college roommates. Over the past few weeks,
                       COVID-19 has turned our lives upside down. We were troubled by the
                       lack of support for essential workers despite society's increasing
@@ -174,13 +179,14 @@ export default function Home() {
                     <p><b>Executive Directors:</b> Amy, Crystal, Rine</p>
                     <p><b>Core Team:</b> Cindy, Kaitlyn, Kristie, Luiza</p>
                     <p><b>Software Engineers:</b> Jai Smith, John MacDonald</p>
-                    <NavLink to="" onclick="window.open('https://giveessential.typeform.com/to/Uj4kWJ')">Check out this form if you're interested in volunteering!</NavLink>
+                    <NavLink to="" onClick={(e) => window.open('https://giveessential.typeform.com/to/Uj4kWJ')}>Check out this form if you're interested in volunteering!</NavLink>
                   </div>
                   </Col>
                 </Row>
               </Container>
             </section>
-            <section className="contact">
+            <Element name="contact" className="element">
+              <section className="contact">
               <div className="ct-text-box">
                 <h3 className="how-text">Contact us!</h3>
                 <h3 ><b>General questions:</b> team@giveessential.org</h3>
@@ -188,6 +194,7 @@ export default function Home() {
                 <h3 ><b>Media:</b> pr@giveessential.org</h3>
               </div>
             </section>
+            </Element>
           </div>
           <footer>
             <div className="privacy-policy">
@@ -203,14 +210,21 @@ export default function Home() {
             <div className="social-links">
               <ul>
                 <li>
-                  <NavLink to="" onclick="window.open('https://www.facebook.com/GiveEssential/')">
-                  <i className="fa fa-facebook-square"
-                      ></i></NavLink></li>
-                <li><NavLink to="" onclick="window.open('https://twitter.com/GiveEssential')"><i className="fa fa-twitter" ></i></NavLink></li>
-                <li><NavLink to="" onclick="window.open('https://instagram.com/GiveEssential')"><i className="fa fa-instagram" ></i></NavLink></li>
+                <NavLink to="" onClick={(e) => window.open('https://www.facebook.com/GiveEssential/')}>
+                    <i className="fa fa-facebook-square"><img src={ require('../img/FB.svg') } alt="Facebook" /></i></NavLink></li>
+                <li><NavLink to="" onClick={(e) => window.open('https://www.twitter.com/GiveEssential/')}>
+                    <i className="fa fa-twitter" ><img src={ require('../img/TW.svg') } alt="Facebook" /></i></NavLink></li>
+                <li><NavLink to="" onClick={(e) => window.open('https://www.instagram.com/GiveEssential/')}>
+                    <i className="fa fa-instagram" ><img src={ require('../img/IN.svg') } alt="Facebook" /></i></NavLink></li>
               </ul>
             </div>
+
+                
+
           </footer>
         </div>
     );
+    }
 }
+
+export default Home;
