@@ -3,76 +3,17 @@ import { NavLink } from 'react-router-dom';
 import '../css/faqstyle.css'
 import '../css/style2.css'
 import '../css/Home.css'
-import Logo from '../img/newgraphics/logonotitle.png'
 import { Container, Row, Col } from 'reactstrap';
-import * as Scroll from 'react-scroll';
-import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Element  } from 'react-scroll'
  
+import Navigation from './Navigation';
 
 class Home extends Component {
-
-    componentDidMount() {
-      Events.scrollEvent.register('begin', function () {});
-      Events.scrollEvent.register('end', function () {});
-    }
-
-    scrollTo(element) {
-      scroller.scrollTo(element, {
-        duration: 800,
-        delay: 0,
-        smooth: 'easeInOutQuart'
-      })
-    }
 
     render() {
       return (
         <div className="cover">
-          <nav>
-            <div className="mobile-nav">
-              <NavLink to="#" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
-              <ul>
-                <li>
-                  <label for="mobile-toggle"><i clascoms="fa fa-bars" ></i></label>
-                  <input type="checkbox" id="mobile-toggle" />
-                  <div className="mobile-popup-menu">
-                    <div className="toggle-nav">
-                      <NavLink to="#" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
-                      <ul>
-                        <li>
-                          <label for="mobile-toggle"><i className="fa fa-times"></i></label>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="toggle-links">
-                      <ul>
-                        <li><NavLink to="" onClick={(e) => window.open('https://giveessential.typeform.com/to/Mk76Bo')}>I'm an essential worker</NavLink></li>
-                        <li><NavLink to="" onClick={(e) => window.open('https://giveessential.typeform.com/to/LWKggm')}>I want to donate</NavLink></li>
-                        <li><NavLink to="https://giveessential.org/#work">How this works</NavLink></li>
-                        <li><NavLink to="/faq">FAQ</NavLink></li>
-                        <li><NavLink to="https://giveessential.org/#contact">Contact</NavLink></li>
-                        <li><NavLink to="#"
-                            onclick="window.open('https://www.gofundme.com/f/give-essential?utm_source=customer&utm_medium=copy_link&utm_campaign=p_cf+share-flow-1')">Our
-                            GoFundMe</NavLink>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="web-nav">
-              <NavLink to="/" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
-              <ul>
-                <li><NavLink to="#work" onClick={(e) => this.scrollTo('work') }>How does this work?</NavLink></li>
-                <li><NavLink to="#meet" onClick={(e) => this.scrollTo('meet') }>Meet the team</NavLink></li>
-                <li><NavLink to="/faq" >FAQ</NavLink></li>
-                <li><NavLink to="#contact" onClick={(e) => this.scrollTo('contact') }>Contact</NavLink></li>
-                <li><NavLink to="#"
-                    onclick="window.open('https://www.gofundme.com/f/give-essential?utm_source=customer&utm_medium=copy_link&utm_campaign=p_cf+share-flow-1')"
-                    className="donate">Our GoFundMe</NavLink></li>
-              </ul>
-            </div>
-          </nav>
+          <Navigation />
           <div>
             <section className="main-container">
               <div className="content-box">
@@ -192,22 +133,22 @@ class Home extends Component {
                 <Container className="about">
                 <Row>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://www.nj.com/coronavirus/2020/04/need-supplies-have-some-to-donate-these-nj-college-students-found-a-way-pair-you-up.html')">
+                    <NavLink to="" onClick={(e) => window.open('https://www.nj.com/coronavirus/2020/04/need-supplies-have-some-to-donate-these-nj-college-students-found-a-way-pair-you-up.html')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/NJ.png") } height="350vw" />
                     </NavLink>
                   </Col>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://twitter.com/AnnMcLaneKuster/status/1251879134239866880')">
+                    <NavLink to="" onClick={(e) => window.open('https://twitter.com/AnnMcLaneKuster/status/1251879134239866880')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/kuster.png") } height="350vw" />
                     </NavLink>
                   </Col>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://www.vnews.com/Volunteer-Spotlight-Dartmouth-students-launch-program-to-connect-essential-workers-with-volunteers-33949710')">
+                    <NavLink to="" onClick={(e) => window.open('https://www.vnews.com/Volunteer-Spotlight-Dartmouth-students-launch-program-to-connect-essential-workers-with-volunteers-33949710')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/valleynews.png") } height="350vw" />
                     </NavLink>
                   </Col>
                   <Col lg="3" md="6" sm="12">
-                    <NavLink to="" onclick="window.open('https://www.baynews9.com/fl/tampa/news/2020/04/21/college-students-create-website-to-help-essential-workers')">
+                    <NavLink to="" onClick={(e) => window.open('https://www.baynews9.com/fl/tampa/news/2020/04/21/college-students-create-website-to-help-essential-workers')}>
                       <img border="18vw" alt="typeform" src={ require("../img/media/baynews.png") } width="350vw" />
                     </NavLink>
                   </Col>
@@ -224,9 +165,7 @@ class Home extends Component {
                   </Col>
                   <Col lg="6" sm="12">
                   <div>
-                    <p>
-                      <h3>Meet the co-founders</h3>
-                    </p>
+                    <h3>Meet the co-founders</h3>
                     <p>We're Amy and Rine, two college roommates. Over the past few weeks,
                       COVID-19 has turned our lives upside down. We were troubled by the
                       lack of support for essential workers despite society's increasing
@@ -237,7 +176,7 @@ class Home extends Component {
                     <p><b>Executive Directors:</b> Amy, Crystal, Rine</p>
                     <p><b>Core Team:</b> Cindy, Kaitlyn, Kristie, Luiza</p>
                     <p><b>Software Engineers:</b> Jai Smith, John MacDonald</p>
-                    <NavLink to="" onclick="window.open('https://giveessential.typeform.com/to/Uj4kWJ')">Check out this form if you're interested in volunteering!</NavLink>
+                    <NavLink to="" onClick={(e) => window.open('https://giveessential.typeform.com/to/Uj4kWJ')}>Check out this form if you're interested in volunteering!</NavLink>
                   </div>
                   </Col>
                 </Row>
@@ -268,13 +207,17 @@ class Home extends Component {
             <div className="social-links">
               <ul>
                 <li>
-                  <NavLink to="" onclick="window.open('https://www.facebook.com/GiveEssential/')">
-                  <i className="fa fa-facebook-square"
-                      ></i></NavLink></li>
-                <li><NavLink to="" onclick="window.open('https://twitter.com/GiveEssential')"><i className="fa fa-twitter" ></i></NavLink></li>
-                <li><NavLink to="" onclick="window.open('https://instagram.com/GiveEssential')"><i className="fa fa-instagram" ></i></NavLink></li>
+                <NavLink to="" onClick={(e) => window.open('https://www.facebook.com/GiveEssential/')}>
+                    <i className="fa fa-facebook-square"><img src={ require('../img/FB.svg') } alt="Facebook" /></i></NavLink></li>
+                <li><NavLink to="" onClick={(e) => window.open('https://www.twitter.com/GiveEssential/')}>
+                    <i className="fa fa-twitter" ><img src={ require('../img/TW.svg') } alt="Facebook" /></i></NavLink></li>
+                <li><NavLink to="" onClick={(e) => window.open('https://www.instagram.com/GiveEssential/')}>
+                    <i className="fa fa-instagram" ><img src={ require('../img/IN.svg') } alt="Facebook" /></i></NavLink></li>
               </ul>
             </div>
+
+                
+
           </footer>
         </div>
     );
