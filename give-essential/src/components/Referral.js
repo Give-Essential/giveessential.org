@@ -8,6 +8,7 @@ import {
   FacebookShareButton, TwitterShareButton,
   FacebookIcon, TwitterIcon
 } from 'react-share';
+import axios from 'axios';
 import '../css/Referral.scss';
 
 class Referral extends PureComponent { 
@@ -15,21 +16,79 @@ class Referral extends PureComponent {
     super(props);
 
     this.state = {
-      expanded: true,
-    };
+      referrer: '',
+      referrees: '',
+      referenceMessage: '',
+      success: false,
+      error: false,
+    }
   }
 
-  expandReferral = () => {
+  updateReferrer = (text) => {
     this.setState({
-      expanded: false,
+      referrer: text,
+    });
+  }
+
+  updateReferrees = (text) => {
+    this.setState({
+      referrees: text,
+    });
+  }
+
+  updateReferenceMessage = (text) => {
+    this.setState({
+      referenceMessage: text,
+    })
+  }
+
+  refer = () => {
+    if (this.state.referrer.length < 1 || this.state.referrees.length < 1) {
+      this.setState({
+        error: true,
+      })
+
+      setTimeout(() => this.setState({
+        error: false,
+      }), 2500);
+
+      return;
+    }
+
+    const referrees = this.state.referrees.split(',').map(referee => referee.replace(/ /g, ''));
+
+    axios.post('https://giveessential.uc.r.appspot.com/api/refer', {
+      'referrer': this.state.referrer,
+      'referrees': referrees,
+      'referenceMessage': this.state.referenceMessage
+    }).then(() => {
+      this.setState({
+        success: true,
+        error: false,
+      });
+
+      setTimeout(() => this.setState({
+        success: false,
+        referrer: '',
+        referrees: '',
+        referenceMessage: '',
+      }), 5000);
+    }).catch(() => {
+      this.setState({
+        success: false,
+        error: true,
+      })
+
+      setTimeout(() => this.setState({
+        error: false,
+        referrer: '',
+        referrees: '',
+        referenceMessage: '',
+      }), 2500);
     });
   }
 
   render () {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
-
     return (
       <div className="referral">
         <div className="referral-tagline">
@@ -43,11 +102,13 @@ class Referral extends PureComponent {
                   <Label for="senderName">
                     Your Name
                   </Label>
-                  <Input 
+                  <Input
                     type="text"
                     name="sender"
                     id="senderName"
                     placeholder="name"
+                    value={this.state.referrer}
+                    onChange={(e) => this.updateReferrer(e.target.value)}
                   />
                 </FormGroup>
               </Col>
@@ -56,12 +117,13 @@ class Referral extends PureComponent {
                   <Label for="recipientEmails">
                     Your Friends' Emails
                   </Label>
-                  <Input 
-                    type="email"
+                  <Input
+                    type="text"
                     name="recipient"
                     id="recipientEmails"
                     placeholder="a@example.com, b@example.com"
-                    multiple
+                    value={this.state.referrees}
+                    onChange={(e) => this.updateReferrees(e.target.value)}
                   />
                 </FormGroup>
               </Col>
@@ -76,16 +138,35 @@ class Referral extends PureComponent {
                   name="message"
                   id="message"
                   placeholder="attach an optional message"
+                  value={this.state.referenceMessage}
+                  onChange={(e) => this.updateReferenceMessage(e.target.value)}
                 />
                 <InputGroupAddon addonType="append">
                   <Button 
                     size="lg"
                     style={{
-                      backgroundColor: '#8CC9BA',
+                      backgroundColor: this.state.error ? 'red' : '#8CC9BA',
                       border: 'none',
                     }}
+                    onClick={this.refer}
                   >
-                    Send
+                    {this.state.success ?
+                      <React.Fragment>
+                        Sent!
+                      </React.Fragment>
+                    :
+                      <React.Fragment>
+                        {this.state.error ?
+                          <React.Fragment>
+                            Error
+                          </React.Fragment>
+                        :
+                          <React.Fragment>
+                            Send
+                          </React.Fragment>    
+                        }
+                      </React.Fragment>
+                    }
                   </Button>
                 </InputGroupAddon>
               </InputGroup>
