@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import '../css/style2.css'
 import '../css/Home.css'
 import { Container, Row, Col } from 'reactstrap';
-import Nav from './Nav';
 
 import Referral from './Referral';
 import { Element  } from 'react-scroll'
