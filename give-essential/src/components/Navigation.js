@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../img/newgraphics/logonotitle.png'
-import {Events, animateScroll as scroller } from 'react-scroll'
- 
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+
 class Navigation extends Component {
-    componentDidMount() {
-        Events.scrollEvent.register('begin', function () {});
-        Events.scrollEvent.register('end', function () {});
-    }
-
-    scrollTo(element) {
-        scroller.scrollTo(element, {
-            duration: 800,
-            delay: 0,
-            smooth: 'easeInOutQuart'
-        });
-    }
-
-      
     render() {
         return (
             <nav>
@@ -56,10 +42,10 @@ class Navigation extends Component {
                 <div className="web-nav">
                   <NavLink to="/" id="logo"><img id="logo" src={ Logo } alt="site logo" /></NavLink>
                   <ul>
-                    <li><NavLink to="#work" onClick={(e) => this.scrollTo('work') }>How does this work?</NavLink></li>
-                    <li><NavLink to="#meet" onClick={(e) => this.scrollTo('meet') }>Meet the team</NavLink></li>
+                    <li><AnchorLink offset='100' href='#how'>How does this work?</AnchorLink></li>
+                    <li><AnchorLink offset='100' href='#meet'>Meet the team</AnchorLink></li>
                     <li><NavLink to="/faq" >FAQ</NavLink></li>
-                    <li><NavLink to="#contact" onClick={(e) => this.scrollTo('contact') }>Contact</NavLink></li>
+                    <li><AnchorLink offset='100' href='#contact'>Contact</AnchorLink></li>
                     <li><NavLink to="#"
                                 onClick={(e) => window.open('https://www.gofundme.com/f/give-essential?utm_source=customer&utm_medium=copy_link&utm_campaign=p_cf+share-flow-1') }>Our
                                 GoFundMe</NavLink></li>

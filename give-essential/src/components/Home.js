@@ -39,8 +39,7 @@ class Home extends Component {
                 </div>
               </div>
             </section>
-            <Element name="work" className="element"><br /></Element>
-            <section className="how">
+            <section className="how" id='how'>
               <h3 className="how-text">
                 <center> How does this work? </center>
               </h3>
@@ -166,7 +165,7 @@ class Home extends Component {
                     <img alt="typeform" src={ require("../img/cofounders.png") } />
                   </Col>
                   <Col lg="6" sm="12">
-                  <div>
+                  <div id='meet'>
                     <h3>Meet the co-founders</h3>
                     <p>We're Amy and Rine, two college roommates. Over the past few weeks,
                       COVID-19 has turned our lives upside down. We were troubled by the
@@ -184,16 +183,14 @@ class Home extends Component {
                 </Row>
               </Container>
             </section>
-            <Element name="contact" className="element">
-              <section className="contact">
-              <div className="ct-text-box">
-                <h3 className="how-text">Contact us!</h3>
-                <h3 ><b>General questions:</b> team@giveessential.org</h3>
-                <h3 ><b>Outreach:</b> outreach@giveessential.org</h3>
-                <h3 ><b>Media:</b> pr@giveessential.org</h3>
-              </div>
-            </section>
-            </Element>
+            <section className="contact" id="contact">
+            <div className="ct-text-box">
+              <h3 className="how-text">Contact us!</h3>
+              <h3 ><b>General questions:</b> team@giveessential.org</h3>
+              <h3 ><b>Outreach:</b> outreach@giveessential.org</h3>
+              <h3 ><b>Media:</b> pr@giveessential.org</h3>
+            </div>
+          </section>
           </div>
           <footer>
             <div className="privacy-policy">
