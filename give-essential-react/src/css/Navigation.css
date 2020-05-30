@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.navigation {
+    display: flex;
+    padding: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+}
+
+.navLinks a {
+    margin: 0px 20px;
+    font-family: 'Open Sans';
+    color: #333333;
+}
+
+.logoBox {
+    margin: 0px 40px;
+}
+
+.navSideBar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.navSideBar a {
+    margin-right: 50px;
+    font-weight: bold;
+    font-style: italic;
+    color: #333333;
+}
+
+a.donate {
+    color: #FD8E7B;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.5em;
+}
