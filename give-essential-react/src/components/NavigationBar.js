@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Logo from '../assets/images/logo.svg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Button } from "reactstrap";
 
 import '../css/Navigation.css'
@@ -13,13 +13,13 @@ class NavigationBar extends Component {
                     <img src={Logo} alt="logo for navigation bar" />
                 </div>
                 <div className="navLinks">
-                    <Link to="/">HOW DOES THIS WORK?</Link><br />
-                    <Link to="/">WHO WE ARE</Link><br />
-                    <Link to="/">CONTACT US</Link>
+                    <NavLink to="/">HOW DOES THIS WORK?</NavLink><br />
+                    <NavLink to="/">WHO WE ARE</NavLink><br />
+                    <NavLink to="/">CONTACT US</NavLink>
                 </div>
                 <div className="navSideBar">
-                    <Link to="/">GET HELP</Link>
-                    <Link className="donate" to="/">DONATE</Link>
+                    <NavLink to="/">GET HELP</NavLink>
+                    <NavLink className="donate" to="/">DONATE</NavLink>
                 </div>
             </div>
         );

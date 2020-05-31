@@ -6,10 +6,8 @@ import NavigationBar from './components/NavigationBar';
 function App() {
   return (
     <BrowserRouter>
-        <Switch>
-            <NavigationBar />
-            <Route exact path="/" component={Home} />
-        </Switch>
+      <NavigationBar />
+      <Home />
     </BrowserRouter>
   );
 }
