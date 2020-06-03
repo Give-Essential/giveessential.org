@@ -85,7 +85,7 @@ export default function HomePage() {
             style={tooltipStyle}
           >
             {`An essential worker is anyone who has to risk their health in order
-            to make ends meet and/or is unable to work from home`}
+            to make ends meet or is unable to work from home`}
           </Tooltip>
         </WhatWeDoBlock>
       </CenteredFlex>

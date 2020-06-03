@@ -2,9 +2,11 @@ import React from "react";
 import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import MatchedPage from "./pages/MatchedPage";
 
 const GlobalStyle = createGlobalStyle`
-  body {
+ html, body {
     font-family: 'Archivo', sans-serif;
   }
 `;
@@ -12,9 +14,12 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <NavBar />
-      <HomePage />
+      <BrowserRouter>
+        <GlobalStyle />
+        <NavBar />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/matched" component={MatchedPage} />
+      </BrowserRouter>
     </>
   );
 }
