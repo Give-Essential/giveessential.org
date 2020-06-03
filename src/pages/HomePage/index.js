@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Col, Row, Tooltip } from "reactstrap";
+import { Col, Tooltip } from "reactstrap";
 import {
   RowFlex,
   ColumnFlex,
@@ -11,6 +11,11 @@ import {
   WhatWeDoBlock,
   QuestionMark,
   EmphasizedText,
+  ListItem,
+  Dot,
+  DotText,
+  tooltipStyle,
+  NewsImage,
 } from "./styles";
 import Button from "./components/Button";
 // Import for the landing image in the first container
@@ -22,68 +27,6 @@ import news5 from "../../assets/images/news5.png";
 import cnn from "../../assets/images/cnn.png";
 import dnews from "../../assets/images/dallas-news.png";
 import question from "../../assets/images/question.svg";
-
-const secondaryHeader = {
-  // fontFamily: "Archivo",
-  fontStyle: "normal",
-  fontWeight: "bold",
-  fontSize: "52px",
-  lineHeight: "57px",
-  alignItems: "center",
-  color: "#333333",
-  padding: "5% 5% 3% 5%",
-};
-
-const dot = {
-  height: "50px",
-  width: "50px",
-  backgroundColor: "#bbb",
-  borderRadius: "50%",
-  display: "inline-block",
-  textAlign: "center",
-  textColor: "white",
-};
-
-const noStyle = {
-  listStyle: "none",
-};
-
-const logoStyling = {
-  width: "100px",
-};
-
-// const trapezoid = {
-//   borderBottom: "100px solid #8CC9BA",
-//   borderLeft: "25px solid transparent",
-//   borderRight: "25px solid transparent",
-//   height: "0",
-//   width: "33%",
-//   zIndex: "0",
-//   // position: "relative",
-// };
-
-const whatWeDoBlock = {
-  fontFamily: "Open Sans",
-  fontStyle: "normal",
-  fontWeight: "normal",
-  fontSize: "40px",
-  lineHeight: "54px",
-  // display: "flex",
-  alignItems: "center",
-  padding: "0% 12% 6% 12% ",
-};
-
-const tooltipStyle = {
-  fontFamily: "Open Sans",
-  fontStyle: "italic",
-  fontWeight: "bold",
-  fontSize: "20px",
-  lineHeight: "27px",
-  display: "flex",
-  alignItems: "center",
-  color: "#8CC9BA",
-  // backgroundColor: "#FFF",
-};
 
 const infoList = [
   [
@@ -122,7 +65,6 @@ export default function HomePage() {
           <PictureDiv>
             <img src={adImg} alt="Example box given to a worker" />
           </PictureDiv>
-          {/* <div style={trapezoid}></div> */}
         </RowFlex>
       </RowFlex>
       <CenteredFlex style={{ paddingTop: 130 }}>
@@ -148,77 +90,72 @@ export default function HomePage() {
         </WhatWeDoBlock>
       </CenteredFlex>
       <RowFlex>
-        <Col className="my-auto">
-          <div style={secondaryHeader}>How does this work?</div>
-        </Col>
-        <Col className="my-auto">
-          <div className="my-auto">
-            <ul style={noStyle}>
-              {infoList.map((e, i) => (
-                <li style={whatWeDoBlock}>
-                  <span style={dot}>{i + 1}</span>
-                  {e[0]}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Col>
+        <ColumnFlex>
+          <Header
+            style={{
+              marginLeft: 144,
+            }}
+          >
+            How does this work?
+          </Header>
+        </ColumnFlex>
+        <ColumnFlex style={{ marginRight: 90, width: "60%" }}>
+          <ColumnFlex>
+            {infoList.map((e, i) => (
+              <RowFlex style={{ marginBottom: 15 }}>
+                <Dot color={e[1]}>
+                  <DotText>{i + 1}</DotText>
+                </Dot>
+                <ListItem color={e[1]}>{e[0]}</ListItem>
+              </RowFlex>
+            ))}
+          </ColumnFlex>
+        </ColumnFlex>
       </RowFlex>
-      {/* Container for Esssential workers in need examples */}
       <CenteredFlex>
-        <div style={secondaryHeader}>Essential workers in need</div>
+        <Header>Essential workers in need</Header>
       </CenteredFlex>
-
-      {/* Container for in the news */}
-      <Container>
-        <div style={secondaryHeader}>In the news!</div>
-        <Row>
-          <Col className="my-auto">
+      <CenteredFlex>
+        <Header>In the news!</Header>
+        <RowFlex>
+          <div>
             <a
               href="https://www.nbcnewyork.com/on-air/as-seen-on/nj-college-roommates-connect-frontline-workers-with-essentials/2402189/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={nbc} alt="wnbc logo" style={logoStyling} />
+              <NewsImage src={nbc} alt="wnbc logo" />
             </a>
-          </Col>
-          <Col className="my-auto">
+          </div>
+          <div>
             <a
               href="https://www.news5cleveland.com/news/coronavirus/cwru-graduate-helps-form-give-essential-to-assist-essential-workers"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src={news5}
-                alt="cleveland 5 logo"
-                style={{ width: "75%" }}
-              />
+              <NewsImage src={news5} alt="cleveland 5 logo" />
             </a>
-          </Col>
-          <Col className="my-auto">
+          </div>
+          <div>
             <a
               href="https://twitter.com/CuomoPrimeTime/status/1257492367138942978"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={cnn} alt="CNN logo" style={logoStyling} />
+              <NewsImage src={cnn} alt="CNN logo" />
             </a>
-          </Col>
-          <Col className="my-auto">
+          </div>
+          <div>
             <a
               href="https://www.dallasnews.com/business/retail/2020/05/01/what-about-invisible-essential-workers-during-coronavirus-dartmouth-student-from-richardson-helps-start-site-linking-them-to-donors/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
-                src={dnews}
-                alt="Dallas News Logo"
-                style={{ width: "100%" }}
-              />
+              <NewsImage src={dnews} alt="Dallas News Logo" />
             </a>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </RowFlex>
+      </CenteredFlex>
     </>
   );
 }
