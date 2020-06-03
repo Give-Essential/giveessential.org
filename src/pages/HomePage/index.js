@@ -1,16 +1,15 @@
 import React, { Fragment, useState } from "react";
-
 import { Container, Col, Row, Tooltip, Button } from "reactstrap";
 
 // Import for the landing image in the first container
-import adImg from "../assets/images/landing_img.PNG";
+import adImg from "../../assets/images/landing_img.PNG";
 
 // Import logos from news websites that Give Essential is featured in
-import nbc from "../assets/images/nbcny.png";
-import news5 from "../assets/images/news5.png";
-import cnn from "../assets/images/cnn.png";
-import dnews from "../assets/images/dallas-news.png";
-import question from "../assets/images/question.svg";
+import nbc from "../../assets/images/nbcny.png";
+import news5 from "../../assets/images/news5.png";
+import cnn from "../../assets/images/cnn.png";
+import dnews from "../../assets/images/dallas-news.png";
+import question from "../../assets/images/question.svg";
 
 const flexContainer = {
   display: "flex",
@@ -127,13 +126,13 @@ const infoList = [
   ["Donors ship their gifts to their match", "#FD8E7B"],
 ];
 
-export default function LandingStrip() {
+export default function HomePage() {
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const toggle = () => setTooltipOpen(!tooltipOpen);
 
   return (
-    <Fragment>
+    <>
       <Container style={flexContainer} fluid={true}>
         <Container style={{ margin: "6%" }}>
           <div style={firstTextStyle}>Give essential is</div>
@@ -264,6 +263,6 @@ export default function LandingStrip() {
           </Col>
         </Row>
       </Container>
-    </Fragment>
+    </>
   );
 }

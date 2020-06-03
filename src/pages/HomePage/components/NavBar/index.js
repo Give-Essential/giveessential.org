@@ -17,7 +17,7 @@ import {
   Row,
 } from "reactstrap";
 
-import Logo from "../assets/images/logo.PNG";
+import Logo from "../../assets/images/logo.PNG";
 
 const textStyles = {
   textTransform: "uppercase",
