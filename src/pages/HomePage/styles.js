@@ -73,20 +73,21 @@ export const ListItem = styled.h1`
 `;
 
 export const Dot = styled.div`
-  height: 50px;
-  width: 50px;
+  height: 79px;
+  width: 79px;
   background-color: ${(props) => (props.color ? props.color : "black")};
   margin-right: 90px;
   border-radius: 50%;
-  display: inline-block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   color: white;
 `;
 
 export const DotText = styled.h1`
-  font-weight: 600;
-  font-size: 44.717px;
-  line-height: 49px;
+  font-weight: 400;
+  font-size: 44px;
 `;
 
 export const Trapezoid = styled.div`

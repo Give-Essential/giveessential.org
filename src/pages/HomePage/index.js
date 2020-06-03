@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Tooltip } from "reactstrap";
+import { Tooltip } from "reactstrap";
 import {
   RowFlex,
   ColumnFlex,
