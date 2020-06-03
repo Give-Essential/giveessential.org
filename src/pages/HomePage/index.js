@@ -1,6 +1,18 @@
-import React, { Fragment, useState } from "react";
-import { Container, Col, Row, Tooltip, Button } from "reactstrap";
-
+import React, { useState } from "react";
+import { Container, Col, Row, Tooltip } from "reactstrap";
+import {
+  RowFlex,
+  ColumnFlex,
+  CenteredFlex,
+  LightText,
+  HeavyText,
+  PictureDiv,
+  Header,
+  WhatWeDoBlock,
+  QuestionMark,
+  EmphasizedText,
+} from "./styles";
+import Button from "./components/Button";
 // Import for the landing image in the first container
 import adImg from "../../assets/images/landing_img.PNG";
 
@@ -10,41 +22,6 @@ import news5 from "../../assets/images/news5.png";
 import cnn from "../../assets/images/cnn.png";
 import dnews from "../../assets/images/dallas-news.png";
 import question from "../../assets/images/question.svg";
-
-const flexContainer = {
-  display: "flex",
-  // margin: "50px",
-};
-
-const nonFlexContainer = {
-  // display: "flex",
-  // margin: "50px",
-  backgroundColor: "#F4F4F4",
-};
-
-const firstTextStyle = {
-  fontFamily: "Archivo",
-  fontStyle: "normal",
-  fontWeight: "normal",
-  fontSize: "30px",
-  lineHeight: "33px",
-  alignItems: "center",
-  textAlign: "left",
-  color: "#333333",
-  fontTransform: "uppercase",
-};
-
-const landingHeader = {
-  // fontFamily: "Archivo",
-  fontStyle: "normal",
-  fontWeight: "bold",
-  fontSize: "52px",
-  lineHeight: "57px",
-  // alignItems: "center",
-  color: "#333333",
-  textAlign: "left",
-  // padding: "5% 5% 3% 5%",
-};
 
 const secondaryHeader = {
   // fontFamily: "Archivo",
@@ -71,24 +48,19 @@ const noStyle = {
   listStyle: "none",
 };
 
-const inlineStyling = {
-  listStyle: "none",
-  display: "inline",
-};
-
 const logoStyling = {
   width: "100px",
 };
 
-const trapezoid = {
-  borderBottom: "100px solid #8CC9BA",
-  borderLeft: "25px solid transparent",
-  borderRight: "25px solid transparent",
-  height: "0",
-  width: "33%",
-  zIndex: "0",
-  // position: "relative",
-};
+// const trapezoid = {
+//   borderBottom: "100px solid #8CC9BA",
+//   borderLeft: "25px solid transparent",
+//   borderRight: "25px solid transparent",
+//   height: "0",
+//   width: "33%",
+//   zIndex: "0",
+//   // position: "relative",
+// };
 
 const whatWeDoBlock = {
   fontFamily: "Open Sans",
@@ -113,10 +85,6 @@ const tooltipStyle = {
   // backgroundColor: "#FFF",
 };
 
-const buttonStyle = {
-  margin: "10% 3%",
-};
-
 const infoList = [
   [
     "Essential workers tell us what they need. Donors tell us what they have",
@@ -133,51 +101,40 @@ export default function HomePage() {
 
   return (
     <>
-      <Container style={flexContainer} fluid={true}>
-        <Container style={{ margin: "6%" }}>
-          <div style={firstTextStyle}>Give essential is</div>
-          <div style={landingHeader}>
-            Helping essential workers get the items they need.
-          </div>
-          <Button style={buttonStyle} size="lg">
-            Give Help
-          </Button>
-          <Button style={buttonStyle} size="lg">
-            Get Help
-          </Button>
-        </Container>
-        <div style={{ position: "relative", margin: "auto" }}>
-          <img
-            src={adImg}
-            alt="Example box given to a worker"
-            style={{ zIndex: "1" }}
-          />
+      <RowFlex>
+        <RowFlex>
+          <ColumnFlex style={{ marginTop: 120, marginLeft: 129, width: "39%" }}>
+            <ColumnFlex>
+              <LightText style={{ marginBottom: 16 }}>
+                GIVE ESSENTIAL IS
+              </LightText>
+              <HeavyText style={{ marginBottom: 60 }}>
+                Helping essential workers get the items they need.
+              </HeavyText>
+            </ColumnFlex>
+            <RowFlex>
+              <Button primary style={{ marginRight: 14 }}>
+                Give Help
+              </Button>
+              <Button>Get Help</Button>
+            </RowFlex>
+          </ColumnFlex>
+          <PictureDiv>
+            <img src={adImg} alt="Example box given to a worker" />
+          </PictureDiv>
           {/* <div style={trapezoid}></div> */}
-        </div>
-      </Container>
-      {/*  Container for "What we do section" */}
-      <Container style={nonFlexContainer} fluid={true}>
-        <div style={secondaryHeader}>What we do</div>
-        <div style={whatWeDoBlock}>
-          We gift basic living items to essential workers{" "}
-          <span
-            style={{ textDecoration: "underline", color: "blue" }}
-            href="#"
-            id="essentialWorkerTooltip"
-          >
+        </RowFlex>
+      </RowFlex>
+      <CenteredFlex style={{ paddingTop: 130 }}>
+        <Header>What we do</Header>
+        <WhatWeDoBlock>
+          {`We gift basic living items to essential workers `}
+          <QuestionMark href="#" id="essentialWorkerTooltip">
             <img src={question} alt="Question mark" style={{ width: "2%" }} />
-          </span>{" "}
-          on the frontlines of the COVID-19 pandemic. If you have any extra
-          stuff lying around,{" "}
-          <span
-            style={{
-              color: "#FD8E7B",
-              fontStyle: "italic",
-              fontWeight: "bold",
-            }}
-          >
-            you can help!
-          </span>
+          </QuestionMark>
+          {` on the frontlines of the COVID-19 pandemic. If you have any extra
+          stuff lying around, `}
+          <EmphasizedText>{`you can help!`}</EmphasizedText>
           <Tooltip
             placement="right"
             isOpen={tooltipOpen}
@@ -185,13 +142,12 @@ export default function HomePage() {
             toggle={toggle}
             style={tooltipStyle}
           >
-            An essential worker is anyone who has to risk their health in order
-            to make ends meet and/or is unable to work from home
+            {`An essential worker is anyone who has to risk their health in order
+            to make ends meet and/or is unable to work from home`}
           </Tooltip>
-        </div>
-      </Container>
-      {/* Container for How does this work segment */}
-      <Container fluid={true} style={flexContainer}>
+        </WhatWeDoBlock>
+      </CenteredFlex>
+      <RowFlex>
         <Col className="my-auto">
           <div style={secondaryHeader}>How does this work?</div>
         </Col>
@@ -207,11 +163,11 @@ export default function HomePage() {
             </ul>
           </div>
         </Col>
-      </Container>
+      </RowFlex>
       {/* Container for Esssential workers in need examples */}
-      <Container fluid={true} style={nonFlexContainer}>
+      <CenteredFlex>
         <div style={secondaryHeader}>Essential workers in need</div>
-      </Container>
+      </CenteredFlex>
 
       {/* Container for in the news */}
       <Container>

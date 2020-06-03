@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   Collapse,
-  Container,
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -12,9 +11,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
-  Col,
-  Row,
 } from "reactstrap";
 
 import Logo from "../../assets/images/logo.PNG";

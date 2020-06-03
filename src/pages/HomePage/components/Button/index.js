@@ -1,6 +1,10 @@
 import React from "react";
-import { StyledButton } from "./style";
+import { StyledButton } from "./styles";
 
-export default function HomePageButton() {
-  return <StyledButton />;
+export default function HomePageButton(props) {
+  return (
+    <StyledButton primary={props.primary} {...props}>
+      {props.children}
+    </StyledButton>
+  );
 }
