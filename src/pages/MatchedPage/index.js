@@ -1,11 +1,22 @@
 import React from "react";
+
+import { Link } from "react-router-dom";
+
 import {
   BackgroundContainer,
+  // RowFlex,
   Dot,
   DotText,
   HeaderText,
   ListText,
+  StyledIcon,
+  Donation,
+  NextSteps,
 } from "./styles";
+
+import { Row, Col, Container } from "reactstrap";
+
+import Button from "./components/Button";
 
 // SVG Imports
 import mail from "./Icons/mail.svg";
@@ -36,17 +47,34 @@ export default function MatchedPage() {
         You’ve been matched! Look out for an email from
         matches@giveessential.org for more information :)
       </HeaderText>
-      {nextStepsList.map((e, i) => (
-        <div style={{ display: "flex" }}>
-          <Dot color={"#8CC9BA"}>
-            <DotText>{i + 1}</DotText>
-          </Dot>
-          <img src={e[0]} alt="Logo for correspodning list item" />
-          <ListText>{e[1]}</ListText>
-        </div>
-      ))}
-      <div>Thank you for your donation!</div>
-      <div>Return to homepage</div>
+      <NextSteps>Next Steps</NextSteps>
+      <div style={{ padding: "3% 12%" }}>
+        {nextStepsList.map((e, i) => (
+          // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
+          <Row style={{ margin: "5% 3%" }} classname="my-auto">
+            <Col xs="2">
+              <Dot color={"#8CC9BA"}>
+                <DotText>{i + 1}</DotText>
+              </Dot>
+            </Col>
+            <Col xs="2">
+              <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />
+            </Col>
+            <Col>
+              <ListText>{e[1]}</ListText>
+            </Col>
+          </Row>
+        ))}
+      </div>
+      <Donation>Thank you for your donation!</Donation>
+      <Container className="my-auto" style={{ textAlign: "center" }}>
+        <Link to="/">
+          <Button primary>Return to homepage</Button>
+        </Link>
+        <Link>
+          <Button>Refer a friend</Button>
+        </Link>
+      </Container>
     </BackgroundContainer>
   );
 }

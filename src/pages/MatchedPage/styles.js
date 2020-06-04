@@ -1,20 +1,43 @@
 import styled from "styled-components";
 
-export const Dot = styled.div`
-  height: 50px;
-  width: 50px;
-  background-color: ${(props) => (props.color ? props.color : "black")};
-  margin-right: 90px;
-  border-radius: 50%;
-  display: inline-block;
+export const Flex = styled.div`
+  display: flex;
+`;
+
+export const RowFlex = styled(Flex)`
+  align-items: center;
+`;
+
+export const NextSteps = styled.h1`
+  font-family: Archivo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 44px;
+  /* identical to box height */
+
+  align-items: center;
   text-align: center;
+  text-decoration: underline;
+`;
+
+export const Dot = styled.div`
+  height: 79px;
+  width: 79px;
+  background-color: ${(props) => (props.color ? props.color : "black")};
+  margin-left: 25%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   color: white;
+  margin-right: 5%;
 `;
 
 export const DotText = styled.h1`
-  font-weight: 600;
-  font-size: 44.717px;
-  line-height: 49px;
+  font-weight: 400;
+  font-size: 44px;
 `;
 
 export const HeaderText = styled.h1`
@@ -43,4 +66,19 @@ export const ListText = styled.h4`
   line-height: 38px;
   display: flex;
   align-items: center;
+`;
+
+export const StyledIcon = styled.img`
+  margin: 0% 2%;
+`;
+
+export const Donation = styled.h4`
+  font-style: italic;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 44px;
+  /* identical to box height */
+
+  align-items: center;
+  text-align: center;
 `;
