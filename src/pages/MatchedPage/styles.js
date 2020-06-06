@@ -59,7 +59,7 @@ export const BackgroundContainer = styled.div`
 `;
 
 export const ListText = styled.h4`
-  font-family: Open Sans;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 28px;
