@@ -15,6 +15,8 @@ import {
 
 import Logo from "../../assets/images/logo.PNG";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 const textStyles = {
   textTransform: "uppercase",
   fontFamily: "Archivo Narrow",
