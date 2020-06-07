@@ -7,6 +7,8 @@ import MatchedPage from "./pages/MatchedPage";
 import AboutPage from "./pages/AboutPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
+// import FormPage from "./pages/FormPage";
+import SubmitPage from "./pages/SubmitPage";
 
 const GlobalStyle = createGlobalStyle`
  html, body {
@@ -21,6 +23,7 @@ function App() {
         <GlobalStyle />
         <NavBar />
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/submit" component={SubmitPage} />
         <Route exact path="/matched" component={MatchedPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/about-us" component={AboutUsPage} />

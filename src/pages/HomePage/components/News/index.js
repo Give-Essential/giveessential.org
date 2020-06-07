@@ -11,8 +11,14 @@ export default function News() {
   return (
     <CenteredFlex>
       <Header>In the news!</Header>
-      <RowFlex style={{ paddingTop: "6vh", paddingBottom: "12vh" }}>
-        <div>
+      <RowFlex
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <div style={{ margin: "5%" }}>
           <a
             href="https://www.nbcnewyork.com/on-air/as-seen-on/nj-college-roommates-connect-frontline-workers-with-essentials/2402189/"
             target="_blank"
@@ -21,7 +27,7 @@ export default function News() {
             <NewsImage src={nbc} alt="wnbc logo" />
           </a>
         </div>
-        <div>
+        <div style={{ margin: "5%" }}>
           <a
             href="https://www.news5cleveland.com/news/coronavirus/cwru-graduate-helps-form-give-essential-to-assist-essential-workers"
             target="_blank"
@@ -30,7 +36,7 @@ export default function News() {
             <NewsImage src={news5} alt="cleveland 5 logo" />
           </a>
         </div>
-        <div>
+        <div style={{ margin: "5%" }}>
           <a
             href="https://twitter.com/CuomoPrimeTime/status/1257492367138942978"
             target="_blank"
@@ -39,7 +45,7 @@ export default function News() {
             <NewsImage src={cnn} alt="CNN logo" />
           </a>
         </div>
-        <div>
+        <div style={{ margin: "5%" }}>
           <a
             href="https://www.dallasnews.com/business/retail/2020/05/01/what-about-invisible-essential-workers-during-coronavirus-dartmouth-student-from-richardson-helps-start-site-linking-them-to-donors/"
             target="_blank"
