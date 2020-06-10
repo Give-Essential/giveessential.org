@@ -2,6 +2,7 @@ import React from "react";
 import { RowFlex, ColumnFlex } from "../../styles";
 import { Picture, HeavyText, LightText } from "./styles";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 import adImg from "../../../../assets/images/landing_img.PNG";
 
 export default function Main() {
@@ -15,9 +16,11 @@ export default function Main() {
           </HeavyText>
         </ColumnFlex>
         <RowFlex>
-          <Button primary style={{ marginRight: 14 }}>
-            Give Help
-          </Button>
+          <Link to="/donor-form">
+            <Button primary style={{ marginRight: 14 }}>
+              Give Help
+            </Button>
+          </Link>
           <Button>Get Help</Button>
         </RowFlex>
       </ColumnFlex>
