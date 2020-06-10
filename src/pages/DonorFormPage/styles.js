@@ -33,3 +33,23 @@ export const Subtitle = styled.h1`
   width: 55vw;
   text-align: center;
 `;
+
+export const SubmitButton = styled.div`
+  margin-top: 150px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  height: 6vw;
+  background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonText = styled.h1`
+  font-size: 20px;
+  margin-top: 8px;
+  width: 55vw;
+  text-align: center;
+  color: ${(props) => (props.disabled ? "#8CC9BA" : "#ffffff")};
+`;

@@ -1,7 +1,20 @@
 import React, { useState } from "react";
-import { Screen, CenteredFlex, Header, Subtitle } from "./styles";
+import {
+  Screen,
+  CenteredFlex,
+  Header,
+  Subtitle,
+  SubmitButton,
+  ButtonText,
+} from "./styles";
 import IconButtonGroup from "./components/IconButtonGroup";
 import { values, items } from "./buttonGroupData";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
@@ -20,8 +33,11 @@ export default function DonorFormPage() {
     updateState(updatedState);
   };
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
+
   return (
-    <Screen>
+    <Screen style={{ paddingBottom: 200 }}>
       <CenteredFlex>
         <Header>What do you care about?</Header>
         <Subtitle>Select all that apply (minimum 2)</Subtitle>
@@ -56,6 +72,21 @@ export default function DonorFormPage() {
           matched with more essential workers after the first three, we would
           love for you to fill out another form when you're ready to give again!
         </Subtitle>
+        <Dropdown
+          style={{ marginTop: 40 }}
+          isOpen={dropdownOpen}
+          toggle={toggleDropdown}
+        >
+          <DropdownToggle caret>Choose one</DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>1</DropdownItem>
+            <DropdownItem>2</DropdownItem>
+            <DropdownItem>3</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>{" "}
+        <SubmitButton>
+          <ButtonText>CONTINUE</ButtonText>
+        </SubmitButton>
       </CenteredFlex>
     </Screen>
   );
