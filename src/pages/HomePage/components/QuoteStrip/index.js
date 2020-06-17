@@ -5,11 +5,11 @@ import { Header } from "../../styles";
 
 export default function QuoteStrip() {
   return (
-    <Strip>
-      <Header style={{ paddingBottom: "4vh" }}>
-        Essential Workers In Need
+    <Strip style={{ background: "#F3F3F3" }}>
+      <Header style={{ paddingBottom: "4vh", background: "#F3F3F3" }}>
+        Essential workers in need
       </Header>
-      <Quotes>
+      <Quotes style={{ background: "linear-gradient(60deg,#8CC9BA 70%,#F3F3F3 70%)" }}>
         <QuoteBox
           text="Everything I need to protect myself whiIe I shop for orders is all out of stock everywhere. I can’t afford normal items like hygiene and food products."
           reference={"GROCERY STORE SHOPPER IN TEXAS"}

@@ -7,24 +7,26 @@ import adImg from "../../../../assets/images/landing_img.PNG";
 
 export default function Main() {
   return (
-    <RowFlex style={{ paddingBottom: 80 }}>
+    <RowFlex style={{ paddingBottom: 80, background: "linear-gradient(-60deg,#8CC9BA 30%,#ffffff 30%)"}}>
       <ColumnFlex style={{ marginTop: 120, marginLeft: "9vw" }}>
         <ColumnFlex>
           <LightText style={{ marginBottom: 16 }}>GIVE ESSENTIAL IS</LightText>
           <HeavyText style={{ marginBottom: 60 }}>
-            Helping essential workers get the items they need.
+            Helping essential workers access the items they need
           </HeavyText>
         </ColumnFlex>
         <RowFlex>
           <Link to="/donor-form">
             <Button primary style={{ marginRight: 14 }}>
-              Give Help
+              GIVE HELP
             </Button>
           </Link>
-          <Button>Get Help</Button>
+          <Button>GET HELP</Button>
         </RowFlex>
       </ColumnFlex>
-      <Picture src={adImg} alt="Example box given to a worker" />
+      <ColumnFlex>
+        <Picture src={adImg} alt="Example box given to a worker" />
+      </ColumnFlex>
     </RowFlex>
   );
 }

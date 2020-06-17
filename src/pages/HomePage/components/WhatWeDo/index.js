@@ -29,7 +29,6 @@ export default function WhatWeDo() {
     <ColumnFlex
       style={{
         backgroundColor: "#F4F4F4",
-        paddingBottom: "8vh",
         paddingTop: "8vh",
       }}
     >
@@ -55,7 +54,7 @@ export default function WhatWeDo() {
           </Tooltip>
         </WhatWeDoBlock>
       </CenteredFlex>
-      <RowFlex>
+      <RowFlex style={{ background: "#FFFFFF", paddingBottom: "8vh", paddingTop: "8vh"}}>
         <ColumnFlex
           style={{
             width: "44vw",

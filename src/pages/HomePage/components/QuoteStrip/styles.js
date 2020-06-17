@@ -5,9 +5,7 @@ export const Strip = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 24px;
-  padding-bottom: 24px;
   width: 100vw;
-  height: 90vh;
 `;
 
 export const Quotes = styled.div`
@@ -16,7 +14,6 @@ export const Quotes = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
   height: 65vh;
   width: 100vw;
 `;

@@ -10,7 +10,7 @@ import dnews from "../../../../assets/images/dallas-news.png";
 export default function News() {
   return (
     <CenteredFlex>
-      <Header>In the news!</Header>
+      <Header>Give Essential in the press</Header>
       <RowFlex
         style={{
           justifyContent: "center",

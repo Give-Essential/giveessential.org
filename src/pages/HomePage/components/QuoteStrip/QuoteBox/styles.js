@@ -14,9 +14,17 @@ export const Box = styled.div`
 
 export const QuoteText = styled.h1`
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 1.2em;
   line-height: 20px;
   width: 70%;
+`;
+
+export const Picture = styled.img`
+  max-width: 6vw;
+  height: auto;
+  margin-left: -65px;
+  margin-top: -330px;
+  margin-right: 3px;
 `;
 
 export const Reference = styled.h1`

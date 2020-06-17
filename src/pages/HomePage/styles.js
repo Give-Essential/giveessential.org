@@ -17,7 +17,13 @@ export const Screen = styled(ColumnFlex)`
 `;
 
 export const CenteredFlex = styled(ColumnFlex)`
+  padding-top: 50px;
+  justify-content: center;
   align-items: center;
+`;
+
+export const InlineFlex = styled(ColumnFlex)`
+  display: inline-block;
 `;
 
 export const Header = styled.h1`
@@ -26,4 +32,13 @@ export const Header = styled.h1`
   font-size: 40px;
   margin-top: 12px;
   margin-bottom: 12px;
+`;
+
+export const Picture = styled.img`
+  max-width: 2vw;
+  height: auto;
+  margin-left: 5px;
+  margin-top: 0px;
+  margin-right: 3px;
+  display: inline-block;
 `;
