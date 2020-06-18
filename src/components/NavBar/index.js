@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import { LogoPic } from "./styles";
+import { LogoPic, ItalicText } from "./styles";
 
 import Logo from "../../assets/images/logo.PNG";
 
@@ -40,11 +40,13 @@ export function NavBar() {
           <NavItem>
             <NavLink href="/contact">Contact us</NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink href="/get-help">Get help</NavLink>
+        </Nav>
+        <Nav navbar style={{ float: "right", margin: 0 }}>
+          <NavItem style={textStyles}>
+            <NavLink href="/get-help" style={{fontStyle: "italic", fontWeight: 800, color: "#000"}}>Get help</NavLink>
           </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
+          <UncontrolledDropdown nav inNavbar style={textStyles}>
+            <DropdownToggle nav caret style={{fontWeight: 800, color: "#FD8E7B"}}>
               Donate
             </DropdownToggle>
             <DropdownMenu right>
