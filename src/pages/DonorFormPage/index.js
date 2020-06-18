@@ -15,6 +15,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import USAMap from "react-usa-map";
 
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
@@ -36,6 +37,10 @@ export default function DonorFormPage() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
 
+  const mapHandler = (event) => {
+    alert(event.target.dataset.name);
+  };
+
   return (
     <Screen style={{ paddingBottom: 200 }}>
       <CenteredFlex>
@@ -54,6 +59,7 @@ export default function DonorFormPage() {
           If no region is selected, we’ll match you with someone from anywhere
           in the US.
         </Subtitle>
+        <USAMap onClick={mapHandler} />
       </CenteredFlex>
       <CenteredFlex>
         <Header>What can you give?</Header>
@@ -73,18 +79,18 @@ export default function DonorFormPage() {
           love for you to fill out another form when you're ready to give again!
         </Subtitle>
         <Dropdown
-          style={{ marginTop: 40 }}
+          style={{ marginTop: 40, width: "40vw" }}
           isOpen={dropdownOpen}
           toggle={toggleDropdown}
         >
-          <DropdownToggle caret>Choose one</DropdownToggle>
+          <DropdownToggle caret style={{ paddingRight: "80%", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF" }}>Select one</DropdownToggle>
           <DropdownMenu>
             <DropdownItem>1</DropdownItem>
             <DropdownItem>2</DropdownItem>
             <DropdownItem>3</DropdownItem>
           </DropdownMenu>
         </Dropdown>{" "}
-        <SubmitButton>
+        <SubmitButton style={{ marginTop: 40, width: "40%" }}>
           <ButtonText>CONTINUE</ButtonText>
         </SubmitButton>
       </CenteredFlex>
