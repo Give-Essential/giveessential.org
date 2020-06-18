@@ -30,6 +30,15 @@ export const Header = styled.h1`
 
 export const Paragraph = styled.h1`
   margin-top: 16px;
-  font-size: 14px;
+  margin-bottom: 45px;
+  font-size: 1.25em;
   width: 50vw;
+`;
+
+export const Picture = styled.img`
+  max-width: 55vw;
+  height: auto;
+  margin-left: 91px;
+  margin-top: 25px;
+  margin-right: 73px;
 `;

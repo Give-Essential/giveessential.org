@@ -35,7 +35,7 @@ export const Subtitle = styled.h1`
 `;
 
 export const SubmitButton = styled.div`
-  margin-top: 150px;
+  margin-top: 50px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
