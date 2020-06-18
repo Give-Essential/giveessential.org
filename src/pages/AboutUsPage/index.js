@@ -1,15 +1,25 @@
 import React from "react";
-import { Screen, CenteredFlex, RowFlex, Header, Paragraph } from "./styles";
+import { Screen, CenteredFlex, RowFlex, Header, Paragraph, Picture } from "./styles";
 import Profile from "./components/Profile";
 
 import Amy from "../../assets/images/Amy.png";
 import Rine from "../../assets/images/Rine.png";
+import Team from "../../assets/images/team.png";
 
 export default function AboutUsPage() {
   return (
     <Screen>
-      <CenteredFlex>
-        <Header style={{ marginTop: 48, marginBottom: 48 }}>Who are we?</Header>
+      <CenteredFlex style={{ paddingBottom: 52 }}>
+        <Header style={{ marginTop: 48, marginBottom: 0 }}>Who we are</Header>
+        <RowFlex style={{ paddingBottom: 32 }}>
+          <Picture src={Team} name="Team" title="team" />
+        </RowFlex>
+        <Paragraph>
+        We are an all-volunteer organization — please fill out this form if you're
+         interested in volunteering. We are a 100% volunteer-run organization and 
+         could not do this without our incredible team.
+        </Paragraph>
+        <Header style={{ marginTop: 48, marginBottom: 48 }}>Founders</Header>
         <RowFlex style={{ paddingBottom: 32 }}>
           <Profile src={Amy} name="Amy" title="co-founder" />
           <Profile src={Rine} name="Rine" title="co-founder" />
@@ -19,14 +29,8 @@ export default function AboutUsPage() {
         </RowFlex>
         <Paragraph>
           Hello! We're Amy and Rine, co-founders of Give Essential. We were
-          troubled by the lack of support for essential workers during this
+          troubled by the lack of support sfor essential workers during this
           COVID-19 epidemic, so we built and launched Give Essential.
-        </Paragraph>
-        <Paragraph>
-          Since then, we've built a team of 30+ volunteers — please fill out
-          this form if you're interested in volunteering. We are a 100%
-          volunteer-run organization and could not do this without our
-          incredible team.
         </Paragraph>
       </CenteredFlex>
     </Screen>
