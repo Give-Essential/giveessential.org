@@ -7,9 +7,17 @@ import {
   ListGroup, ListGroupItem,
 } from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { Screen, CenteredFlex, RowFlex, Paragraph, FAQHeader, FAQContainer, FAQFlex } from "./styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { isMobile } from 'react-device-detect';
+import InfoBox from './components/InfoBox';
+import one from "../../assets/icons/1.png";
+import two from "../../assets/icons/2.png";
+import three from "../../assets/icons/3.png";
+import categories from "../../assets/icons/categories.png";
+import match from "../../assets/icons/match.png";
+import packagee from "../../assets/icons/package.png";
 
 const data = [
   {
@@ -177,83 +185,119 @@ class FAQ extends React.Component {
 
   render() {
     return (
-      <div className="faq">
-        <div className="faq-header">
-          Frequently Asked Questions
-        </div>
-        <div className={`faq-container ${isMobile ? 'mobile' : 'desktop'}`}>
-          {isMobile ?
-            <div className="faq-nav mobile">
-              <Card style={{ backgroundColor: '#8CC9BA'}}>
-                <CardHeader 
-                  className="faq-nav-mobile-header"
-                  onClick={() => this.toggleMobileNav()}>
-                  Sections
-                  <FontAwesomeIcon icon={this.state.mobileNavOpen ? faAngleUp : faAngleDown} />
-                </CardHeader>
-                <Collapse isOpen={this.state.mobileNavOpen}>
-                  <CardBody style={{ padding: 0 }}>
-                    <ListGroup>
-                      {data.map((section, index) => (
-                        <AnchorLink 
-                          offset='300'
-                          href={`#faq-section-${index}`}
-                          onClick={() => this.toggleMobileNav(false)}>
-                          <ListGroupItem className="faq-nav-mobile-link">
-                            {section.title}
-                          </ListGroupItem>
-                        </AnchorLink>
-                      ))}
-                    </ListGroup>
-                  </CardBody>
-                </Collapse>
-              </Card>
-            </div>
-          :
-            <div className="faq-nav desktop">
-              <ListGroup>
-                {data.map((section, index) => (
-                  <AnchorLink href={`#faq-section-${index}`}>
-                    <ListGroupItem className="faq-nav-item">
-                      {section.title}
-                    </ListGroupItem>
-                  </AnchorLink>
-                ))}
-              </ListGroup>
-            </div>
-          }
-          
-          <div className={`faq-content ${isMobile ? 'mobile' : 'desktop'}`}>
-            {data.map((section, sectionIndex) => (
-              <div className="faq-section" id={`faq-section-${sectionIndex}`}>
-                <div className="faq-section-title">
-                  {section.title}
-                </div>
-                {section.items.map((item, itemIndex) => {
-                  return (
-                  <Card className="faq-item">
-                    <CardHeader 
-                      className="faq-question"
-                      onClick={() => this.toggleItem(sectionIndex, itemIndex)}>
-                      {item.question}
-                      <FontAwesomeIcon icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} />
-                    </CardHeader>
-                    <Collapse isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
-                      <CardBody style={{ paddingBottom: 0 }}>
-                        <CardText className="faq-answer">
-                          <ReactMarkdown>
-                            {item.answer}
-                          </ReactMarkdown>
-                        </CardText>
-                      </CardBody>
-                    </Collapse>
-                  </Card>
-                )})}
+      <Screen>
+        <CenteredFlex style={{ paddingBottom: 52 }}>
+          <FAQHeader style={{ marginTop: 90, marginBottom: 0 }}>How does this work?</FAQHeader>
+          <Paragraph>
+          Give Essential lets you send your extra household items directly to an essential worker who needs them, providing a way to support the frontline from your home. If you have any supplies or funds to share, you can help!
+          </Paragraph>
+          <Paragraph>
+          We all have extra stuff—board games collecting dust, a box of unused tampons, extra shampoo bottles from hotels. Anything that you can share will go directly to an essential worker in need.
+          </Paragraph>
+          <RowFlex style={{ paddingBottom: 32 }}>
+            <InfoBox
+              numsrc={one}
+              title="Sign Up"
+              reference="Essential workers and donors both fill out forms letting us know what items essential workers need and what items donors have to share."
+              iconsrc={categories}
+              >
+            </InfoBox>
+            <InfoBox
+              numsrc={two}
+              title="Get Matched!"
+              reference="Give Essential will match essential workers with donors based on needs and requests. Look out for an email from our volunteers!
+              Categories of donations: cleaning supplies, masks, personal hygiene products, feminine hygiene products, kids activities, gift cards"
+              iconsrc={match}
+              >
+            </InfoBox>
+            <InfoBox
+              numsrc={three}
+              title="Care Package"
+              reference="Donors will then send their gift directly to an essential worker in need!
+              How to ship: From the house using USPS's Click and Ship, post office package drop-off, or through an online order"
+              iconsrc={packagee}
+              >
+            </InfoBox>
+          </RowFlex>
+        </CenteredFlex>
+        <FAQFlex>
+          <FAQHeader>
+            Frequently Asked Questions
+          </FAQHeader>
+          <FAQContainer>
+            {isMobile ?
+              <div className="faq-nav mobile">
+                <Card style={{ backgroundColor: '#8CC9BA'}}>
+                  <CardHeader 
+                    className="faq-nav-mobile-header"
+                    onClick={() => this.toggleMobileNav()}>
+                    Sections
+                    <FontAwesomeIcon icon={this.state.mobileNavOpen ? faAngleUp : faAngleDown} />
+                  </CardHeader>
+                  <Collapse isOpen={this.state.mobileNavOpen}>
+                    <CardBody style={{ padding: 0 }}>
+                      <ListGroup>
+                        {data.map((section, index) => (
+                          <AnchorLink 
+                            offset='300'
+                            href={`#faq-section-${index}`}
+                            onClick={() => this.toggleMobileNav(false)}>
+                            <ListGroupItem className="faq-nav-mobile-link">
+                              {section.title}
+                            </ListGroupItem>
+                          </AnchorLink>
+                        ))}
+                      </ListGroup>
+                    </CardBody>
+                  </Collapse>
+                </Card>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
+            :
+              <div className="faq-nav desktop">
+                <ListGroup>
+                  {data.map((section, index) => (
+                    <AnchorLink href={`#faq-section-${index}`}>
+                      <ListGroupItem style={{ backgroundColor: "#DFE9EC" }}>
+                        {section.title}
+                      </ListGroupItem>
+                    </AnchorLink>
+                  ))}
+                </ListGroup>
+              </div>
+            }
+            
+            <div className={`faq-content ${isMobile ? 'mobile' : 'desktop'}`}>
+              {data.map((section, sectionIndex) => (
+                <div className="faq-section" id={`faq-section-${sectionIndex}`}>
+                  <div className="faq-section-title">
+                    {section.title}
+                  </div>
+                  {section.items.map((item, itemIndex) => {
+                    return (
+                    <Card className="faq-item">
+                      <CardHeader 
+                        className="faq-question"
+                        onClick={() => this.toggleItem(sectionIndex, itemIndex)}>
+                        {item.question}
+                        <FontAwesomeIcon icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} />
+                      </CardHeader>
+                      <Collapse isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
+                        <CardBody style={{ paddingBottom: 0 }}>
+                          <CardText className="faq-answer">
+                            <ReactMarkdown>
+                              {item.answer}
+                            </ReactMarkdown>
+                          </CardText>
+                        </CardBody>
+                      </Collapse>
+                    </Card>
+                  )})}
+                </div>
+              ))}
+            </div>
+          </FAQContainer>
+        </FAQFlex>
+      </Screen>
     );
   }
 };
