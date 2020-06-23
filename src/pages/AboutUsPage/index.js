@@ -1,7 +1,7 @@
 import React from "react";
-import { Screen, CenteredFlex, RowFlex, Header, Paragraph, Picture } from "./styles";
+import { Screen, CenteredFlex, RowFlex, Header, Paragraph, Picture, BigPicture } from "./styles";
 import Profile from "./components/Profile";
-
+import Contact from "./components/Contact";
 import Amy from "../../assets/images/Amy.png";
 import Rine from "../../assets/images/Rine.png";
 import Team from "../../assets/images/team.png";
@@ -10,9 +10,9 @@ export default function AboutUsPage() {
   return (
     <Screen>
       <CenteredFlex style={{ paddingBottom: 52 }}>
-        <Header style={{ marginTop: 48, marginBottom: 0 }}>Who we are</Header>
+        <Header>Who we are</Header>
         <RowFlex style={{ paddingBottom: 32 }}>
-          <Picture src={Team} name="Team" title="team" />
+          <BigPicture src={Team} name="Team" title="team" />
         </RowFlex>
         <Paragraph>
         We are an all-volunteer organization — please fill out this form if you're
@@ -33,6 +33,7 @@ export default function AboutUsPage() {
           COVID-19 epidemic, so we built and launched Give Essential.
         </Paragraph>
       </CenteredFlex>
+      <Contact />
     </Screen>
   );
 }

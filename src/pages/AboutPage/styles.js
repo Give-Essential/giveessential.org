@@ -21,9 +21,31 @@ export const CenteredFlex = styled(ColumnFlex)`
   background-color: #F8F8F8;
 `;
 
+export const InlineFlex = styled(ColumnFlex)`
+  display: inline-block;
+`;
+
+export const Header = styled.h1`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+`;
+
+export const Picture = styled.img`
+  max-width: 2vw;
+  height: auto;
+  margin-left: 5px;
+  margin-top: 0px;
+  margin-right: 3px;
+  display: inline-block;
+`;
+
 export const FAQFlex = styled(ColumnFlex)`
   font-family: 'Archivo', sans-serif;
   padding-top: calc(10vh + 2.5%);
+  padding-bottom: calc(10vh + 2.5%);
   color: black;
   background-color: #FAFAFA;
 `;
