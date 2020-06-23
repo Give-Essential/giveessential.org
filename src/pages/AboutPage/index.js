@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { isMobile } from 'react-device-detect';
 import InfoBox from './components/InfoBox';
+import Contact from './components/Contact';
 import one from "../../assets/icons/1.png";
 import two from "../../assets/icons/2.png";
 import three from "../../assets/icons/3.png";
@@ -297,6 +298,7 @@ class FAQ extends React.Component {
             </div>
           </FAQContainer>
         </FAQFlex>
+        <Contact />
       </Screen>
     );
   }
