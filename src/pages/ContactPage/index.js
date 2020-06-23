@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <Screen>
       <CenteredFlex style={{ paddingBottom: 52 }}>
-        <Header>Contact</Header>
+        <Header>Contact Us</Header>
         <Paragraph>
         Please email us directly or fill out the contact form. We will be in touch as soon as possible.
         </Paragraph>

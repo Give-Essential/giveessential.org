@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import { Link } from 'react-router-dom';
 import { LogoPic, ItalicText } from "./styles";
 
 import Logo from "../../assets/images/logo.PNG";
@@ -50,7 +51,7 @@ export function NavBar() {
               Donate
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>Give Items</DropdownItem>
+              <DropdownItem tag={Link} to="/donor-form">Give Items</DropdownItem>
               <DropdownItem>Be a Patron</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

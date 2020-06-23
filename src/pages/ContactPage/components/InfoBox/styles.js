@@ -61,7 +61,7 @@ export const IconPic = styled.img`
 `;
 
 export const Reference = styled.h1`
-  font-size: 14.5px;
+  font-size: 0.95em;
   line-height: 10px;
   padding: 5%;
   color: #000;
