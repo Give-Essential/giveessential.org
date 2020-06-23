@@ -10,8 +10,8 @@ export const ProfilePic = styled.img`
 export const Paragraph = styled.h1`
   margin-top: 35px;
   margin-bottom: 45px;
-  font-size: 1.2em;
-  width: 50vw;
+  font-size: 1.15em;
+  width: 52vw;
 `;
 
 export const Label = styled.h1`
