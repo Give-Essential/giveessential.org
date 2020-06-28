@@ -8,6 +8,7 @@ import AboutPage from "./pages/AboutPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import DonorFormPage from "./pages/DonorFormPage";
+import SurveyPage from "./pages/SurveyPage";
 import SubmitPage from "./pages/SubmitPage";
 
 const GlobalStyle = createGlobalStyle`
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/about-us" component={AboutUsPage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/donor-form" component={DonorFormPage} />
+        <Route exact path="/survey" component={SurveyPage} />
       </BrowserRouter>
     </>
   );
