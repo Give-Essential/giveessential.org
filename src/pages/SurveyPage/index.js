@@ -2,7 +2,7 @@ import React from "react";
 import * as Survey from "survey-react";
 import { DonorForm } from './style';
 import { Container } from "reactstrap";
-import $ from 'jquery';
+//import $ from 'jquery';
 import "./style.css";
 import "./survey.css";
 
