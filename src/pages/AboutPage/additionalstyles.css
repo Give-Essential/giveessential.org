@@ -1,0 +1,15 @@
+.arrow {
+    color: rgb(253, 120, 68);
+    float: right;
+}
+
+.faq-section {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.faq-section-title {
+    color: grey;
+    font-size: larger;
+    margin-bottom: 0.5%;
+}

@@ -20,6 +20,8 @@ import categories from "../../assets/icons/categories.png";
 import match from "../../assets/icons/match.png";
 import packagee from "../../assets/icons/package.png";
 
+import './additionalstyles.css'
+
 const data = [
   {
     title: 'Basics',
@@ -270,8 +272,9 @@ class FAQ extends React.Component {
             <div className={`faq-content ${isMobile ? 'mobile' : 'desktop'}`}>
               {data.map((section, sectionIndex) => (
                 <div className="faq-section" id={`faq-section-${sectionIndex}`}>
+                  
                   <div className="faq-section-title">
-                    {section.title}
+                    {section.title.toUpperCase()}
                   </div>
                   {section.items.map((item, itemIndex) => {
                     return (
@@ -280,7 +283,10 @@ class FAQ extends React.Component {
                         className="faq-question"
                         onClick={() => this.toggleItem(sectionIndex, itemIndex)}>
                         {item.question}
-                        <FontAwesomeIcon icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} />
+                        <FontAwesomeIcon 
+                          className="arrow fa-lg"
+                          icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} 
+                        />
                       </CardHeader>
                       <Collapse isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
                         <CardBody style={{ paddingBottom: 0 }}>
