@@ -1,0 +1,6 @@
+/* Only for CSS overrides of the Survey CSS */
+
+input[type=button] {
+    padding: 20px;
+    background-color: red;
+}

@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.0",
     "email-templates": "^7.0.5",
+    "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
     "pug": "^3.0.0",
     "react": "^16.13.1",
@@ -20,9 +21,13 @@
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-typeform": "^1.0.3",
     "react-usa-map": "^1.4.0",
     "reactstrap": "^8.4.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "survey-creator": "^1.7.15",
+    "survey-react": "^1.7.15",
+    "surveyjs-widgets": "^1.7.15"
   },
   "scripts": {
     "start": "react-scripts start",
