@@ -1,18 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { CenteredFlex, Picture, InlineFlex } from "../../styles";
-import fbImg from "../../../../assets/icons/fb.png";
-import instaImg from "../../../../assets/icons/insta.png";
-import twitterImg from "../../../../assets/icons/twitter.png";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { CenteredFlex, Picture, InlineFlex } from '../../styles';
+import fbImg from '../../../../assets/icons/fb.png';
+import instaImg from '../../../../assets/icons/insta.png';
+import twitterImg from '../../../../assets/icons/twitter.png';
 
 export default function Contact() {
   return (
     <CenteredFlex
       style={{
-        backgroundColor: "#8CC9BA",
-        paddingBottom: "8vh",
-        paddingTop: "8vh",
-        color: "#FFFFFF",
+        backgroundColor: '#8CC9BA',
+        paddingBottom: '8vh',
+        paddingTop: '8vh',
+        color: '#FFFFFF',
       }}
     >
       <h5>CONTACT</h5>

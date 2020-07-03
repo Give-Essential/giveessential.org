@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ export const NextSteps = styled.h1`
 export const Dot = styled.div`
   height: 79px;
   width: 79px;
-  background-color: ${(props) => (props.color ? props.color : "black")};
+  background-color: ${(props) => (props.color ? props.color : 'black')};
   margin-left: 25%;
   border-radius: 50%;
   display: flex;
@@ -59,7 +59,7 @@ export const BackgroundContainer = styled.div`
 `;
 
 export const ListText = styled.h4`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 28px;

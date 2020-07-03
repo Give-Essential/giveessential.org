@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Screen,
   CenteredFlex,
@@ -6,24 +6,24 @@ import {
   Subtitle,
   SubmitButton,
   ButtonText,
-} from "./styles";
-import IconButtonGroup from "./components/IconButtonGroup";
-import { values, items } from "./buttonGroupData";
+} from './styles';
+import IconButtonGroup from './components/IconButtonGroup';
+import { values, items } from './buttonGroupData';
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "reactstrap";
-import USAMap from "react-usa-map";
+} from 'reactstrap';
+import USAMap from 'react-usa-map';
 
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
 
   const toggle = (value, state) => () => {
-    let updateState = state === "valueState" ? setValues : setItems;
-    const prevState = state === "valueState" ? valueState : itemState;
+    let updateState = state === 'valueState' ? setValues : setItems;
+    const prevState = state === 'valueState' ? valueState : itemState;
     const i = prevState.indexOf(value);
     const updatedState = [...prevState];
     if (i === -1) {
@@ -79,18 +79,29 @@ export default function DonorFormPage() {
           love for you to fill out another form when you're ready to give again!
         </Subtitle>
         <Dropdown
-          style={{ marginTop: 40, width: "40vw" }}
+          style={{ marginTop: 40, width: '40vw' }}
           isOpen={dropdownOpen}
           toggle={toggleDropdown}
         >
-          <DropdownToggle caret style={{ paddingRight: "80%", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF" }}>Select one</DropdownToggle>
+          <DropdownToggle
+            caret
+            style={{
+              paddingRight: '80%',
+              color: '#8CC9BA',
+              borderRadius: 10,
+              border: '2px solid #8CC9BA',
+              backgroundColor: '#FFF',
+            }}
+          >
+            Select one
+          </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>1</DropdownItem>
             <DropdownItem>2</DropdownItem>
             <DropdownItem>3</DropdownItem>
           </DropdownMenu>
-        </Dropdown>{" "}
-        <SubmitButton style={{ marginTop: 40, width: "40%" }}>
+        </Dropdown>{' '}
+        <SubmitButton style={{ marginTop: 40, width: '40%' }}>
           <ButtonText>CONTINUE</ButtonText>
         </SubmitButton>
       </CenteredFlex>

@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, QuoteText, Reference, Picture } from "./styles";
-import quoteImg from "../../../../../assets/icons/items/q.png";
+import React from 'react';
+import { Box, QuoteText, Reference, Picture } from './styles';
+import quoteImg from '../../../../../assets/icons/items/q.png';
 
 export default function QuoteBox(props) {
   const { text, reference } = props;

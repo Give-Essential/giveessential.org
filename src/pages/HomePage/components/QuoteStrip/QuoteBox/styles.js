@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Box = styled.div`
   width: 27vw;
@@ -13,7 +13,7 @@ export const Box = styled.div`
 `;
 
 export const QuoteText = styled.h1`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.2em;
   line-height: 20px;
   width: 70%;

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ColumnFlex, CenteredFlex, Header, RowFlex } from "../../styles";
+import React, { useState } from 'react';
+import { ColumnFlex, CenteredFlex, Header, RowFlex } from '../../styles';
 import {
   WhatWeDoBlock,
   QuestionMark,
@@ -8,17 +8,17 @@ import {
   Dot,
   DotText,
   tooltipStyle,
-} from "./styles";
-import { Tooltip } from "reactstrap";
-import question from "../../../../assets/images/question.svg";
+} from './styles';
+import { Tooltip } from 'reactstrap';
+import question from '../../../../assets/images/question.svg';
 
 const infoList = [
   [
-    "Essential workers tell us what they need. Donors tell us what they have",
-    "#F3D04E",
+    'Essential workers tell us what they need. Donors tell us what they have',
+    '#F3D04E',
   ],
-  ["We match essential workers with donors", "#8CC9BA"],
-  ["Donors ship their gifts to their match", "#FD8E7B"],
+  ['We match essential workers with donors', '#8CC9BA'],
+  ['Donors ship their gifts to their match', '#FD8E7B'],
 ];
 
 export default function WhatWeDo() {
@@ -28,8 +28,8 @@ export default function WhatWeDo() {
   return (
     <ColumnFlex
       style={{
-        backgroundColor: "#F4F4F4",
-        paddingTop: "8vh",
+        backgroundColor: '#F4F4F4',
+        paddingTop: '8vh',
       }}
     >
       <CenteredFlex style={{ paddingTop: 20 }}>
@@ -37,7 +37,7 @@ export default function WhatWeDo() {
         <WhatWeDoBlock>
           {`We gift basic living items to essential workers `}
           <QuestionMark href="#" id="essentialWorkerTooltip">
-            <img src={question} alt="Question mark" style={{ width: "2%" }} />
+            <img src={question} alt="Question mark" style={{ width: '2%' }} />
           </QuestionMark>
           {` on the frontlines of the COVID-19 pandemic. If you have any extra
           stuff lying around, `}
@@ -54,15 +54,21 @@ export default function WhatWeDo() {
           </Tooltip>
         </WhatWeDoBlock>
       </CenteredFlex>
-      <RowFlex style={{ background: "#FFFFFF", paddingBottom: "8vh", paddingTop: "8vh"}}>
+      <RowFlex
+        style={{
+          background: '#FFFFFF',
+          paddingBottom: '8vh',
+          paddingTop: '8vh',
+        }}
+      >
         <ColumnFlex
           style={{
-            width: "44vw",
-            alignItems: "center",
-            justifyContent: "center",
+            width: '44vw',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          <Header style={{ width: "30vw", marginLeft: "10vw" }}>
+          <Header style={{ width: '30vw', marginLeft: '10vw' }}>
             How does this work?
           </Header>
         </ColumnFlex>

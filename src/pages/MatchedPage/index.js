@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import {
   BackgroundContainer,
@@ -12,31 +12,31 @@ import {
   StyledIcon,
   Donation,
   NextSteps,
-} from "./styles";
+} from './styles';
 
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col, Container } from 'reactstrap';
 
-import Button from "./components/Button";
+import Button from './components/Button';
 
 // SVG Imports
-import mail from "./Icons/mail.svg";
-import gift from "./Icons/gift.svg";
-import tracking from "./Icons/tracking.svg";
-import hand from "./Icons/hand.svg";
+import mail from './Icons/mail.svg';
+import gift from './Icons/gift.svg';
+import tracking from './Icons/tracking.svg';
+import hand from './Icons/hand.svg';
 
 const nextStepsList = [
   [
     mail,
-    " Read through the email from matches@giveessential.org for more information on your matches. Make sure to also check your spam or junk mail if you cannot find the email",
+    ' Read through the email from matches@giveessential.org for more information on your matches. Make sure to also check your spam or junk mail if you cannot find the email',
   ],
   [
     hand,
-    " Decide how you want to donate. Options include shipping from home via USPS, visiting the postal office, or buying and shipping directly online.",
+    ' Decide how you want to donate. Options include shipping from home via USPS, visiting the postal office, or buying and shipping directly online.',
   ],
-  [gift, "Ship your package!"],
+  [gift, 'Ship your package!'],
   [
     tracking,
-    "Send us the tracking number for your donation through the form that can be found in the email.",
+    'Send us the tracking number for your donation through the form that can be found in the email.',
   ],
 ];
 
@@ -48,12 +48,12 @@ export default function MatchedPage() {
         matches@giveessential.org for more information :)
       </HeaderText>
       <NextSteps>Next Steps</NextSteps>
-      <div style={{ padding: "3% 12%" }}>
+      <div style={{ padding: '3% 12%' }}>
         {nextStepsList.map((e, i) => (
           // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
-          <Row style={{ margin: "5% 3%" }} classname="my-auto">
+          <Row style={{ margin: '5% 3%' }} classname="my-auto">
             <Col xs="2">
-              <Dot color={"#8CC9BA"}>
+              <Dot color={'#8CC9BA'}>
                 <DotText>{i + 1}</DotText>
               </Dot>
             </Col>
@@ -67,7 +67,7 @@ export default function MatchedPage() {
         ))}
       </div>
       <Donation>Thank you for your donation!</Donation>
-      <Container className="my-auto" style={{ textAlign: "center" }}>
+      <Container className="my-auto" style={{ textAlign: 'center' }}>
         <Link to="/">
           <Button primary>Return to homepage</Button>
         </Link>

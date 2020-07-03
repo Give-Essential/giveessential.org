@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ export const TitleText = styled.h1`
 
 export const CenteredFlex = styled(ColumnFlex)`
   align-items: center;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 `;
 
 export const InlineFlex = styled(ColumnFlex)`

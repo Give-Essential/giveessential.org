@@ -1,6 +1,6 @@
-import React from "react";
-import IconButton from "../IconButton";
-import { ColumnFlex, RowFlex } from "../../styles";
+import React from 'react';
+import IconButton from '../IconButton';
+import { ColumnFlex, RowFlex } from '../../styles';
 
 export default function IconButtonGroup(props) {
   const { data, selected, toggle, state } = props;

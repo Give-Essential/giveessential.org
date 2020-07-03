@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ProfilePic = styled.img`
   border-radius: 50%;
@@ -27,15 +27,15 @@ export const ColumnFlex = styled(Flex)`
 `;
 
 export const WhiteBox = styled(ColumnFlex)`
-    width: 23vw;
-    background-color: #FFF;
-    height: 29vh;
-    text-align: center;
-    display: block;
+  width: 23vw;
+  background-color: #fff;
+  height: 29vh;
+  text-align: center;
+  display: block;
 `;
 
 export const Title = styled.h1`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 2.2em;
   font-weight: 900;
   line-height: 1em;

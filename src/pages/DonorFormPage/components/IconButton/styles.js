@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CenteredFlex = styled.div`
   display: flex;
@@ -19,15 +19,15 @@ export const Box = styled.div`
   border: 4px solid #8cc9ba;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => (props.selected ? "#8cc9ba" : null)};
+  background-color: ${(props) => (props.selected ? '#8cc9ba' : null)};
 `;
 
 export const Text = styled.h1`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   font-size: 20px;
   text-align: center;
-  color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
+  color: ${(props) => (props.selected ? '#ffffff' : '#8cc9ba')};
 `;
 
 export const Icon = styled.img`

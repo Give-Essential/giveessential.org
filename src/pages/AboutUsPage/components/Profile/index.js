@@ -1,6 +1,6 @@
-import React from "react";
-import { CenteredFlex } from "../../styles";
-import { ProfilePic, NameText, TitleText } from "./styles";
+import React from 'react';
+import { CenteredFlex } from '../../styles';
+import { ProfilePic, NameText, TitleText } from './styles';
 
 export default function Profile(props) {
   const { src, name, title } = props;

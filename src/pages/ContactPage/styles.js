@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ProfilePic = styled.img`
   border-radius: 50%;
@@ -17,7 +17,7 @@ export const Paragraph = styled.h1`
 export const Label = styled.h1`
   margin-top: 10px;
   margin-bottom: 15px;
-  color: #C4C4C4;
+  color: #c4c4c4;
   font-size: 1em;
   width: 74vw;
 `;
@@ -50,7 +50,7 @@ export const InlineFlex = styled(ColumnFlex)`
 
 export const Screen = styled(ColumnFlex)`
   width: 100vw;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 `;
 
 export const Header = styled.h1`
@@ -62,15 +62,15 @@ export const Header = styled.h1`
 `;
 
 export const WhiteBox = styled(ColumnFlex)`
-    width: 23vw;
-    background-color: #FFF;
-    height: 63vh;
-    text-align: center;
-    display: block;
+  width: 23vw;
+  background-color: #fff;
+  height: 63vh;
+  text-align: center;
+  display: block;
 `;
 
 export const Title = styled.h1`
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 2em;
   font-weight: 900;
   line-height: 20px;

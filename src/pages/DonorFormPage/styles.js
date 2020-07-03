@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const SubmitButton = styled.div`
   flex-direction: column;
   width: 40vw;
   height: 6vw;
-  background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
+  background-color: ${(props) => (props.disabled ? '#dddddd' : '#8CC9BA')};
   align-items: center;
   justify-content: center;
 `;
@@ -51,5 +51,5 @@ export const ButtonText = styled.h1`
   margin-top: 8px;
   width: 55vw;
   text-align: center;
-  color: ${(props) => (props.disabled ? "#8CC9BA" : "#ffffff")};
+  color: ${(props) => (props.disabled ? '#8CC9BA' : '#ffffff')};
 `;

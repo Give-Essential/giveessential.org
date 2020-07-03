@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Text, Icon, CenteredFlex } from "./styles";
+import React from 'react';
+import { Box, Text, Icon, CenteredFlex } from './styles';
 
 export default function IconButton(props) {
   const { id, text, icon, selected, state, toggle } = props;

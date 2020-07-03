@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const Screen = styled(ColumnFlex)`
 
 export const CenteredFlex = styled(ColumnFlex)`
   align-items: center;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 `;
 
 export const InlineFlex = styled(ColumnFlex)`
@@ -47,7 +47,7 @@ export const FAQFlex = styled(ColumnFlex)`
   padding-top: calc(10vh + 2.5%);
   padding-bottom: calc(10vh + 2.5%);
   color: black;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 `;
 
 export const Paragraph = styled.h1`
@@ -71,15 +71,13 @@ export const FAQHeader = styled.h1`
 export const FAQContainer = styled(ColumnFlex)`
   max-width: 1500px;
   padding: 0 5.5% 0 5.5%;
-  ​
-  &.mobile {
-      display: relative;
+  ​ &.mobile {
+    display: relative;
   }
-  ​
-  &.desktop {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+  ​ &.desktop {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 

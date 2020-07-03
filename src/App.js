@@ -1,14 +1,14 @@
-import React from "react";
-import NavBar from "./components/NavBar";
-import HomePage from "./pages/HomePage";
-import { createGlobalStyle } from "styled-components";
-import { BrowserRouter, Route } from "react-router-dom";
-import MatchedPage from "./pages/MatchedPage";
-import AboutPage from "./pages/AboutPage";
-import AboutUsPage from "./pages/AboutUsPage";
-import ContactPage from "./pages/ContactPage";
-import DonorFormPage from "./pages/DonorFormPage";
-import SubmitPage from "./pages/SubmitPage";
+import React from 'react';
+import NavBar from './components/NavBar';
+import HomePage from './pages/HomePage';
+import { createGlobalStyle } from 'styled-components';
+import { BrowserRouter, Route } from 'react-router-dom';
+import MatchedPage from './pages/MatchedPage';
+import AboutPage from './pages/AboutPage';
+import AboutUsPage from './pages/AboutUsPage';
+import ContactPage from './pages/ContactPage';
+import DonorFormPage from './pages/DonorFormPage';
+import SubmitPage from './pages/SubmitPage';
 
 const GlobalStyle = createGlobalStyle`
  html, body {
