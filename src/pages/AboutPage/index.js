@@ -7,7 +7,7 @@ import {
   ListGroup, ListGroupItem,
 } from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { Screen, CenteredFlex, RowFlex, Paragraph, FAQHeader, FAQContainer, FAQFlex } from "./styles";
+import { Screen, CenteredFlex, RowFlex, Paragraph, FAQHeader, FAQContainer, FAQFlex, FAQSectionTitle } from "./styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { isMobile } from 'react-device-detect';
@@ -270,9 +270,9 @@ class FAQ extends React.Component {
             <div className={`faq-content ${isMobile ? 'mobile' : 'desktop'}`}>
               {data.map((section, sectionIndex) => (
                 <div className="faq-section" id={`faq-section-${sectionIndex}`}>
-                  <div className="faq-section-title">
-                    {section.title}
-                  </div>
+                  <FAQSectionTitle>
+                    {section.title.toUpperCase()}
+                  </FAQSectionTitle>
                   {section.items.map((item, itemIndex) => {
                     return (
                     <Card className="faq-item">
@@ -280,7 +280,13 @@ class FAQ extends React.Component {
                         className="faq-question"
                         onClick={() => this.toggleItem(sectionIndex, itemIndex)}>
                         {item.question}
-                        <FontAwesomeIcon icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} />
+                        <FontAwesomeIcon 
+                          style={{
+                            color: 'rgb(253, 120, 68)',
+                            float: 'right'
+                          }}
+                          icon={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`] ? faAngleUp : faAngleDown} 
+                        />
                       </CardHeader>
                       <Collapse isOpen={this.state.collapsedStates[`faq-${sectionIndex}-${itemIndex}`]} >
                         <CardBody style={{ paddingBottom: 0 }}>
