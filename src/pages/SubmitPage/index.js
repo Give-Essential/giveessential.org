@@ -1,17 +1,15 @@
 import React from 'react';
 
+import { Form, FormGroup, Container, Row, Col } from 'reactstrap';
 import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
-
+  StyledInput,
+  StyledLabel,
+  StyledTitle,
+  StyledText,
+  StyledButton,
+  StyledContainer,
+  RowFlex,
+} from './styles';
 const states = [
   'State',
   'Alaska',
@@ -79,48 +77,53 @@ const referrals = [
   'Other',
 ];
 
-export default function SubmitPage() {
+export default function SubmitPage({ next }) {
   return (
-    <>
-      <div>
-        Please fill out your contact info so we can send your match to you!{' '}
-      </div>
-      <Container>
-        <Form>
-          <Row>
-            <Col>
-              <FormGroup>
-                <Input
-                  type="name"
-                  name="name"
-                  id="firstName"
-                  placeholder="First Name"
-                />
-              </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup>
-                <Input
-                  type="name"
-                  name="name"
-                  id="lastName"
-                  placeholder="Last Name"
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-        </Form>
+    <Container className="hi">
+      <StyledTitle>
+        <span>Please fill out your contact info so we can</span>
+        <span>send your match to you!</span>
+      </StyledTitle>
+      <Form>
         <Row>
           <Col>
             <FormGroup>
-              <Input type="email" name="email" id="email" placeholder="Email" />
+              <StyledInput
+                type="name"
+                name="name"
+                id="firstName"
+                placeholder="First Name"
+              />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <StyledInput
+                type="name"
+                name="name"
+                id="lastName"
+                placeholder="Last Name"
+              />
             </FormGroup>
           </Col>
         </Row>
         <Row>
           <Col>
             <FormGroup>
-              <Input
+              <StyledInput
+                t
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <StyledInput
                 type="number"
                 name="number"
                 id="phoneNumber"
@@ -132,29 +135,45 @@ export default function SubmitPage() {
         <Row>
           <Col>
             <FormGroup>
-              <Input name="text" id="city" placeholder="City" />
+              <StyledInput name="text" id="city" placeholder="City" />
             </FormGroup>
           </Col>
           <Col>
-            <Input type="select" name="select" id="state">
+            <StyledInput type="select" name="select" id="state">
               {states.map((us_state) => (
                 <option>{us_state}</option>
               ))}
-            </Input>
+            </StyledInput>
           </Col>
         </Row>
         <Row>
           <Col>
             <FormGroup>
-              <Input type="select" name="select" id="network">
+              <StyledInput type="select" name="select" id="network">
                 {referrals.map((ref) => (
                   <option>{ref}</option>
                 ))}
-              </Input>
+              </StyledInput>
             </FormGroup>
           </Col>
         </Row>
-      </Container>
-    </>
+        <Row>
+          <Col className="d-flex">
+            <StyledLabel htmlFor="other">Other: </StyledLabel>
+            <StyledInput noBorder underLine name="other" id="other" />
+          </Col>
+        </Row>
+        <RowFlex>
+          <StyledContainer>
+            <StyledText>Legal text here</StyledText>
+            <StyledButton onClick={next}>SUBMIT</StyledButton>
+            <StyledText>
+              By submitting, you agree to our{' '}
+              <strong>terms and conditions</strong>
+            </StyledText>
+          </StyledContainer>
+        </RowFlex>
+      </Form>
+    </Container>
   );
 }
