@@ -4,14 +4,14 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  NavLink as RSNavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { LogoPic, ItalicText } from './styles';
+import { Link, NavLink as RRNavLink } from 'react-router-dom';
+import { LogoPic } from './styles';
 
 import Logo from '../../assets/images/logo.PNG';
 
@@ -28,28 +28,35 @@ export function NavBar() {
   return (
     <div style={{ boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)' }}>
       <Navbar color="white" light expand="md">
-        <NavbarBrand href="/">
+        <NavbarBrand tag={Link} to="/">
           <LogoPic src={Logo} alt="Logo" />
         </NavbarBrand>
         <Nav className="mr-auto" navbar style={textStyles}>
           <NavItem>
-            <NavLink href="/about">How does this work?</NavLink>
+            <RSNavLink tag={RRNavLink} to="/about">
+              How does this work?
+            </RSNavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/about-us">Who we are</NavLink>
+            <RSNavLink tag={RRNavLink} to="/about-us">
+              Who we are
+            </RSNavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/contact">Contact us</NavLink>
+            <RSNavLink tag={RRNavLink} to="/contact">
+              Contact us
+            </RSNavLink>
           </NavItem>
         </Nav>
         <Nav navbar style={{ float: 'right', margin: 0 }}>
           <NavItem style={textStyles}>
-            <NavLink
-              href="/get-help"
+            <RSNavLink
+              tag={RRNavLink}
+              to="/get-help"
               style={{ fontStyle: 'italic', fontWeight: 800, color: '#000' }}
             >
               Get help
-            </NavLink>
+            </RSNavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar style={textStyles}>
             <DropdownToggle
