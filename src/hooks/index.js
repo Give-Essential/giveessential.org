@@ -5,18 +5,12 @@ import { useState, useCallback } from 'react';
 const useSteps = (initialStep) => {
   const [currentStep, setCurrentStep] = useState(initialStep);
 
-  const back = useCallback(
-    (step) => {
-      setCurrentStep(step);
-    },
-    [setCurrentStep]
-  );
-  const next = useCallback(
-    (step) => {
-      setCurrentStep(step);
-    },
-    [setCurrentStep]
-  );
+  const back = useCallback(() => {
+    setCurrentStep((prevStep) => prevStep - 1);
+  }, [setCurrentStep]);
+  const next = useCallback(() => {
+    setCurrentStep((prevStep) => prevStep + 1);
+  }, [setCurrentStep]);
   return { currentStep, back, next };
 };
 
