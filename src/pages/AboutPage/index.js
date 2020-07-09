@@ -7,7 +7,7 @@ import {
   ListGroup, ListGroupItem,
 } from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import { Screen, CenteredFlex, RowFlex, Paragraph, FAQHeader, FAQContainer, FAQFlex, FAQSectionTitle } from "./styles";
+import { Screen, CenteredFlex, RowFlex, Paragraph, FAQHeader, FAQContainer, FAQFlex, FAQSectionTitle, Rectangle1 } from "./styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { isMobile } from 'react-device-detect';
@@ -257,16 +257,22 @@ class FAQ extends React.Component {
               <div className="faq-nav desktop">
                 <ListGroup>
                   {data.map((section, index) => (
+                    
                     <AnchorLink href={`#faq-section-${index}`}>
-                      <ListGroupItem style={{ backgroundColor: "#DFE9EC" }}>
+                      {/* <ListGroupItem style={{ backgroundColor: "#DFE9EC" }}>
                         {section.title}
-                      </ListGroupItem>
+                      </ListGroupItem> */}
+                      <Rectangle1 
+                        // onMouseEnter={}
+                      >
+                        {section.title}
+                      </Rectangle1> 
+                      <br />
                     </AnchorLink>
                   ))}
                 </ListGroup>
               </div>
             }
-            
             <div className={`faq-content ${isMobile ? 'mobile' : 'desktop'}`}>
               {data.map((section, sectionIndex) => (
                 <div className="faq-section" id={`faq-section-${sectionIndex}`}>
