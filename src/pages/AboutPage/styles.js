@@ -83,6 +83,17 @@ export const FAQContainer = styled(ColumnFlex)`
   }
 `;
 
+export const FAQSectionTitle = styled.h1`
+color: grey;
+font-size: larger;
+margin-top: 3%;
+margin-bottom: 1.5%;
+`
+export const Rectangle1 = styled.div`
+height: 15px;
+width: 4px;
+background-color: #48c798;
+`
 // .faq-nav {
 //     position: sticky;
 //     top: calc(10vh + 2.5%);
