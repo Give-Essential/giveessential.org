@@ -51,7 +51,7 @@ export default function ChoiceFormPage(props, { next }) {
   };
 
   return (
-    <Screen style={{ paddingBottom: 200 }}>
+    <Screen style={{ paddingBottom: 20 }}>
       <CenteredFlex>
         <Subtitle>The following questions ask about which items you need. 
           We will pass this information along to your match so that they are able 
