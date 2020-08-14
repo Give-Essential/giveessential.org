@@ -48,10 +48,10 @@ export default function MatchedPage() {
         matches@giveessential.org for more information :)
       </HeaderText>
       <NextSteps>Next Steps</NextSteps>
-      <div style={{ padding: "3% 12%" }}>
+      <div style={{ padding: "0% 12%" }}>
         {nextStepsList.map((e, i) => (
           // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
-          <Row style={{ margin: "5% 3%" }} classname="my-auto">
+          <Row style={{ margin: "3% 5%" }} classname="my-auto">
             <Col xs="2">
               <Dot color={"#8CC9BA"}>
                 <DotText>{i + 1}</DotText>

@@ -47,8 +47,9 @@ export const Subtitle = styled.h1`
 `;
 
 export const Text = styled.h1`
-  font-size: 1.2em;
+  font-size: 14px;
   width: 55vw;
+  margin-top: 10px;
   text-align: left;
 `;
 
@@ -96,8 +97,8 @@ export const ButtonText = styled.h1`
 `;
 
 export const Dot = styled.div`
-  height: 69px;
-  width: 69px;
+  height: 79px;
+  width: 79px;
   background-color: ${(props) => (props.color ? props.color : "black")};
   margin-left: 25%;
   border-radius: 50%;
@@ -111,7 +112,7 @@ export const Dot = styled.div`
 
 export const DotText = styled.h1`
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 44px;
 `;
 
 export const HeaderText = styled.h1`
@@ -134,7 +135,7 @@ export const BackgroundContainer = styled.div`
 export const ListText = styled.h4`
   font-style: normal;
   font-weight: normal;
-  font-size: 1em;
+  font-size: 1.2em;
   line-height: 30px;
   width: 85%;
   display: flex;
@@ -143,13 +144,13 @@ export const ListText = styled.h4`
 
 export const StyledIcon = styled.img`
   margin: 0% 2%;
-  width: 60%;
+  width: 70%;
 `;
 
 export const Donation = styled.h4`
   font-style: italic;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 40px;
   line-height: 44px;
   /* identical to box height */
 

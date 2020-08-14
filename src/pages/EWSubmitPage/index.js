@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Form, FormGroup, Container, Row, Col } from 'reactstrap';
 import {
@@ -7,7 +7,6 @@ import {
   StyledTitle,
   StyledText,
   StyledButton,
-  StyledContainer,
   RowFlex,
 } from './styles';
 const states = [
@@ -77,13 +76,30 @@ const referrals = [
   'Other',
 ];
 
-export default function SubmitPage({ next }) {
+export default function EWSubmitPage({ next }) {
+  const [formData, setFormData] = useState({})
+
+  const updateInput = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+  const handleSubmit = event => {
+    event.preventDefault()
+    setFormData({
+      circumstances: '',
+      consent: '',
+      comments: '',
+      message: '',
+    })
+  }
+
   return (
-    <Container className="hi">
-      <StyledTitle>
-        <span>Please fill out your contact info so we can</span>
-        <span>send your match to you!</span>
-      </StyledTitle>
+    <Container className="hi" style={{ padding: 50 }}>
+      <StyledText>
+      The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
+      </StyledText>
       <Form>
         <Row>
           <Col>
@@ -93,6 +109,8 @@ export default function SubmitPage({ next }) {
                 name="name"
                 id="firstName"
                 placeholder="First Name"
+                onChange={updateInput}
+                value={formData.first || ''}
               />
             </FormGroup>
           </Col>
@@ -103,6 +121,8 @@ export default function SubmitPage({ next }) {
                 name="name"
                 id="lastName"
                 placeholder="Last Name"
+                onChange={updateInput}
+                value={formData.last || ''}
               />
             </FormGroup>
           </Col>
@@ -111,11 +131,12 @@ export default function SubmitPage({ next }) {
           <Col>
             <FormGroup>
               <StyledInput
-                t
                 type="email"
                 name="email"
                 id="email"
                 placeholder="Email"
+                onChange={updateInput}
+                value={formData.last || ''}
               />
             </FormGroup>
           </Col>
@@ -163,15 +184,51 @@ export default function SubmitPage({ next }) {
             <StyledInput noBorder underLine name="other" id="other" />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <StyledInput
+                type="jobtitle"
+                name="jobtitle"
+                id="jobtitle"
+                placeholder="Job Title"
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <StyledInput
+                type="institution"
+                name="institution"
+                id="institution"
+                placeholder="Institution/Company"
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <StyledInput
+                type="hear"
+                name="hear"
+                id="hear"
+                placeholder="How did you hear about us?"
+              />
+            </FormGroup>
+          </Col>
+        </Row>
         <RowFlex>
-          <StyledContainer>
+          <Container>
             <StyledText>Legal text here</StyledText>
-            <StyledButton onClick={next}>SUBMIT</StyledButton>
+            <StyledButton onClick={next}>CONTINUE</StyledButton>
             <StyledText>
-              By submitting, you agree to our{' '}
+              By continuing, you agree to our{' '}
               <strong>terms and conditions</strong>
             </StyledText>
-          </StyledContainer>
+          </Container>
         </RowFlex>
       </Form>
     </Container>

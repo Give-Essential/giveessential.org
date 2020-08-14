@@ -23,8 +23,9 @@ export const CenteredFlex = styled(ColumnFlex)`
 export const Header = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 30px;
-  margin-top: 58px;
+  font-size: 40px;
+  margin-top: 48px;
+  margin-bottom: 12px;
   color: #8CC9BA;
 `;
 
@@ -47,8 +48,9 @@ export const Subtitle = styled.h1`
 `;
 
 export const Text = styled.h1`
-  font-size: 1.2em;
+  font-size: 14px;
   width: 55vw;
+  margin-top: 10px;
   text-align: left;
 `;
 
@@ -93,77 +95,4 @@ export const ButtonText = styled.h1`
   width: 55vw;
   text-align: center;
   color: ${(props) => (props.disabled ? "#8CC9BA" : "#ffffff")};
-`;
-
-export const Dot = styled.div`
-  height: 69px;
-  width: 69px;
-  background-color: ${(props) => (props.color ? props.color : "black")};
-  margin-left: 25%;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  color: white;
-  margin-right: 5%;
-`;
-
-export const DotText = styled.h1`
-  font-weight: 400;
-  font-size: 1.5em;
-`;
-
-export const HeaderText = styled.h1`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.5em;
-  line-height: 40px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #8cc9ba;
-  padding: 3% 14%;
-`;
-
-export const BackgroundContainer = styled.div`
-  height: 100%;
-`;
-
-export const ListText = styled.h4`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1em;
-  line-height: 30px;
-  width: 85%;
-  display: flex;
-  align-items: center;
-`;
-
-export const StyledIcon = styled.img`
-  margin: 0% 2%;
-  width: 60%;
-`;
-
-export const Donation = styled.h4`
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1em;
-  line-height: 44px;
-  /* identical to box height */
-
-  align-items: center;
-  text-align: center;
-`;
-
-export const NextSteps = styled.h1`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 2.2em;
-  line-height: 24px;
-  /* identical to box height */
-
-  align-items: center;
-  text-align: center;
 `;
