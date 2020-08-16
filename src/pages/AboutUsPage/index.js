@@ -1,5 +1,5 @@
 import React from "react";
-import { Screen, CenteredFlex, RowFlex, Header, Paragraph, Picture, BigPicture } from "./styles";
+import { Screen, CenteredFlex, RowFlex, Header, Paragraph, BigPicture } from "./styles";
 import Profile from "./components/Profile";
 import Contact from "./components/Contact";
 import Amy from "../../assets/images/Amy.png";

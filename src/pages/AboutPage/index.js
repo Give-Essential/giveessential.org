@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
-  Nav, NavItem,
   Collapse,
   Card, CardBody, CardHeader, CardText,
   ListGroup, ListGroupItem,

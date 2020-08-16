@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Screen,
   CenteredFlex,
-  Header,
   Title,
   Subtitle,
   SubmitButton,
@@ -11,24 +10,16 @@ import {
   SmallButton,
   SmallButtonText
 } from "./styles";
-import IconButton from "./components/IconButton";
 import IconButtonGroup from "./components/IconButtonGroup";
-import { values, items } from "./buttonGroupData";
+import { items } from "./buttonGroupData";
 import {
   Input
 } from "reactstrap";
-import women from "../../assets/icons/values/women.png";
-import cleaning from "../../assets/icons/items/cleaning.png";
-import feminine from "../../assets/icons/items/feminine.png";
-import gift from "../../assets/icons/items/gift.png";
-import hygiene from "../../assets/icons/items/hygiene.png";
-import toys from "../../assets/icons/items/toys.png";
-import masks from "../../assets/icons/items/masks.png";
 
 export default function ChoiceFormPage(props, { next }) {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
-  const { selected, state } = props;
+  // const { selected, state } = props;
 
   const toggle = (value, state) => () => {
     let updateState = state === "valueState" ? setValues : setItems;
@@ -41,13 +32,6 @@ export default function ChoiceFormPage(props, { next }) {
       updatedState.splice(i, 1);
     }
     updateState(updatedState);
-  };
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
-
-  const mapHandler = (event) => {
-    alert(event.target.dataset.name);
   };
 
   return (

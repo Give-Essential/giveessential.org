@@ -4,7 +4,6 @@ import { Form, FormGroup, Container, Row, Col } from 'reactstrap';
 import {
   StyledInput,
   StyledLabel,
-  StyledTitle,
   StyledText,
   StyledButton,
   RowFlex,
@@ -85,15 +84,6 @@ export default function EWSubmitPage({ next }) {
       [e.target.name]: e.target.value,
     })
   }
-  const handleSubmit = event => {
-    event.preventDefault()
-    setFormData({
-      circumstances: '',
-      consent: '',
-      comments: '',
-      message: '',
-    })
-  }
 
   return (
     <Container className="hi" style={{ padding: 50 }}>
@@ -162,7 +152,7 @@ export default function EWSubmitPage({ next }) {
           <Col>
             <StyledInput type="select" name="select" id="state">
               {states.map((us_state) => (
-                <option>{us_state}</option>
+                <option key={us_state}>{us_state}</option>
               ))}
             </StyledInput>
           </Col>
@@ -172,7 +162,7 @@ export default function EWSubmitPage({ next }) {
             <FormGroup>
               <StyledInput type="select" name="select" id="network">
                 {referrals.map((ref) => (
-                  <option>{ref}</option>
+                  <option key={ref}>{ref}</option>
                 ))}
               </StyledInput>
             </FormGroup>

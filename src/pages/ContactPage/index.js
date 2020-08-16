@@ -1,7 +1,7 @@
 import React from "react";
 import { Screen, CenteredFlex, RowFlex, Header, Paragraph, Label } from "./styles";
 import {
-  Button, Form, FormGroup, Input, FormText 
+  Button, Form, FormGroup, Input
 } from 'reactstrap';
 import InfoBox from './components/InfoBox';
 import Contact from './components/Contact';

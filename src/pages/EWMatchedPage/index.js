@@ -1,12 +1,8 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import {
   BackgroundContainer,
-  // RowFlex,
   Dot,
-  DotText,
   HeaderText,
   ListText,
   StyledIcon,
@@ -14,7 +10,7 @@ import {
   NextSteps,
 } from './styles';
 
-import { Row, Col, Container, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 
 
 // SVG Imports

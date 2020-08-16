@@ -14,7 +14,6 @@ import {
   StyledContainer,
   RowFlex,
 } from './styles';
-import SubmitPage from '../SubmitPage';
 import MatchedPage from '../MatchedPage';
 import IconButtonGroup from './components/IconButtonGroup';
 import { values, items } from './buttonGroupData';

@@ -11,37 +11,21 @@ import {
   SmallButton,
   SmallButtonText
 } from "./styles";
-import IconButton from "./components/IconButton";
 import IconButtonGroup from "./components/IconButtonGroup";
-import { values, items } from "./buttonGroupData";
+import { items } from "./buttonGroupData";
 import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Label,
   Input
 } from "reactstrap";
 import useStep from '../../hooks';
 import EWSubmitPage from '../EWSubmitPage';
 import EWMatchedPage from '../EWMatchedPage';
-import ChoicePage from '../ChoicePage';
-import AgreementPage from '../AgreementPage';
-import women from "../../assets/icons/values/women.png";
-import cleaning from "../../assets/icons/items/cleaning.png";
-import feminine from "../../assets/icons/items/feminine.png";
-import gift from "../../assets/icons/items/gift.png";
-import hygiene from "../../assets/icons/items/hygiene.png";
-import toys from "../../assets/icons/items/toys.png";
-import masks from "../../assets/icons/items/masks.png";
-import * as firebase from "firebase/app";
 
 export default function EssentialWorkerFormPage(props) {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
   const [formData, setFormData] = useState({})
   const { currentStep, next } = useStep(0);
-  const { selected, state } = props;
+  // const { selected, state } = props;
 
   const updateInput = e => {
     setFormData({
@@ -62,14 +46,6 @@ export default function EssentialWorkerFormPage(props) {
     }
     updateState(updatedState);
   };
-
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
-
-  const mapHandler = (event) => {
-    alert(event.target.dataset.name);
-  };
-
 
   // https://giveessential.uc.r.appspot.com/api/ew
 

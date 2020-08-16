@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input, Label, CardTitle, Col } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 
 export const Flex = styled.div`
   display: flex;

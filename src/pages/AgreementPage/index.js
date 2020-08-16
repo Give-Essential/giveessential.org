@@ -1,34 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Screen,
   CenteredFlex,
-  Header,
   Title,
   Subtitle,
   SubmitButton,
   ButtonText,
   Text,
-  SmallButton,
-  SmallButtonText
 } from "./styles";
-import IconButton from "./components/IconButton";
-import IconButtonGroup from "./components/IconButtonGroup";
-import { values, items } from "./buttonGroupData";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Label,
-  Input
-} from "reactstrap";
-import women from "../../assets/icons/values/women.png";
-import cleaning from "../../assets/icons/items/cleaning.png";
-import feminine from "../../assets/icons/items/feminine.png";
-import gift from "../../assets/icons/items/gift.png";
-import hygiene from "../../assets/icons/items/hygiene.png";
-import toys from "../../assets/icons/items/toys.png";
-import masks from "../../assets/icons/items/masks.png";
 
 export default function AgreementPage(props, {next}) {
 
