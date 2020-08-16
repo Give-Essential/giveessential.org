@@ -11,7 +11,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { Link } from 'react-router-dom';
-import { LogoPic, ItalicText } from "./styles";
+import { LogoPic } from "./styles";
 
 import Logo from "../../assets/images/logo.PNG";
 

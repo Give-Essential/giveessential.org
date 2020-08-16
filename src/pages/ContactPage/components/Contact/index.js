@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { CenteredFlex, Picture, InlineFlex } from "../../styles";
 import fbImg from "../../../../assets/icons/fb.png";
 import instaImg from "../../../../assets/icons/insta.png";
