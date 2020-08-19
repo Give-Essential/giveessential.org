@@ -6,6 +6,7 @@ export const Flex = styled.div`
 
 export const RowFlex = styled(Flex)`
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const ColumnFlex = styled(Flex)`
@@ -104,7 +105,6 @@ export const Dot = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
   color: white;
   margin-right: 5%;
 `;
@@ -112,6 +112,10 @@ export const Dot = styled.div`
 export const DotText = styled.h1`
   font-weight: 400;
   font-size: 1.5em;
+`;
+
+export const DotContainer = styled.div`
+  display: block;
 `;
 
 export const HeaderText = styled.h1`
@@ -143,7 +147,8 @@ export const ListText = styled.h4`
 
 export const StyledIcon = styled.img`
   margin: 0% 2%;
-  width: 60%;
+  marginLeft: 5%;
+  display: block;
 `;
 
 export const Donation = styled.h4`

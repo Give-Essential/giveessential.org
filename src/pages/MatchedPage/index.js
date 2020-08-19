@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 import {
   BackgroundContainer,
-  // RowFlex,
+  RowFlex,
   Dot,
   DotText,
+  DotContainer,
   HeaderText,
   ListText,
   StyledIcon,
@@ -51,15 +52,19 @@ export default function MatchedPage() {
       <div style={{ padding: "0% 12%" }}>
         {nextStepsList.map((e, i) => (
           // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
-          <Row style={{ margin: "3% 5%" }} classname="my-auto">
-            <Col xs="2">
-              <Dot color={"#8CC9BA"}>
-                <DotText>{i + 1}</DotText>
-              </Dot>
-            </Col>
-            <Col xs="2">
-              <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />
-            </Col>
+          <Row style={{ margin: "3% 5%" }} classname="my-auto" key={i}>
+           <RowFlex>
+              <Col xs="2">
+                <DotContainer>
+                <Dot color={"#8CC9BA"}>
+                  <DotText>{i + 1}</DotText>
+                </Dot>
+                </DotContainer>
+              </Col>
+              <Col xs="2">
+                <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />
+              </Col>
+            </RowFlex>
             <Col>
               <ListText>{e[1]}</ListText>
             </Col>

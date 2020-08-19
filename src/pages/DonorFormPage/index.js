@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Screen,
-  CenteredFlex,
   Header,
   Subtitle,
   SubmitButton,
@@ -13,35 +12,41 @@ import {
   StyledButton,
   StyledContainer,
   RowFlex,
+  ColumnFlex,
+  CenteredFlex,
+  CapitalizedButton,
+  // SideMenuText,
 } from './styles';
 import MatchedPage from '../MatchedPage';
 import IconButtonGroup from './components/IconButtonGroup';
-import { values, items } from './buttonGroupData';
+import TextButtonGroup from './components/TextButtonGroup';
+import { values, items, yesNo, donationOptions } from './buttonGroupData';
 import {
   Form, 
   FormGroup, 
   Container, 
   Row, 
   Col,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'reactstrap';
 import USAMap from 'react-usa-map';
 import useStep from '../../hooks';
 
+const MAP_GREEN = '#8CC9BA';
+const MAP_GRAY = '#d3d3d3';
+
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
+  const [regionState, setRegion] = useState([]);
+  const [repeatDonationState, setRepeatDonation] = useState([]);
+  const [cashDonationState, setCashDonation] = useState([]);
   const { currentStep, next } = useStep(0);
 
   const toggle = (value, state) => () => {
-    let updateState = state === 'valueState' ? setValues : setItems;
-    const prevState = state === 'valueState' ? valueState : itemState;
+    let updateState = state === 'valueState' ? setValues : 'itemState' ? setItems : setRegion;
+    const prevState = state === 'valueState' ? valueState : 'itemState' ? itemState : regionState;
     const i = prevState.indexOf(value);
     const updatedState = [...prevState];
-
     if (i === -1) {
       updatedState.push(value);
     } else {
@@ -50,11 +55,36 @@ export default function DonorFormPage() {
     updateState(updatedState);
   };
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => setDropdownOpen((prevState) => !prevState);
-  const mapHandler = (event) => {
-    alert(event.target.dataset.name);
+  const singleSelectToggle = (value, state) => () => {
+    let updateState = state === 'repeatDonationState' ? setRepeatDonation : setCashDonation;
+    const prevState = state === 'repeatDonationState' ? repeatDonationState : cashDonationState;
+    let updatedState;
+    if (prevState[0] === value) {
+      updatedState = [];
+    } else {
+      updatedState = [value];
+    }
+    updateState(updatedState);
   };
+
+  const mapHandler = (event) => {
+    toggle(mapRegions[event.target.dataset.name], 'regionState')();
+  };
+
+  const selectAllRegions = (event) => {
+    for (const region of regions) {
+      if (regionState.indexOf(region) === -1) {
+        toggle(region, 'regionState')();
+      }
+    }
+  };
+
+  const regions = [
+    'Northeast',
+    'Midwest',
+    'South',
+    'West'
+  ];
 
   const states = [
     'State',
@@ -123,80 +153,187 @@ export default function DonorFormPage() {
     'Other',
   ];
 
+  const mapRegions = {
+    'AK': 'West',
+    'AL': 'South',
+    'AR': 'South',
+    'AS': '?',
+    'AZ': 'West',
+    'CA': 'West',
+    'CO': 'West',
+    'CT': 'Northeast',
+    'DC': 'South',
+    'DE': 'South',
+    'FL': 'South',
+    'GA': 'South',
+    'GU': '?',
+    'HI': 'West',
+    'IA': 'Midwest',
+    'ID': 'West',
+    'IL': 'Midwest',
+    'IN': 'Midwest',
+    'KS': 'Midwest',
+    'KY': 'South',
+    'LA': 'South',
+    'MA': 'Northeast',
+    'MD': 'South',
+    'ME': 'Northeast',
+    'MI': 'Midwest',
+    'MN': 'Midwest',
+    'MO': 'Midwest',
+    'MS': 'South',
+    'MT': 'West',
+    'NC': 'South',
+    'ND': 'Midwest',
+    'NE': 'Midwest',
+    'NH': 'Northeast',
+    'NJ': 'Northeast',
+    'NM': 'West',
+    'NV': 'West',
+    'NY': 'Northeast',
+    'OH': 'Midwest',
+    'OK': 'South',
+    'OR': 'West',
+    'PA': 'Northeast',
+    'PR': '?',
+    'RI': 'Northeast',
+    'SC': 'South',
+    'SD': 'Midwest',
+    'TN': 'South',
+    'TX': 'South',
+    'UT': 'West',
+    'VA': 'South',
+    'VI': '?',
+    'VT': 'Northeast',
+    'WA': 'West',
+    'WI': 'Midwest',
+    'WV': 'South',
+    'WY': 'West',
+  };
+
+  const statesCustomConfig = {
+      'AK': {
+        fill: regionState.indexOf('West') !== -1 ? MAP_GREEN: MAP_GRAY
+      },
+      'AL': 'South',
+      'AR': 'South',
+      'AS': '?',
+      'AZ': 'West',
+      'CA': 'West',
+      'CO': 'West',
+      'CT': 'Northeast',
+      'DC': 'South',
+      'DE': 'South',
+      'FL': 'South',
+      'GA': 'South',
+      'GU': '?',
+      'HI': 'West',
+      'IA': 'Midwest',
+      'ID': 'West',
+      'IL': 'Midwest',
+      'IN': 'Midwest',
+      'KS': 'Midwest',
+      'KY': 'South',
+      'LA': 'South',
+      'MA': 'Northeast',
+      'MD': 'South',
+      'ME': 'Northeast',
+      'MI': 'Midwest',
+      'MN': 'Midwest',
+      'MO': 'Midwest',
+      'MS': 'South',
+      'MT': 'West',
+      'NC': 'South',
+      'ND': 'Midwest',
+      'NE': 'Midwest',
+      'NH': 'Northeast',
+      'NJ': 'Northeast',
+      'NM': 'West',
+      'NV': 'West',
+      'NY': 'Northeast',
+      'OH': 'Midwest',
+      'OK': 'South',
+      'OR': 'West',
+      'PA': 'Northeast',
+      'PR': '?',
+      'RI': 'Northeast',
+      'SC': 'South',
+      'SD': 'Midwest',
+      'TN': 'South',
+      'TX': 'South',
+      'UT': 'West',
+      'VA': 'South',
+      'VI': '?',
+      'VT': 'Northeast',
+      'WA': 'West',
+      'WI': 'Midwest',
+      'WV': 'South',
+      'WY': 'West',
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case 0:
         return (
-          <>
-            <CenteredFlex>
-              <Header>What do you care about?</Header>
-              <Subtitle>Select all that apply (minimum 2)</Subtitle>
-              <IconButtonGroup
-                data={values}
-                selected={valueState}
-                toggle={toggle}
-                state="valueState"
+          <Screen>
+          <RowFlex>
+            <ColumnFlex>
+              <CenteredFlex>
+                <Header>What do you care about?</Header>
+                <Subtitle>Select all that apply (minimum 2)</Subtitle>
+                <IconButtonGroup
+                  data={values}
+                  selected={valueState}
+                  toggle={toggle}
+                  state="valueState"
+                />
+              </CenteredFlex>
+              <CenteredFlex>
+                <Header>Where in the country would you like to give to?</Header>
+                <Subtitle>
+                  If no region is selected, we’ll match you with someone from
+                  anywhere in the US.
+                </Subtitle>
+                <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
+                <CapitalizedButton onClick={selectAllRegions} >I Can Donate Anywhere</CapitalizedButton>
+              </CenteredFlex>
+              <CenteredFlex>
+                <Header>What can you give?</Header>
+                <IconButtonGroup
+                  data={items}
+                  selected={itemState}
+                  toggle={toggle}
+                  state="itemState"
+                />
+              </CenteredFlex>
+              <CenteredFlex>
+              <ColumnFlex>
+                <Header>
+                  Would you like to donate monthly?
+                </Header>
+                <Subtitle>
+                This is a one-time donation to a single essential worker. If you would 
+                like to be matched with more essential workers, we would love for you 
+                to fill out another form when you're ready to give again!
+                </Subtitle>
+                <TextButtonGroup
+                data={yesNo}
+                selected={repeatDonationState}
+                toggle={singleSelectToggle}
+                state="repeatDonationState"
               />
-            </CenteredFlex>
-            <CenteredFlex>
-              <Header>Where in the country would you like to give to?</Header>
-              <Subtitle>
-                If no region is selected, we’ll match you with someone from
-                anywhere in the US.
-              </Subtitle>
-              <USAMap onClick={mapHandler} />
-            </CenteredFlex>
-            <CenteredFlex>
-              <Header>What can you give?</Header>
-              <IconButtonGroup
-                data={items}
-                selected={itemState}
-                toggle={toggle}
-                state="itemState"
-              />
-            </CenteredFlex>
-            <CenteredFlex>
-              <Header>
-                How many essential workers would you like to help?
-              </Header>
-              <Subtitle>
-                This is a one-time donation and we've set an upper limit of 3
-                matches based on feedback from previous donors. If you would
-                like to be matched with more essential workers after the first
-                three, we would love for you to fill out another form when
-                you're ready to give again!
-              </Subtitle>
-              <Dropdown
-                style={{ marginTop: 40, width: '40vw' }}
-                isOpen={dropdownOpen}
-                toggle={toggleDropdown}
-              >
-                <DropdownToggle
-                  caret
-                  style={{
-                    paddingRight: '80%',
-                    color: '#8CC9BA',
-                    borderRadius: 10,
-                    border: '2px solid #8CC9BA',
-                    backgroundColor: '#FFF',
-                  }}
+              </ColumnFlex>
+        
+                <StyledButton
+                  onClick={next}
+                  style={{ marginTop: 40, width: '40%' }}
                 >
-                  Select one
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>1</DropdownItem>
-                  <DropdownItem>2</DropdownItem>
-                  <DropdownItem>3</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>{' '}
-              <SubmitButton
-                onClick={next}
-                style={{ marginTop: 40, width: '40%' }}
-              >
-                <ButtonText>CONTINUE</ButtonText>
-              </SubmitButton>
-            </CenteredFlex>
-          </>
+                  CONTINUE
+                </StyledButton>
+                </CenteredFlex>
+            </ColumnFlex>
+            </RowFlex>
+          </Screen>
         );
       case 1:
         return (
@@ -262,7 +399,7 @@ export default function DonorFormPage() {
               <Col>
                 <StyledInput type="select" name="select" id="state">
                   {states.map((us_state) => (
-                    <option>{us_state}</option>
+                    <option key={us_state}>{us_state}</option>
                   ))}
                 </StyledInput>
               </Col>

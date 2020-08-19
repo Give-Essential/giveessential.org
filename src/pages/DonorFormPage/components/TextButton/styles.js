@@ -9,8 +9,8 @@ export const CenteredFlex = styled.div`
 
 export const Box = styled.div`
   display: flex;
-  width: 152px;
-  height: 152px;
+  width: 124px;
+  height: 48px;
   border-radius: 1vw;
   margin-left: 0.7vw;
   margin-right: 0.7vw;
@@ -28,11 +28,11 @@ export const Text = styled.h1`
   font-weight: bold;
   font-size: 17px;
   text-align: center;
+  margin: 0px;
   color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
 `;
 
 export const Icon = styled.img`
   width: auto;
   height: 50px;
-  -webkit-filter: ${(props) => (props.selected ? 'brightness(0) invert(1);': 'none;')}
 `;
