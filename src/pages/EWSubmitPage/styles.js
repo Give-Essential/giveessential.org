@@ -49,7 +49,16 @@ export const Subtitle = styled.h1`
 `;
 
 export const Text = styled.h1`
-  font-size: 14px;
+  font-size: 1em;
+  width: 55vw;
+  margin-top: 20px;
+  text-align: left;
+  color: #C4C4C4;
+  font-weight: 600;
+`;
+
+export const SmallText = styled.h1`
+  font-size: 12px;
   width: 55vw;
   margin-top: 10px;
   text-align: left;
@@ -115,12 +124,13 @@ export const StyledInput = styled(Input)`
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 1em;
   border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #8cc9ba')};
   border-radius: ${({ noBorder }) => (noBorder ? 0 : '5px')};
   border-bottom: ${({ underLine }) =>
     underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
 `;
+
 export const StyledLabel = styled(Label)`
   font-style: normal;
   font-weight: normal;
@@ -130,11 +140,13 @@ export const StyledLabel = styled(Label)`
   align-items: center;
   margin: 0;
 `;
+
 export const StyledText = styled.p`
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
+  margin-top: 10px;
 `;
 
 export const StyledButton = styled.button`

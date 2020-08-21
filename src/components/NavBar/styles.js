@@ -11,3 +11,4 @@ export const ItalicText = styled.img`
   fontStyle: "normal",
   fontWeight: "normal",
 `;
+

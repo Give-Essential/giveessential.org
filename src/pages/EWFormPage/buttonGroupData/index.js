@@ -14,6 +14,22 @@ import hygiene from "../../../assets/icons/items/hygiene.png";
 import toys from "../../../assets/icons/items/toys.png";
 import masks from "../../../assets/icons/items/masks.png";
 
+import housing from "../../../assets/icons/categories/housing.png";
+import parent from "../../../assets/icons/categories/parent.png";
+import singleparent from "../../../assets/icons/categories/singleparent.png";
+import student from "../../../assets/icons/categories/student.png";
+import job from "../../../assets/icons/categories/job.png";
+
+import agriculture from "../../../assets/icons/occupations/agriculture.png";
+import education1 from "../../../assets/icons/occupations/education1.png";
+import food from "../../../assets/icons/occupations/food.png";
+import gig from "../../../assets/icons/occupations/gig.png";
+import healthcare from "../../../assets/icons/occupations/healthcare.png";
+import other from "../../../assets/icons/occupations/other.png";
+import publicservice from "../../../assets/icons/occupations/publicservice.png";
+import service from "../../../assets/icons/occupations/service.png";
+import transportation from "../../../assets/icons/occupations/transportation.png";
+
 export const values = [
   { icon: childhood, id: "childhood", text: "Childhood Development" },
   { icon: women, id: "women", text: "Supporting Women" },
@@ -33,4 +49,24 @@ export const items = [
   { icon: feminine, id: "feminine", text: "Feminine Hygiene" },
   { icon: gift, id: "gift", text: "Gift Cards" },
   { icon: masks, id: "masks", text: "Masks" },
+];
+
+export const categories = [
+  { icon: housing, id: "housinginsecure", text: "Housing Insecure" },
+  { icon: parent, id: "parent", text: "Parent" },
+  { icon: singleparent, id: "singleparent", text: "Single Parent" },
+  { icon: student, id: "student", text: "Student" },
+  { icon: job, id: "job", text: "Working Multiple Jobs" }
+];
+
+export const occupations = [
+  { icon: agriculture, id: "agriculture", text: "Agriculture" },
+  { icon: education1, id: "education1", text: "Education" },
+  { icon: food, id: "food", text: "Food" },
+  { icon: gig, id: "gig", text: "Gig Economy" },
+  { icon: publicservice, id: "publicservice", text: "Public Service /Government"},
+  { icon: service, id: "service", text: "Service"},
+  { icon: transportation, id: "transportation", text: "Transportation"},
+  { icon: healthcare, id: "healthcare", text: "Healthcare"},
+  { icon: other, id: "other", text: "Other"},  
 ];
