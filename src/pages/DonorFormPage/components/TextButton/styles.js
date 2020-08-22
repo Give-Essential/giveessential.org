@@ -9,8 +9,8 @@ export const CenteredFlex = styled.div`
 
 export const Box = styled.div`
   display: flex;
-  width: 124px;
-  height: 48px;
+  width: ${window.innerWidth >= 900 ? '124px' : '75px'};
+  height: ${window.innerWidth >= 900? '48px' : '30px'};
   border-radius: 1vw;
   margin-left: 0.7vw;
   margin-right: 0.7vw;
@@ -26,7 +26,7 @@ export const Box = styled.div`
 export const Text = styled.h1`
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  font-size: 17px;
+  font-size: ${ window.innerWidth >= 900 ? '17px' : '12px'};
   text-align: center;
   margin: 0px;
   color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};

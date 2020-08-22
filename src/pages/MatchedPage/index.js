@@ -7,12 +7,12 @@ import {
   RowFlex,
   Dot,
   DotText,
-  DotContainer,
   HeaderText,
   ListText,
   StyledIcon,
   Donation,
   NextSteps,
+  CenteredFlex,
 } from "./styles";
 
 import { Row, Col, Container } from "reactstrap";
@@ -44,10 +44,10 @@ const nextStepsList = [
 export default function MatchedPage() {
   return (
     <BackgroundContainer>
-      <HeaderText>
-        You’ve been matched! Look out for an email from
-        matches@giveessential.org for more information :)
-      </HeaderText>
+        <HeaderText>
+          You’ve been matched!
+        </HeaderText>
+
       <NextSteps>Next Steps</NextSteps>
       <div style={{ padding: "0% 12%" }}>
         {nextStepsList.map((e, i) => (
@@ -55,11 +55,9 @@ export default function MatchedPage() {
           <Row style={{ margin: "3% 5%" }} classname="my-auto" key={i}>
            <RowFlex>
               <Col xs="2">
-                <DotContainer>
                 <Dot color={"#8CC9BA"}>
                   <DotText>{i + 1}</DotText>
                 </Dot>
-                </DotContainer>
               </Col>
               <Col xs="2">
                 <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />

@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Screen,
   Header,
   Subtitle,
-  SubmitButton,
-  ButtonText,
+  // SubmitButton,
+  // ButtonText,
   StyledInput,
   StyledLabel,
   StyledTitle,
   StyledText,
   StyledButton,
-  StyledContainer,
+  // StyledContainer,
   RowFlex,
   ColumnFlex,
   CenteredFlex,
   CapitalizedButton,
+  ModalContainer,
+  RowSeparatedFlex,
+  WrappableHeader,
   // SideMenuText,
 } from './styles';
 import MatchedPage from '../MatchedPage';
@@ -30,6 +34,8 @@ import {
 } from 'reactstrap';
 import USAMap from 'react-usa-map';
 import useStep from '../../hooks';
+import closeIcon from '../../assets/icons/close.png';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 const MAP_GREEN = '#8CC9BA';
 const MAP_GRAY = '#d3d3d3';
@@ -37,14 +43,23 @@ const MAP_GRAY = '#d3d3d3';
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
-  const [regionState, setRegion] = useState([]);
+  const [regionState, setRegions] = useState([]);
   const [repeatDonationState, setRepeatDonation] = useState([]);
   const [cashDonationState, setCashDonation] = useState([]);
+  const [modalIsOpen, setModalState] = useState(true);
+  const [firstNameState, setFirstName] = useState("");
+  const [lastNameState, setLastName] = useState("");
+  const [emailState, setEmail] = useState("");
+  const [phoneNumberState, setPhoneNumber] = useState("");
+  const [cityState, setCity] = useState("");
+  const [stateState, setState] = useState("");
+  const [referrerState, setReferrer] = useState("");
+  const [otherState, setOther] = useState("");
   const { currentStep, next } = useStep(0);
 
   const toggle = (value, state) => () => {
-    let updateState = state === 'valueState' ? setValues : 'itemState' ? setItems : setRegion;
-    const prevState = state === 'valueState' ? valueState : 'itemState' ? itemState : regionState;
+    let updateState = state === 'valueState' ? setValues : 'itemState' ? setItems : 'regionState' ? setRegions : setModalState;
+    const prevState = state === 'valueState' ? valueState : 'itemState' ? itemState : 'regionState' ? regionState : modalIsOpen;
     const i = prevState.indexOf(value);
     const updatedState = [...prevState];
     if (i === -1) {
@@ -68,15 +83,7 @@ export default function DonorFormPage() {
   };
 
   const mapHandler = (event) => {
-    toggle(mapRegions[event.target.dataset.name], 'regionState')();
-  };
-
-  const selectAllRegions = (event) => {
-    for (const region of regions) {
-      if (regionState.indexOf(region) === -1) {
-        toggle(region, 'regionState')();
-      }
-    }
+    selectRegions(mapRegions[event.target.dataset.name]);
   };
 
   const regions = [
@@ -85,6 +92,58 @@ export default function DonorFormPage() {
     'South',
     'West'
   ];
+
+  const selectRegions = (newRegion) => {
+    console.log('in select regions. region:', newRegion);
+    if (newRegion) {
+      const prevState = regionState;
+      let updatedState = prevState;
+      if (updatedState.indexOf(newRegion) !== -1) {
+        updatedState.splice(updatedState.indexOf(newRegion), 1);
+        setRegions(updatedState);
+      }
+    } else {
+      setRegions(regions);
+    }
+  };
+
+  const setFormValue = (value, state) => () => {
+    let updateState = state === 'firstNameState' ? setFirstName : state === 'lastNameState' ? setLastName : state === 'emailState' ? setEmail : state === 'phoneNumberState' ? setPhoneNumber : state === 'cityState' ? setCity : state === 'stateState' ? setState : state === 'referrerState' ? setReferrer : setOther;
+    // const prevState = state === 'firstNameState' ? firstNameState : state === 'lastNameState' ? lastNameState : state === 'emailState' ? emailState : state === 'phoneNumberState' ? phoneNumberState : referrerState;
+    const updatedState = [value];
+    updateState(updatedState);
+  };
+
+  const submitForm = () => {
+    const data = {
+      name: {
+        first: firstNameState[0],
+        last: lastNameState[0],
+      },
+      email: emailState[0],
+      phone: phoneNumberState[0],
+      referrer: referrerState[0],
+      comments: otherState[0],
+      consent: true,
+      address: {
+        city: cityState[0],
+        state: stateState[0],
+      },
+      preferences: valueState,
+      regions: regionState,
+      items: itemState,
+     };
+     console.log(data);
+
+    //  axios.post("https://giveessential-286602.ue.r.appspot.com/api/donor", data)
+    //   .then(() => {
+    //     console.log("Post successful!")
+    //   })
+    //   .catch(() => {
+    //     console.log("Request failed!")
+    //   })
+    // next();
+  }
 
   const states = [
     'State',
@@ -211,64 +270,68 @@ export default function DonorFormPage() {
     'WY': 'West',
   };
 
+  const fillConfig = (region) => {
+    return {
+      fill: regionState.indexOf(region) !== -1 ? MAP_GREEN: MAP_GRAY
+    };
+  };
+
   const statesCustomConfig = {
-      'AK': {
-        fill: regionState.indexOf('West') !== -1 ? MAP_GREEN: MAP_GRAY
-      },
-      'AL': 'South',
-      'AR': 'South',
+      'AK': fillConfig('West'),
+      'AL': fillConfig('South'),
+      'AR': fillConfig('South'),
       'AS': '?',
-      'AZ': 'West',
-      'CA': 'West',
-      'CO': 'West',
-      'CT': 'Northeast',
-      'DC': 'South',
-      'DE': 'South',
-      'FL': 'South',
-      'GA': 'South',
+      'AZ': fillConfig('West'),
+      'CA': fillConfig('West'),
+      'CO': fillConfig('West'),
+      'CT': fillConfig('Northeast'),
+      'DC': fillConfig('South'),
+      'DE': fillConfig('South'),
+      'FL': fillConfig('South'),
+      'GA': fillConfig('South'),
       'GU': '?',
-      'HI': 'West',
-      'IA': 'Midwest',
-      'ID': 'West',
-      'IL': 'Midwest',
-      'IN': 'Midwest',
-      'KS': 'Midwest',
-      'KY': 'South',
-      'LA': 'South',
-      'MA': 'Northeast',
-      'MD': 'South',
-      'ME': 'Northeast',
-      'MI': 'Midwest',
-      'MN': 'Midwest',
-      'MO': 'Midwest',
-      'MS': 'South',
-      'MT': 'West',
-      'NC': 'South',
-      'ND': 'Midwest',
-      'NE': 'Midwest',
-      'NH': 'Northeast',
-      'NJ': 'Northeast',
-      'NM': 'West',
-      'NV': 'West',
-      'NY': 'Northeast',
-      'OH': 'Midwest',
-      'OK': 'South',
-      'OR': 'West',
-      'PA': 'Northeast',
+      'HI': fillConfig('West'),
+      'IA': fillConfig('Midwest'),
+      'ID': fillConfig('West'),
+      'IL': fillConfig('Midwest'),
+      'IN': fillConfig('Midwest'),
+      'KS': fillConfig('Midwest'),
+      'KY': fillConfig('South'),
+      'LA': fillConfig('South'),
+      'MA': fillConfig('Northeast'),
+      'MD': fillConfig('South'),
+      'ME': fillConfig('Northeast'),
+      'MI': fillConfig('Midwest'),
+      'MN': fillConfig('Midwest'),
+      'MO': fillConfig('Midwest'),
+      'MS': fillConfig('South'),
+      'MT': fillConfig('West'),
+      'NC': fillConfig('South'),
+      'ND': fillConfig('Midwest'),
+      'NE': fillConfig('Midwest'),
+      'NH': fillConfig('Northeast'),
+      'NJ': fillConfig('Northeast'),
+      'NM': fillConfig('West'),
+      'NV': fillConfig('West'),
+      'NY': fillConfig('Northeast'),
+      'OH': fillConfig('Midwest'),
+      'OK': fillConfig('South'),
+      'OR': fillConfig('West'),
+      'PA': fillConfig('Northeast'),
       'PR': '?',
-      'RI': 'Northeast',
-      'SC': 'South',
-      'SD': 'Midwest',
-      'TN': 'South',
-      'TX': 'South',
-      'UT': 'West',
-      'VA': 'South',
+      'RI': fillConfig('Northeast'),
+      'SC': fillConfig('South'),
+      'SD': fillConfig('Midwest'),
+      'TN': fillConfig('South'),
+      'TX': fillConfig('South'),
+      'UT': fillConfig('West'),
+      'VA': fillConfig('South'),
       'VI': '?',
-      'VT': 'Northeast',
-      'WA': 'West',
-      'WI': 'Midwest',
-      'WV': 'South',
-      'WY': 'West',
+      'VT': fillConfig('Northeast'),
+      'WA': fillConfig('West'),
+      'WI': fillConfig('Midwest'),
+      'WV': fillConfig('South'),
+      'WY': fillConfig('West'),
   };
 
   const renderStep = () => {
@@ -276,6 +339,19 @@ export default function DonorFormPage() {
       case 0:
         return (
           <Screen>
+            <ModalContainer>
+              <RowSeparatedFlex>
+                <WrappableHeader>Prefer to make a cash donation to an essential worker?</WrappableHeader>
+                <img src={closeIcon} alt="Close Buttom" onClick={toggle(false, 'modalIsOpen')}/>
+              </RowSeparatedFlex>
+              <Subtitle>Your donation will go directly to an essential worker! Additional info text here</Subtitle>
+              <TextButtonGroup
+                  data={donationOptions}
+                  selected={cashDonationState}
+                  toggle={singleSelectToggle}
+                  state="cashDonationState"
+              />
+            </ModalContainer>
           <RowFlex>
             <ColumnFlex>
               <CenteredFlex>
@@ -295,7 +371,7 @@ export default function DonorFormPage() {
                   anywhere in the US.
                 </Subtitle>
                 <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
-                <CapitalizedButton onClick={selectAllRegions} >I Can Donate Anywhere</CapitalizedButton>
+                <CapitalizedButton onClick={selectRegions} >I Can Donate Anywhere</CapitalizedButton>
               </CenteredFlex>
               <CenteredFlex>
                 <Header>What can you give?</Header>
@@ -317,11 +393,11 @@ export default function DonorFormPage() {
                 to fill out another form when you're ready to give again!
                 </Subtitle>
                 <TextButtonGroup
-                data={yesNo}
-                selected={repeatDonationState}
-                toggle={singleSelectToggle}
-                state="repeatDonationState"
-              />
+                  data={yesNo}
+                  selected={repeatDonationState}
+                  toggle={singleSelectToggle}
+                  state="repeatDonationState"
+                />
               </ColumnFlex>
         
                 <StyledButton
@@ -351,6 +427,8 @@ export default function DonorFormPage() {
                     name="name"
                     id="firstName"
                     placeholder="First Name"
+                    onChange={(event) => { setFormValue(event.target.value, 'firstNameState')(); }}
+                    value={firstNameState}
                   />
                 </FormGroup>
               </Col>
@@ -361,6 +439,7 @@ export default function DonorFormPage() {
                     name="name"
                     id="lastName"
                     placeholder="Last Name"
+                    onChange={(event) => { setFormValue(event.target.value, 'lastNameState')(); }}
                   />
                 </FormGroup>
               </Col>
@@ -369,11 +448,11 @@ export default function DonorFormPage() {
               <Col>
                 <FormGroup>
                   <StyledInput
-                    t
                     type="email"
                     name="email"
                     id="email"
                     placeholder="Email"
+                    onChange={(event) => { setFormValue(event.target.value, 'emailState')(); }}
                   />
                 </FormGroup>
               </Col>
@@ -386,6 +465,7 @@ export default function DonorFormPage() {
                     name="number"
                     id="phoneNumber"
                     placeholder="Phone Number"
+                    onChange={(event) => { setFormValue(event.target.value, 'phoneNumberState')(); }}
                   />
                 </FormGroup>
               </Col>
@@ -393,11 +473,11 @@ export default function DonorFormPage() {
             <Row>
               <Col>
                 <FormGroup>
-                  <StyledInput name="text" id="city" placeholder="City" />
+                  <StyledInput name="text" id="city" placeholder="City" onChange={(event) => { setFormValue(event.target.value, 'cityState')(); }} />
                 </FormGroup>
               </Col>
               <Col>
-                <StyledInput type="select" name="select" id="state">
+                <StyledInput type="select" name="select" id="state" onChange={(event) => { setFormValue(event.target.value, 'stateState')(); }}>
                   {states.map((us_state) => (
                     <option key={us_state}>{us_state}</option>
                   ))}
@@ -407,7 +487,7 @@ export default function DonorFormPage() {
             <Row>
               <Col>
                 <FormGroup>
-                  <StyledInput type="select" name="select" id="network">
+                  <StyledInput type="select" name="select" id="network" onChange={(event) => { setFormValue(event.target.value, 'referrerState')(); }}>
                     {referrals.map((ref) => (
                       <option>{ref}</option>
                     ))}
@@ -418,19 +498,19 @@ export default function DonorFormPage() {
             <Row>
               <Col className="d-flex">
                 <StyledLabel htmlFor="other">Other: </StyledLabel>
-                <StyledInput noBorder underLine name="other" id="other" />
+                <StyledInput noBorder underLine name="other" id="other" onChange={(event) => { setFormValue(event.target.value, 'otherState')(); }}/>
               </Col>
             </Row>
-            <RowFlex>
-              <StyledContainer>
+            <ColumnFlex>
                 <StyledText>Legal text here</StyledText>
-                <StyledButton onClick={next}>SUBMIT</StyledButton>
+                <CenteredFlex>
+                  <StyledButton onClick={() => {submitForm(); next();}}>SUBMIT</StyledButton>
+                </CenteredFlex>
                 <StyledText>
                   By submitting, you agree to our{' '}
                   <strong>terms and conditions</strong>
                 </StyledText>
-              </StyledContainer>
-            </RowFlex>
+            </ColumnFlex>
           </Form>
         </Container>
         );

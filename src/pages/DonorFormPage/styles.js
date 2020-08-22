@@ -31,7 +31,18 @@ export const Header = styled.h1`
   margin-top: 48px;
   margin-bottom: 12px;
   width: 100%;
-  text-align: left,
+  text-align: left;
+  flex-wrap: wrap;
+`;
+
+export const WrappableHeader = styled.h1`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  margin-top: 48px;
+  margin-bottom: 12px;
+  text-align: left;
+  flex-wrap: wrap;
 `;
 
 export const Subtitle = styled.h1`
@@ -130,4 +141,23 @@ export const CapitalizedButton = styled.h2`
 export const SideMenuText = styled.h3`
   font-size: 26px;
   color: "#8cc9ba";
+`;
+
+export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
+  width: 97vw;
+  margin-top: 2%;
+  align-self: center;
+  padding: 20px;
+  padding-top: 0px;
+`;
+
+export const RowSeparatedFlex = styled.div`
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 `;

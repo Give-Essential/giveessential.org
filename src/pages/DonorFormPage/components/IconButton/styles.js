@@ -9,8 +9,8 @@ export const CenteredFlex = styled.div`
 
 export const Box = styled.div`
   display: flex;
-  width: 152px;
-  height: 152px;
+  width: ${ window.innerWidth >= 900 ? '152px' : '100px'};
+  height: ${ window.innerWidth >= 900 ? '152px' : '100px'};
   border-radius: 1vw;
   margin-left: 0.7vw;
   margin-right: 0.7vw;
@@ -26,13 +26,13 @@ export const Box = styled.div`
 export const Text = styled.h1`
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  font-size: 17px;
+  font-size: ${ window.innerWidth >= 900 ? '17px' : '12px'};
   text-align: center;
   color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
 `;
 
 export const Icon = styled.img`
   width: auto;
-  height: 50px;
+  height: ${ window.innerWidth >= 900 ? '50px' : '40px'};
   -webkit-filter: ${(props) => (props.selected ? 'brightness(0) invert(1);': 'none;')}
 `;
