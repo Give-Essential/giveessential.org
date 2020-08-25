@@ -58,8 +58,9 @@ export default function DonorFormPage() {
   const { currentStep, next } = useStep(0);
 
   const toggle = (value, state) => () => {
-    let updateState = state === 'valueState' ? setValues : 'itemState' ? setItems : 'regionState' ? setRegions : setModalState;
-    const prevState = state === 'valueState' ? valueState : 'itemState' ? itemState : 'regionState' ? regionState : modalIsOpen;
+    console.log(value, state);
+    let updateState = state === 'valueState' ? setValues : state === 'itemState' ? setItems : state === 'regionState' ? setRegions : setModalState;
+    const prevState = state === 'valueState' ? valueState : state === 'itemState' ? itemState : state === 'regionState' ? regionState : modalIsOpen;
     const i = prevState.indexOf(value);
     const updatedState = [...prevState];
     if (i === -1) {
@@ -68,6 +69,7 @@ export default function DonorFormPage() {
       updatedState.splice(i, 1);
     }
     updateState(updatedState);
+    console.log(updatedState);
   };
 
   const singleSelectToggle = (value, state) => () => {
@@ -83,7 +85,7 @@ export default function DonorFormPage() {
   };
 
   const mapHandler = (event) => {
-    selectRegions(mapRegions[event.target.dataset.name]);
+    toggle(mapRegions[event.target.dataset.name], 'regionState')();
   };
 
   const regions = [
@@ -93,23 +95,12 @@ export default function DonorFormPage() {
     'West'
   ];
 
-  const selectRegions = (newRegion) => {
-    console.log('in select regions. region:', newRegion);
-    if (newRegion) {
-      const prevState = regionState;
-      let updatedState = prevState;
-      if (updatedState.indexOf(newRegion) !== -1) {
-        updatedState.splice(updatedState.indexOf(newRegion), 1);
-        setRegions(updatedState);
-      }
-    } else {
-      setRegions(regions);
-    }
+  const selectAllRegions = () => {
+    setRegions(regions);
   };
 
   const setFormValue = (value, state) => () => {
     let updateState = state === 'firstNameState' ? setFirstName : state === 'lastNameState' ? setLastName : state === 'emailState' ? setEmail : state === 'phoneNumberState' ? setPhoneNumber : state === 'cityState' ? setCity : state === 'stateState' ? setState : state === 'referrerState' ? setReferrer : setOther;
-    // const prevState = state === 'firstNameState' ? firstNameState : state === 'lastNameState' ? lastNameState : state === 'emailState' ? emailState : state === 'phoneNumberState' ? phoneNumberState : referrerState;
     const updatedState = [value];
     updateState(updatedState);
   };
@@ -339,7 +330,7 @@ export default function DonorFormPage() {
       case 0:
         return (
           <Screen>
-            <ModalContainer>
+            {/* <ModalContainer>
               <RowSeparatedFlex>
                 <WrappableHeader>Prefer to make a cash donation to an essential worker?</WrappableHeader>
                 <img src={closeIcon} alt="Close Buttom" onClick={toggle(false, 'modalIsOpen')}/>
@@ -351,7 +342,7 @@ export default function DonorFormPage() {
                   toggle={singleSelectToggle}
                   state="cashDonationState"
               />
-            </ModalContainer>
+            </ModalContainer> */}
           <RowFlex>
             <ColumnFlex>
               <CenteredFlex>
@@ -371,7 +362,7 @@ export default function DonorFormPage() {
                   anywhere in the US.
                 </Subtitle>
                 <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
-                <CapitalizedButton onClick={selectRegions} >I Can Donate Anywhere</CapitalizedButton>
+                <CapitalizedButton onClick={selectAllRegions} >I Can Donate Anywhere</CapitalizedButton>
               </CenteredFlex>
               <CenteredFlex>
                 <Header>What can you give?</Header>
