@@ -16,15 +16,15 @@ import {
   ColumnFlex,
   CenteredFlex,
   CapitalizedButton,
-  ModalContainer,
-  RowSeparatedFlex,
-  WrappableHeader,
+  // ModalContainer,
+  // RowSeparatedFlex,
+  // WrappableHeader,
   // SideMenuText,
 } from './styles';
 import MatchedPage from '../MatchedPage';
 import IconButtonGroup from './components/IconButtonGroup';
 import TextButtonGroup from './components/TextButtonGroup';
-import { values, items, yesNo, donationOptions } from './buttonGroupData';
+import { values, items, yesNo, /* donationOptions */ } from './buttonGroupData';
 import {
   Form, 
   FormGroup, 
@@ -34,8 +34,8 @@ import {
 } from 'reactstrap';
 import USAMap from 'react-usa-map';
 import useStep from '../../hooks';
-import closeIcon from '../../assets/icons/close.png';
-import { renderIntoDocument } from 'react-dom/test-utils';
+// import closeIcon from '../../assets/icons/close.png';
+// import { renderIntoDocument } from 'react-dom/test-utils';
 
 const MAP_GREEN = '#8CC9BA';
 const MAP_GRAY = '#d3d3d3';
@@ -58,7 +58,6 @@ export default function DonorFormPage() {
   const { currentStep, next } = useStep(0);
 
   const toggle = (value, state) => () => {
-    console.log(value, state);
     let updateState = state === 'valueState' ? setValues : state === 'itemState' ? setItems : state === 'regionState' ? setRegions : setModalState;
     const prevState = state === 'valueState' ? valueState : state === 'itemState' ? itemState : state === 'regionState' ? regionState : modalIsOpen;
     const i = prevState.indexOf(value);
@@ -69,7 +68,6 @@ export default function DonorFormPage() {
       updatedState.splice(i, 1);
     }
     updateState(updatedState);
-    console.log(updatedState);
   };
 
   const singleSelectToggle = (value, state) => () => {
@@ -106,6 +104,14 @@ export default function DonorFormPage() {
   };
 
   const submitForm = () => {
+    let referrerInfo;
+    if (otherState && !referrerState) {
+      referrerInfo = otherState[0];
+    } else if (referrerState && !otherState) {
+      referrerInfo = referrerState[0];
+    } else if (referrerState && otherState) {
+      referrerInfo = [referrerState[0], otherState[0]];
+    }
     const data = {
       name: {
         first: firstNameState[0],
@@ -113,8 +119,8 @@ export default function DonorFormPage() {
       },
       email: emailState[0],
       phone: phoneNumberState[0],
-      referrer: referrerState[0],
-      comments: otherState[0],
+      referrer: referrerInfo,
+      comments: '',
       consent: true,
       address: {
         city: cityState[0],
@@ -330,6 +336,7 @@ export default function DonorFormPage() {
       case 0:
         return (
           <Screen>
+            <CenteredFlex>
             {/* <ModalContainer>
               <RowSeparatedFlex>
                 <WrappableHeader>Prefer to make a cash donation to an essential worker?</WrappableHeader>
@@ -400,6 +407,7 @@ export default function DonorFormPage() {
                 </CenteredFlex>
             </ColumnFlex>
             </RowFlex>
+            </CenteredFlex>
           </Screen>
         );
       case 1:
