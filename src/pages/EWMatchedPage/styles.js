@@ -131,6 +131,7 @@ export const HeaderText = styled.h1`
 
 export const BackgroundContainer = styled.div`
   height: 100%;
+  padding-top: 6%;
 `;
 
 export const ListText = styled.h4`

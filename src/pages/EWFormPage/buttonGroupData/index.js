@@ -44,7 +44,7 @@ export const values = [
 
 export const items = [
   { icon: cleaning, id: "cleaning", text: "Cleaning Supplies" },
-  { icon: toys, id: "toys", text: "Toys" },
+  { icon: toys, id: "kids", text: "Toys" },
   { icon: hygiene, id: "hygiene", text: "Hygiene Products" },
   { icon: feminine, id: "feminine", text: "Feminine Hygiene" },
   { icon: gift, id: "gift", text: "Gift Cards" },
@@ -52,19 +52,19 @@ export const items = [
 ];
 
 export const categories = [
-  { icon: housing, id: "housinginsecure", text: "Housing Insecure" },
+  { icon: housing, id: "housingInsecure", text: "Housing Insecure" },
   { icon: parent, id: "parent", text: "Parent" },
-  { icon: singleparent, id: "singleparent", text: "Single Parent" },
+  { icon: singleparent, id: "singleParent", text: "Single Parent" },
   { icon: student, id: "student", text: "Student" },
-  { icon: job, id: "job", text: "Working Multiple Jobs" }
+  { icon: job, id: "multipleJobs", text: "Working Multiple Jobs" }
 ];
 
 export const occupations = [
   { icon: agriculture, id: "agriculture", text: "Agriculture" },
-  { icon: education1, id: "education1", text: "Education" },
+  { icon: education, id: "education", text: "Education" },
   { icon: food, id: "food", text: "Food" },
   { icon: gig, id: "gig", text: "Gig Economy" },
-  { icon: publicservice, id: "publicservice", text: "Public Service /Government"},
+  { icon: publicservice, id: "public", text: "Public Service /Government"},
   { icon: service, id: "service", text: "Service"},
   { icon: transportation, id: "transportation", text: "Transportation"},
   { icon: healthcare, id: "healthcare", text: "Healthcare"},

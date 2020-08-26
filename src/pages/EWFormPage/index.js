@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import axios from "axios";
+import axios, { post } from "axios";
 import { Link } from "react-router-dom";
 import {
   Screen,
@@ -99,12 +99,16 @@ const referrals = [
 export default function EssentialWorkerFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
+  const [categoryState, setCategories] = useState([]);
+  const [industryState, setIndustries] = useState([]);
+  const [itemDesc, setitemDesc] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [referrer, setReferrer] = useState("");
   const [street, setStreet] = useState("");
+  const [street2, setStreet2] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
@@ -112,8 +116,15 @@ export default function EssentialWorkerFormPage() {
   const [jobTitle, setJobTitle] = useState("");
   const [employer, setEmployer] = useState("");
   const [industry, setIndustry] = useState("");
+  const [comments, setComments] = useState("");
+  const [proof, setProof] = useState("");
+  const [share, setShare] = useState(true);
   const { currentStep, next } = useStep(0);
 
+  const onItemDescChange = (event) => {
+    setitemDesc(event.target.value);
+    console.log(itemDesc);
+  };
 
   const onFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -122,7 +133,6 @@ export default function EssentialWorkerFormPage() {
 
   const onLastNameChange = (event) => {
     setLastName(event.target.value);
-    console.log(firstName);
     console.log(lastName);
   };
 
@@ -176,14 +186,43 @@ export default function EssentialWorkerFormPage() {
     console.log(employer);
   };
 
-  const onIndustryChange = (event) => {
-    setIndustry(event.target.value);
-    console.log(industry);
+  const onStreet2Change = (event) => {
+    setStreet2(event.target.value);
+    console.log(street2);
   };
 
+  const onCommentsChange = (event) => {
+    setComments(event.target.value);
+    console.log(comments);
+  };
+
+  const onShareChange = (event) => {
+    setShare(!share);
+    console.log(share);
+  };
+
+  const onProofChange = (event) => {
+    setProof(event.target.files[0]);
+    console.log(proof);
+  };
 
   const onSubmit = e => {
     e.preventDefault();
+
+    const proofString = ""
+    const url = 'https://giveessential-286602.ue.r.appspot.com/api/ew/upload';
+    const formData = new FormData();
+    formData.append('proof', proof)
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }
+
+    post(url, formData, config)
+    .then((response)=>{
+      proofString = response.data;
+    })
 
     const newUser = 
     {
@@ -196,33 +235,26 @@ export default function EssentialWorkerFormPage() {
           "email": email,
           "phone": phone,
           "referrer": referrer,
-          "comments": "",
+          "comments": comments,
           "consent": true,
           "address": {
-            "street": street,
+            "street": street + street2,
             "city": city,
             "state": state,
             "zip": zip
           },
-          "items": [
-            {
-              "type": "cleaning",
-              "desc": "blah, clorox wipes."
-            }
-          ],
+          "items": itemState,
+          "itemsDesc": itemDesc,
           "circumstances": circumstances,
-          "categories": [
-            "housingInsecure",
-            "student"
-          ],
+          "categories": categoryState,
           "occupation": {
             "jobTitle": jobTitle,
             "employer": employer,
-            "industry": industry,
+            "industry": industryState,
             "other": "",
-            "proof": "someurl"
+            "proof": proofString
           },
-          "share": true
+          "share": share
         }
       ]
     };
@@ -235,7 +267,7 @@ export default function EssentialWorkerFormPage() {
       .catch(() => {
         console.log("Request failed!")
       })
-      window.location.href = "/essential-worker-matched";
+      //window.location.href = "/essential-worker-matched";
   };
 
   const toggle = (value, state) => () => {
@@ -249,6 +281,35 @@ export default function EssentialWorkerFormPage() {
       updatedState.splice(i, 1);
     }
     updateState(updatedState);
+    console.log(itemState);
+  };
+
+  const toggleCategories = (value, state) => () => {
+    let updateState = setCategories;
+    const prevState = categoryState;
+    const i = prevState.indexOf(value);
+    const updatedState = [...prevState];
+    if (i === -1) {
+      updatedState.push(value);
+    } else {
+      updatedState.splice(i, 1);
+    }
+    updateState(updatedState);
+    console.log(categoryState);
+  };
+
+  const toggleIndustries = (value, state) => () => {
+    let updateState = setIndustries;
+    const prevState = industryState;
+    const i = prevState.indexOf(value);
+    const updatedState = [...prevState];
+    if (i === -1) {
+      updatedState.push(value);
+    } else {
+      updatedState.splice(i, 1);
+    }
+    updateState(updatedState);
+    console.log(industryState);
   };
 
   const renderStep = () => {
@@ -270,6 +331,17 @@ export default function EssentialWorkerFormPage() {
               />
             </CenteredFlex>
             <CenteredFlex>
+              <Title>Please specify what types of specific items would be most helpful for you to receive.</Title>
+              <Input 
+                style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
+                type="textarea"
+                name="circumstances"
+                onChange={onItemDescChange}
+                value={itemDesc}
+                placeholder="Please specify products or brands or write N/A if not applicable."
+                />
+            </CenteredFlex>
+            <CenteredFlex>
               <Title>Please provide a description of your circumstances so we can better understand what you might need.</Title>
               <Input 
                 style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
@@ -284,17 +356,27 @@ export default function EssentialWorkerFormPage() {
               <Title>Can we anonymously share your story on Give Essential media?</Title>
               <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
             </CenteredFlex>
-            <SmallButtonGroup
-                selected={itemState}
-                toggle={toggle}
-                state="itemState"
-              />
+            <RowFlex style={{ paddingLeft: "22.5vw" }}>
+              <SmallButton>
+                <SmallButtonText       
+                  toggle={toggle}
+                  state={state}>Yes</SmallButtonText>
+              </SmallButton>
+              <SmallButton>
+                <SmallButtonText 
+                  onClick={onShareChange}
+                  toggle={toggle}
+                  state={state}>No</SmallButtonText>
+              </SmallButton>
+            </RowFlex>
             <CenteredFlex>
               <Title>Any additional notes or comments?</Title>
               <Input 
                 style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF" }} 
                 type="comments"
                 name="comments"
+                onChange={onCommentsChange}
+                value={comments}
                 placeholder="Comments"
               />
       {" "}
@@ -383,6 +465,20 @@ export default function EssentialWorkerFormPage() {
             <Row>
               <Col>
                 <FormGroup>
+                  <StyledInput
+                    type="mailingaddress2"
+                    name="mailingaddress2"
+                    onChange={onStreet2Change}
+                    value={street2}
+                    id="mailingAddress2"
+                    placeholder="Mailing Address 2"
+                  />
+                </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <FormGroup>
                   <StyledInput 
                     name="text" 
                     onChange={onCityChange}
@@ -421,9 +517,9 @@ export default function EssentialWorkerFormPage() {
             </Row>
             <IconButtonGroup
                     data={categories}
-                    selected={itemState}
-                    toggle={toggle}
-                    state="itemState"
+                    selected={categoryState}
+                    toggle={toggleCategories}
+                    state="categoryState"
                   />
             <Row>
               <Col className="d-flex">
@@ -466,11 +562,9 @@ export default function EssentialWorkerFormPage() {
             <Row>
               <IconButtonGroup
                     data={occupations}
-                    selected={itemState}
-                    toggle={toggle}
-                    onChange={onIndustryChange}
-                    value={industry}
-                    state="itemState"
+                    selected={industryState}
+                    toggle={toggleIndustries}
+                    state="industryState"
                   />
             </Row>
             <Row>
@@ -487,7 +581,12 @@ export default function EssentialWorkerFormPage() {
             <Row>
               <Col>
                 <FormGroup>
-                  <Input type="file" name="file" id="exampleFile" />
+                  <Input 
+                    type="file" 
+                    name="file" 
+                    id="proofFile" 
+                    onChange={onProofChange}
+                    />
                 </FormGroup>
               </Col>
             </Row>
