@@ -16,6 +16,8 @@ import {
   ColumnFlex,
   CenteredFlex,
   CapitalizedButton,
+  SmallerScreenAlternative,
+  LargerScreenAlternative,
   // ModalContainer,
   // RowSeparatedFlex,
   // WrappableHeader,
@@ -97,6 +99,17 @@ export default function DonorFormPage() {
     setRegions(regions);
   };
 
+  const selectRegion = (event) => {
+    console.log('event', event.target.value);
+    const region = event.target.value;
+    if (region === 'Anywhere') {
+      selectAllRegions();
+    } else {
+      toggle(event.target.value, 'regionState')();
+    }
+    console.log('regionState', regionState);
+  }
+
   const setFormValue = (value, state) => () => {
     let updateState = state === 'firstNameState' ? setFirstName : state === 'lastNameState' ? setLastName : state === 'emailState' ? setEmail : state === 'phoneNumberState' ? setPhoneNumber : state === 'cityState' ? setCity : state === 'stateState' ? setState : state === 'referrerState' ? setReferrer : setOther;
     const updatedState = [value];
@@ -110,36 +123,79 @@ export default function DonorFormPage() {
     } else if (referrerState && !otherState) {
       referrerInfo = referrerState[0];
     } else if (referrerState && otherState) {
-      referrerInfo = [referrerState[0], otherState[0]];
+      referrerInfo = `${referrerState[0]} ${otherState[0]}`;
     }
+
+    let repeatDonationInfo;
+    if (repeatDonationState && repeatDonationState[0] === 'yes') {
+      repeatDonationInfo = true;
+    } else {
+      repeatDonationInfo = false;
+    }
+
+    let regionInfo;
+    if (regionState.length === 0) {
+      regionInfo = regions;
+    } else {
+      regionInfo = regionState;
+    }
+
     const data = {
-      name: {
-        first: firstNameState[0],
-        last: lastNameState[0],
-      },
-      email: emailState[0],
-      phone: phoneNumberState[0],
-      referrer: referrerInfo,
-      comments: '',
-      consent: true,
-      address: {
-        city: cityState[0],
-        state: stateState[0],
-      },
-      preferences: valueState,
-      regions: regionState,
-      items: itemState,
-     };
+      donors: [
+        {
+          name: {
+            first: firstNameState[0],
+            last: lastNameState[0],
+          },
+          email: emailState[0],
+          phone: phoneNumberState[0],
+          referrer: referrerInfo,
+          comments: '',
+          consent: true,
+          address: {
+            city: cityState[0],
+            state: stateState[0],
+          },
+          preferences: valueState,
+          regions: regionInfo,
+          items: itemState,
+          monthlyContribution: repeatDonationInfo,
+         }
+      ]
+    };
      console.log(data);
 
-    //  axios.post("https://giveessential-286602.ue.r.appspot.com/api/donor", data)
-    //   .then(() => {
-    //     console.log("Post successful!")
-    //   })
-    //   .catch(() => {
-    //     console.log("Request failed!")
-    //   })
-    // next();
+     axios.post("https://giveessential-286602.ue.r.appspot.com/api/donor", data)
+      .then(() => {
+        console.log("Post successful!")
+        next();
+      })
+      .catch((error) => {
+        console.log("Request failed!")
+        console.log(error);
+      })
+  }
+
+  const validateFirstPage = () => {
+    console.log('itemState', itemState);
+    console.log('itemState === []', itemState.length === 0);
+    console.log('repeatDonationState', repeatDonationState);
+    if (itemState.length === 0 || repeatDonationState.length === 0 || valueState.length < 2) {
+      alert(`You must answer all required questions before proceeding!${valueState.length < 2 ? '\nRemember, you must select at least two values.' : ' '}`);
+    } else {
+      if (regionState === []) {
+        selectAllRegions();
+      }
+      next();
+    }
+  }
+
+  const validateSecondPage = () => {
+    if (firstNameState === '' || lastNameState === '' || emailState === '' || phoneNumberState === '' || cityState === '' || stateState === '' || (referrerState === undefined && otherState === '')) {
+      // alert("You must answer all required questions before proceeding!");
+    } else {
+      submitForm();
+    }
   }
 
   const states = [
@@ -368,8 +424,20 @@ export default function DonorFormPage() {
                   If no region is selected, we’ll match you with someone from
                   anywhere in the US.
                 </Subtitle>
-                <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
-                <CapitalizedButton onClick={selectAllRegions} >I Can Donate Anywhere</CapitalizedButton>
+                <LargerScreenAlternative>
+                  <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
+                  <CapitalizedButton onClick={selectAllRegions}>I Can Donate Anywhere</CapitalizedButton>
+                </LargerScreenAlternative>
+                <SmallerScreenAlternative>
+                  <FormGroup>
+                    <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
+                      <option key="anywhere">Anywhere</option>
+                      {regions.map((region) => (
+                        <option key={region}>{region}</option>
+                      ))}
+                    </StyledInput>
+                  </FormGroup>
+                </SmallerScreenAlternative>
               </CenteredFlex>
               <CenteredFlex>
                 <Header>What can you give?</Header>
@@ -399,7 +467,7 @@ export default function DonorFormPage() {
               </ColumnFlex>
         
                 <StyledButton
-                  onClick={next}
+                  onClick={validateFirstPage}
                   style={{ marginTop: 40, width: '40%' }}
                 >
                   CONTINUE
@@ -488,7 +556,7 @@ export default function DonorFormPage() {
                 <FormGroup>
                   <StyledInput type="select" name="select" id="network" onChange={(event) => { setFormValue(event.target.value, 'referrerState')(); }}>
                     {referrals.map((ref) => (
-                      <option>{ref}</option>
+                      <option key={ref}>{ref}</option>
                     ))}
                   </StyledInput>
                 </FormGroup>
@@ -503,7 +571,7 @@ export default function DonorFormPage() {
             <ColumnFlex>
                 <StyledText>Legal text here</StyledText>
                 <CenteredFlex>
-                  <StyledButton onClick={() => {submitForm(); next();}}>SUBMIT</StyledButton>
+                  <StyledButton onClick={() => {validateSecondPage();}}>SUBMIT</StyledButton>
                 </CenteredFlex>
                 <StyledText>
                   By submitting, you agree to our{' '}
@@ -516,7 +584,7 @@ export default function DonorFormPage() {
       case 2:
         return <MatchedPage />;
       default:
-        return <p>WIP</p>;
+        return <p>An error occurred.</p>;
     }
   };
   return <Screen style={{ paddingBottom: 20 }}>{renderStep()}</Screen>;

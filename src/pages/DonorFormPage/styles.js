@@ -161,3 +161,12 @@ export const RowSeparatedFlex = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const LargerScreenAlternative = styled.div`
+  display: ${window.innerWidth >= 900 ? 'flex' : 'none'};
+  flex-direction: column;
+`;
+
+export const SmallerScreenAlternative = styled.div`
+  display: ${window.innerWidth >= 900 ? 'none' : 'flex'};
+`;
