@@ -34,3 +34,15 @@ export const items = [
   { icon: gift, id: "gift", text: "Gift Cards" },
   { icon: masks, id: "masks", text: "Masks" },
 ];
+
+export const yesNo = [
+  { id: "yes", text: "Yes" },
+  { id: "no", text: "No" },
+];
+
+export const donationOptions = [
+  { id: "$10", text: "$10" },
+  { id: "$20", text: "$20" },
+  { id: "$50", text: "$50" },
+  { id: "$100", text: "$100" },
+];

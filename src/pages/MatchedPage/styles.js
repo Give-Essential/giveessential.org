@@ -1,25 +1,19 @@
 import styled from "styled-components";
-
 export const Flex = styled.div`
   display: flex;
 `;
-
 export const RowFlex = styled(Flex)`
   align-items: center;
 `;
-
 export const ColumnFlex = styled(Flex)`
   flex-direction: column;
 `;
-
 export const Screen = styled(ColumnFlex)`
   width: 100vw;
 `;
-
 export const CenteredFlex = styled(ColumnFlex)`
   align-items: center;
 `;
-
 export const Header = styled.h1`
   font-style: normal;
   font-weight: bold;
@@ -27,7 +21,6 @@ export const Header = styled.h1`
   margin-top: 58px;
   color: #8CC9BA;
 `;
-
 export const Title = styled.h1`
   font-size: 16px;
   width: 55vw;
@@ -35,7 +28,6 @@ export const Title = styled.h1`
   margin-top: 30px;
   text-align: left;
 `;
-
 export const Subtitle = styled.h1`
   font-size: 16px;
   font-style: italic;
@@ -45,13 +37,12 @@ export const Subtitle = styled.h1`
   margin-top: 10px;
   text-align: left;
 `;
-
 export const Text = styled.h1`
-  font-size: 1.2em;
+  font-size: 14px;
   width: 55vw;
+  margin-top: 10px;
   text-align: left;
 `;
-
 export const SubmitButton = styled.div`
   margin-top: 50px;
   border-radius: 12px;
@@ -59,11 +50,10 @@ export const SubmitButton = styled.div`
   flex-direction: column;
   width: 40vw;
   height: 6vw;
-  background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
+  background-color: ${(props) => (props.disabled ? "#DDDDDD" : "#8CC9BA")};
   align-items: center;
   justify-content: center;
 `;
-
 export const SmallButton = styled.div`
   margin-top: 30px;
   border-radius: 6px;
@@ -72,11 +62,10 @@ export const SmallButton = styled.div`
   flex-direction: row;
   width: 10vw;
   height: 2vw;
-  background-color: #f8f9fa;
+  background-color: #F8F9FA;
   align-items: center;
   justify-content: center;
 `;
-
 export const SmallButtonText = styled.h1`
   font-size: 17px;
   margin-top: 8px;
@@ -85,19 +74,16 @@ export const SmallButtonText = styled.h1`
   text-align: center;
   color: #8CC9BA;
 `;
-
-
 export const ButtonText = styled.h1`
   font-size: 20px;
   margin-top: 8px;
   width: 55vw;
   text-align: center;
-  color: ${(props) => (props.disabled ? "#8CC9BA" : "#ffffff")};
+  color: ${(props) => (props.disabled ? "#8CC9BA" : "#FFFFFF")};
 `;
-
 export const Dot = styled.div`
-  height: 69px;
-  width: 69px;
+  height: 50px;
+  width: 50px;
   background-color: ${(props) => (props.color ? props.color : "black")};
   margin-left: 25%;
   border-radius: 50%;
@@ -108,29 +94,25 @@ export const Dot = styled.div`
   color: white;
   margin-right: 5%;
 `;
-
 export const DotText = styled.h1`
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 2em;
+  margin-top: 10px;
 `;
-
 export const HeaderText = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.3em;
   line-height: 40px;
   display: flex;
   align-items: center;
   text-align: center;
-
-  color: #8cc9ba;
+  color: #8CC9BA;
   padding: 3% 14%;
 `;
-
 export const BackgroundContainer = styled.div`
   height: 100%;
 `;
-
 export const ListText = styled.h4`
   font-style: normal;
   font-weight: normal;
@@ -140,30 +122,24 @@ export const ListText = styled.h4`
   display: flex;
   align-items: center;
 `;
-
 export const StyledIcon = styled.img`
-  margin: 0% 2%;
-  width: 60%;
+  width: 55%;
 `;
-
 export const Donation = styled.h4`
   font-style: italic;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.5em;
   line-height: 44px;
   /* identical to box height */
-
   align-items: center;
   text-align: center;
 `;
-
 export const NextSteps = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 2.2em;
+  font-size: 1.8em;
   line-height: 24px;
   /* identical to box height */
-
   align-items: center;
   text-align: center;
 `;

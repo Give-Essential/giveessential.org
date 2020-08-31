@@ -9,8 +9,8 @@ export const CenteredFlex = styled.div`
 
 export const Box = styled.div`
   display: flex;
-  width: ${ window.innerWidth >= 900 ? '152px' : '100px'};
-  height: ${ window.innerWidth >= 900 ? '152px' : '100px'};
+  width: 124px;
+  height: 48px;
   border-radius: 1vw;
   margin-left: 0.7vw;
   margin-right: 0.7vw;
@@ -21,18 +21,25 @@ export const Box = styled.div`
   justify-content: center;
   background-color: ${(props) => (props.selected ? "#8cc9ba" : "#F8F8F8")};
   cursor: pointer;
+  @media (max-width: 900px) {
+    width: 75px;
+    height: 30px;
+  }
 `;
 
 export const Text = styled.h1`
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  font-size: ${ window.innerWidth >= 900 ? '17px' : '12px'};
+  font-size: 17px;
   text-align: center;
+  margin: 0px;
   color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
+  @media (max-width: 900px) {
+    font-size: 12px;
+  }
 `;
 
 export const Icon = styled.img`
   width: auto;
-  height: ${ window.innerWidth >= 900 ? '50px' : '40px'};
-  -webkit-filter: ${(props) => (props.selected ? 'brightness(0) invert(1);': 'none;')}
+  height: 50px;
 `;

@@ -7,6 +7,8 @@ export const Flex = styled.div`
 
 export const RowFlex = styled(Flex)`
   align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 `;
 
 export const ColumnFlex = styled(Flex)`
@@ -19,20 +21,34 @@ export const Screen = styled(ColumnFlex)`
 
 export const CenteredFlex = styled(ColumnFlex)`
   align-items: center;
+  padding: 2rem;
 `;
 
 export const Header = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 26px;
   margin-top: 48px;
   margin-bottom: 12px;
+  width: 100%;
+  text-align: left;
+  flex-wrap: wrap;
+`;
+
+export const WrappableHeader = styled.h1`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  margin-top: 48px;
+  margin-bottom: 12px;
+  text-align: left;
+  flex-wrap: wrap;
 `;
 
 export const Subtitle = styled.h1`
-  font-size: 14px;
-  width: 55vw;
-  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  text-align: left;
 `;
 
 export const SubmitButton = styled.div`
@@ -40,11 +56,12 @@ export const SubmitButton = styled.div`
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 40%;
   height: 6vw;
   background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const ButtonText = styled.h1`
@@ -55,20 +72,19 @@ export const ButtonText = styled.h1`
   color: ${(props) => (props.disabled ? "#8CC9BA" : "#ffffff")};
 `;
 
-
 export const StyledTitle = styled.h1`
   font-family: 'Archivo', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 40px;
   line-height: 44px;
-  text-align: center;
   & span {
     display: block;
   }
   margin-bottom: 12px;
   margin-top: 48px;
 `;
+
 export const StyledInput = styled(Input)`
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
@@ -79,6 +95,7 @@ export const StyledInput = styled(Input)`
   border-bottom: ${({ underLine }) =>
     underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
 `;
+
 export const StyledLabel = styled(Label)`
   font-style: normal;
   font-weight: normal;
@@ -104,10 +121,52 @@ export const StyledButton = styled.button`
   background-color: ${(props) => (props.disabled ? '#dddddd' : '#8CC9BA')};
   color: ${(props) => (props.disabled ? '#8CC9BA' : '#ffffff')};
   font-size: 20px;
-  padding: 15px 0;
+  padding: 15px 15px;
 `;
 
 export const StyledContainer = styled.div`
   flex-basis: 55%;
   margin-top: 50px;
+`;
+
+export const CapitalizedButton = styled.h2`
+  font-size: 26px;
+  text-align: right;
+  text-transform: uppercase;
+  width: 100%;
+  color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
+  cursor: pointer;
+`;
+
+export const SideMenuText = styled.h3`
+  font-size: 26px;
+  color: "#8cc9ba";
+`;
+
+export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
+  width: 97vw;
+  margin-top: 2%;
+  align-self: center;
+  padding: 20px;
+  padding-top: 0px;
+`;
+
+export const RowSeparatedFlex = styled.div`
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const LargerScreenAlternative = styled.div`
+  display: ${window.innerWidth >= 900 ? 'flex' : 'none'};
+  flex-direction: column;
+`;
+
+export const SmallerScreenAlternative = styled.div`
+  display: ${window.innerWidth >= 900 ? 'none' : 'flex'};
 `;
