@@ -267,7 +267,7 @@ export default function EssentialWorkerFormPage() {
       .catch(() => {
         console.log("Request failed!")
       })
-      //window.location.href = "/essential-worker-matched";
+      window.location.href = "/essential-worker-matched";
   };
 
   const toggle = (value, state) => () => {
@@ -311,6 +311,22 @@ export default function EssentialWorkerFormPage() {
     updateState(updatedState);
     console.log(industryState);
   };
+
+  const validateFirstPage = () => {
+    if (itemState.length === 0 || circumstances === "" || itemDesc === "") {
+      alert(`You must answer all required questions before proceeding!`);
+    } else {
+      next();
+    }
+  }
+
+  const validateSecondPage = () => {
+    if (firstName === '' || lastName === '' || email === '' || phone === '' || city === '' || state === '') {
+      alert("You must answer all required questions before proceeding!");
+    } else {
+      next();
+    }
+  }
 
   const renderStep = () => {
     switch (currentStep) {
@@ -380,7 +396,7 @@ export default function EssentialWorkerFormPage() {
                 placeholder="Comments"
               />
       {" "}
-              <SubmitButton style={{ marginTop: 40}} onClick={next}>
+              <SubmitButton style={{ marginTop: 40}} onClick={validateFirstPage}>
                 <ButtonText>CONTINUE</ButtonText>
               </SubmitButton>
             </CenteredFlex>
@@ -611,7 +627,7 @@ export default function EssentialWorkerFormPage() {
             </Row>
             <RowFlex>
               <Container>
-                <StyledButton onClick={next}>CONTINUE</StyledButton>
+                <StyledButton onClick={validateSecondPage}>CONTINUE</StyledButton>
                 <StyledText>
                   By continuing, you agree to our{' '}
                   <strong>terms and conditions</strong>

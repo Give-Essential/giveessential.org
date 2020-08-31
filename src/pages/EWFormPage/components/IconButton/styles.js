@@ -34,4 +34,5 @@ export const Icon = styled.img`
   width: auto;
   height: 3vw;
   margin-top: 0.5vw;
+  -webkit-filter: ${(props) => (props.selected ? 'brightness(0) invert(1);': 'none;')}
 `;
