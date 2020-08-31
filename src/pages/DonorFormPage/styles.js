@@ -121,7 +121,7 @@ export const StyledButton = styled.button`
   background-color: ${(props) => (props.disabled ? '#dddddd' : '#8CC9BA')};
   color: ${(props) => (props.disabled ? '#8CC9BA' : '#ffffff')};
   font-size: 20px;
-  padding: 15px 0;
+  padding: 15px 15px;
 `;
 
 export const StyledContainer = styled.div`

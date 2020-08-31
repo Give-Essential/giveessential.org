@@ -190,7 +190,8 @@ export default function DonorFormPage() {
     }
   }
 
-  const validateSecondPage = () => {
+  const validateSecondPage = (event) => {
+    event.preventDefault();
     if (firstNameState === '' || lastNameState === '' || emailState === '' || phoneNumberState === '' || cityState === '' || stateState === '' || (referrerState === undefined && otherState === '')) {
       // alert("You must answer all required questions before proceeding!");
     } else {
@@ -571,7 +572,7 @@ export default function DonorFormPage() {
             <ColumnFlex>
                 <StyledText>Legal text here</StyledText>
                 <CenteredFlex>
-                  <StyledButton onClick={() => {validateSecondPage();}}>SUBMIT</StyledButton>
+                  <StyledButton onClick={validateSecondPage}>SUBMIT</StyledButton>
                 </CenteredFlex>
                 <StyledText>
                   By submitting, you agree to our{' '}
