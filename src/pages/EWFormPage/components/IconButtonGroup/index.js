@@ -17,12 +17,15 @@ export default function IconButtonGroup(props) {
   ));
 
   const rows = [];
-  for (var i = 0; i < data.length; i += 3) {
+  for (var i = 0; i < data.length; i += 6) {
     rows.push(
       <RowFlex key={i}>
         {items[i]}
         {items[i + 1]}
         {items[i + 2]}
+        {items[i + 3]}
+        {items[i + 4]}
+        {items[i + 5]}
       </RowFlex>
     );
   }

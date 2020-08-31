@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-
-import { Form, FormGroup, Container, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
 import {
   StyledInput,
   StyledLabel,
   StyledText,
   StyledButton,
   RowFlex,
+  ColumnFlex,
+  Subtitle,
+  Text,
+  SmallText
 } from './styles';
+import IconButtonGroup from "./components/IconButtonGroup";
+import { categories, occupations } from "./buttonGroupData";
+
 const states = [
   'State',
   'Alaska',
@@ -77,6 +83,8 @@ const referrals = [
 
 export default function EWSubmitPage({ next }) {
   const [formData, setFormData] = useState({})
+  const [itemState, setItems] = useState([]);
+  const [valueState, setValues] = useState([]);
 
   const updateInput = e => {
     setFormData({
@@ -85,12 +93,26 @@ export default function EWSubmitPage({ next }) {
     })
   }
 
+  const toggle = (value, state) => () => {
+    let updateState = state === "valueState" ? setValues : setItems;
+    const prevState = state === "valueState" ? valueState : itemState;
+    const i = prevState.indexOf(value);
+    const updatedState = [...prevState];
+    if (i === -1) {
+      updatedState.push(value);
+    } else {
+      updatedState.splice(i, 1);
+    }
+    updateState(updatedState);
+  };
+
   return (
-    <Container className="hi" style={{ padding: 50 }}>
-      <StyledText>
+    <Container className="hi" style={{ paddingTop: 50, paddingLeft: "12%", paddingRight: "12%" }}>
+      <Subtitle>
       The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
-      </StyledText>
-      <Form>
+      </Subtitle>
+      <Form style={{ paddingTop: 10 }}>
+        <Text>BASIC INFO</Text>
         <Row>
           <Col>
             <FormGroup>
@@ -146,6 +168,18 @@ export default function EWSubmitPage({ next }) {
         <Row>
           <Col>
             <FormGroup>
+              <StyledInput
+                type="mailingaddress"
+                name="mailingaddress"
+                id="mailingAddress"
+                placeholder="Mailing Address"
+              />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
               <StyledInput name="text" id="city" placeholder="City" />
             </FormGroup>
           </Col>
@@ -170,8 +204,18 @@ export default function EWSubmitPage({ next }) {
         </Row>
         <Row>
           <Col className="d-flex">
-            <StyledLabel htmlFor="other">Other: </StyledLabel>
-            <StyledInput noBorder underLine name="other" id="other" />
+            <StyledText htmlFor="other">Do you fall into any of these categories? </StyledText>
+          </Col>
+        </Row>
+        <IconButtonGroup
+                data={categories}
+                selected={itemState}
+                toggle={toggle}
+                state="itemState"
+              />
+        <Row>
+          <Col className="d-flex">
+            <Text htmlFor="other">OCCUPATION </Text>
           </Col>
         </Row>
         <Row>
@@ -199,6 +243,40 @@ export default function EWSubmitPage({ next }) {
           </Col>
         </Row>
         <Row>
+          <Col className="d-flex">
+            <StyledText htmlFor="other">What industry do you work in?</StyledText>
+          </Col>
+          <IconButtonGroup
+                data={occupations}
+                selected={itemState}
+                toggle={toggle}
+                state="itemState"
+              />
+        </Row>
+        <Row>
+          <Col>
+            <StyledText htmlFor="other">Please provide proof that you are an essential worker</StyledText>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <SmallText>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status. 
+                We must have proof in order to match you with a donor.</SmallText>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <FormGroup>
+              <Input type="file" name="file" id="exampleFile" />
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="d-flex">
+            <Text htmlFor="other">OTHER INFO </Text>
+          </Col>
+        </Row>
+        <Row>
           <Col>
             <FormGroup>
               <StyledInput
@@ -212,7 +290,6 @@ export default function EWSubmitPage({ next }) {
         </Row>
         <RowFlex>
           <Container>
-            <StyledText>Legal text here</StyledText>
             <StyledButton onClick={next}>CONTINUE</StyledButton>
             <StyledText>
               By continuing, you agree to our{' '}
