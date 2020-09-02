@@ -51,6 +51,13 @@ export const Subtitle = styled.h1`
   text-align: left;
 `;
 
+export const Subtext = styled.h1`
+  font-size: 20px;
+  width: 100%;
+  text-align: left;
+  font-style: italic;
+`;
+
 export const SubmitButton = styled.div`
   margin-top: 50px;
   border-radius: 12px;
@@ -169,4 +176,14 @@ export const LargerScreenAlternative = styled.div`
 
 export const SmallerScreenAlternative = styled.div`
   display: ${window.innerWidth >= 900 ? 'none' : 'flex'};
+`;
+
+export const RedText = styled.h1`
+  font-size: 14px;
+  width: 55vw;
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  align-self: flex-start;
 `;
