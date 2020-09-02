@@ -63,14 +63,6 @@ export const SmallText = styled.h1`
   text-align: left;
 `;
 
-export const RedText = styled.h1`
-  font-size: 14px;
-  width: 55vw;
-  margin-top: 10px;
-  color: red;
-  text-align: left;
-`;
-
 export const SubmitButton = styled.div`
   margin-top: 50px;
   border-radius: 12px;
