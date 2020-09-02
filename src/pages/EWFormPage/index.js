@@ -19,8 +19,7 @@ import {
   StyledButton,
   RowFlex,
   ColumnFlex,
-  SmallText,
-  RedText
+  SmallText
 } from "./styles";
 import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
 import IconButtonGroup from "./components/IconButtonGroup";
@@ -100,13 +99,11 @@ const referrals = [
 export default function EssentialWorkerFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
-  const [itemStateError, setitemStateError] = useState("");
   const [categoryState, setCategories] = useState([]);
   const [categoryStateError, setcategoryStateError] = useState("");
   const [industryState, setIndustries] = useState([]);
   const [industryStateError, setindustryStateError] = useState("");
   const [itemDesc, setitemDesc] = useState("");
-  const [itemDescError, setitemDescError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastName, setLastName] = useState("");
@@ -128,11 +125,11 @@ export default function EssentialWorkerFormPage() {
   const [zip, setZip] = useState("");
   const [zipError, setZipError] = useState("");
   const [circumstances, setCircumstances] = useState("");
-  const [circumstancesError, setCircumstancesError] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [jobTitleError, setJobTitleError] = useState("");
   const [employer, setEmployer] = useState("");
   const [employerError, setEmployerError] = useState("");
+  const [industry, setIndustry] = useState("");
   const [comments, setComments] = useState("");
   const [proof, setProof] = useState("");
   const [proofError, setProofError] = useState("");
@@ -344,25 +341,9 @@ export default function EssentialWorkerFormPage() {
   };
 
   const validateFirstPage = () => {
-    if (itemState.length === 0) {
-      setitemStateError("Please specify what items you would like to receive");
+    if (itemState.length === 0 || circumstances === "" || itemDesc === "") {
+      alert(`You must answer all required questions before proceeding!`);
     } else {
-      setitemStateError("");
-    }
-
-    if (circumstances === "") {
-      setCircumstancesError("Please provide a description of the items you would like to receive");
-    } else {
-      setCircumstancesError("");
-    }
-
-    if (itemDesc === "") {
-      setitemDescError("Please provide a description of your circumstances");
-    } else {
-      setitemDescError("");
-    }
-
-    if (itemState.length > 0 && circumstances != "" && itemDesc != "") {
       next();
     }
   }
@@ -470,17 +451,16 @@ export default function EssentialWorkerFormPage() {
               <Subtitle>The following questions ask about which items you need. 
                 We will pass this information along to your match so that they are able 
                 to send an appropriate and helpful gift.</Subtitle>
-              <Title>What types of items do you need?*</Title>
+              <Title>What types of items do you need?</Title>
                 <IconButtonGroup
                 data={items}
                 selected={itemState}
                 toggle={toggle}
                 state="itemState"
               />
-              <RedText>{itemStateError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Please specify what types of specific items would be most helpful for you to receive.*</Title>
+              <Title>Please specify what types of specific items would be most helpful for you to receive.</Title>
               <Input 
                 style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
                 type="textarea"
@@ -489,10 +469,9 @@ export default function EssentialWorkerFormPage() {
                 value={itemDesc}
                 placeholder="Please specify products or brands or write N/A if not applicable."
                 />
-              <RedText>{itemDescError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Please provide a description of your circumstances so we can better understand what you might need.*</Title>
+              <Title>Please provide a description of your circumstances so we can better understand what you might need.</Title>
               <Input 
                 style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
                 type="textarea"
@@ -501,10 +480,9 @@ export default function EssentialWorkerFormPage() {
                 value={circumstances}
                 placeholder="Are you a grocery shopper who needs help with gas? Are you a single mother who needs activities for her kids? Feel free to tell us anything about your situation and the items that you need so that we can better help you."
                 />
-                <RedText>{circumstancesError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Can we anonymously share your story on Give Essential media?*</Title>
+              <Title>Can we anonymously share your story on Give Essential media?</Title>
               <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
             </CenteredFlex>
             <RowFlex style={{ paddingLeft: "22.5vw" }}>

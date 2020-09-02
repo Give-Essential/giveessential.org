@@ -18,6 +18,7 @@ import SubmitPage from "./pages/SubmitPage";
 const GlobalStyle = createGlobalStyle`
  html, body {
     font-family: 'Archivo', sans-serif;
+    background-color: '#F4F4F4';
   }
 `;
 
