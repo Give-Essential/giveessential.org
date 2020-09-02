@@ -19,7 +19,8 @@ import {
   StyledButton,
   RowFlex,
   ColumnFlex,
-  SmallText
+  SmallText, 
+  RedText
 } from "./styles";
 import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
 import IconButtonGroup from "./components/IconButtonGroup";
@@ -99,11 +100,13 @@ const referrals = [
 export default function EssentialWorkerFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
+  const [itemStateError, setitemStateError] = useState("");
   const [categoryState, setCategories] = useState([]);
   const [categoryStateError, setcategoryStateError] = useState("");
   const [industryState, setIndustries] = useState([]);
   const [industryStateError, setindustryStateError] = useState("");
   const [itemDesc, setitemDesc] = useState("");
+  const [itemDescError, setitemDescError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastName, setLastName] = useState("");
@@ -125,6 +128,7 @@ export default function EssentialWorkerFormPage() {
   const [zip, setZip] = useState("");
   const [zipError, setZipError] = useState("");
   const [circumstances, setCircumstances] = useState("");
+  const [circumstancesError, setCircumstancesError] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [jobTitleError, setJobTitleError] = useState("");
   const [employer, setEmployer] = useState("");
@@ -341,9 +345,25 @@ export default function EssentialWorkerFormPage() {
   };
 
   const validateFirstPage = () => {
-    if (itemState.length === 0 || circumstances === "" || itemDesc === "") {
-      alert(`You must answer all required questions before proceeding!`);
+    if (itemState.length === 0) {
+      setitemStateError("Please specify what items you would like to receive");
     } else {
+      setitemStateError("");
+    }
+
+    if (circumstances === "") {
+      setCircumstancesError("Please provide a description of the items you would like to receive");
+    } else {
+      setCircumstancesError("");
+    }
+
+    if (itemDesc === "") {
+      setitemDescError("Please provide a description of your circumstances");
+    } else {
+      setitemDescError("");
+    }
+
+    if (itemState.length > 0 && circumstances != "" && itemDesc != "") {
       next();
     }
   }
@@ -458,6 +478,7 @@ export default function EssentialWorkerFormPage() {
                 toggle={toggle}
                 state="itemState"
               />
+              <RedText>{itemStateError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
               <Title>Please specify what types of specific items would be most helpful for you to receive.</Title>
@@ -469,6 +490,7 @@ export default function EssentialWorkerFormPage() {
                 value={itemDesc}
                 placeholder="Please specify products or brands or write N/A if not applicable."
                 />
+              <RedText>{itemDescError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
               <Title>Please provide a description of your circumstances so we can better understand what you might need.</Title>
@@ -480,6 +502,7 @@ export default function EssentialWorkerFormPage() {
                 value={circumstances}
                 placeholder="Are you a grocery shopper who needs help with gas? Are you a single mother who needs activities for her kids? Feel free to tell us anything about your situation and the items that you need so that we can better help you."
                 />
+              <RedText>{circumstancesError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
               <Title>Can we anonymously share your story on Give Essential media?</Title>
