@@ -66,7 +66,6 @@ export const SmallText = styled.h1`
 export const RedText = styled.h1`
   font-size: 14px;
   width: 55vw;
-  margin-top: 10px;
   color: red;
   text-align: left;
 `;
