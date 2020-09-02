@@ -90,7 +90,7 @@ export const PinkSubmitButton = styled.div`
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  width: ${ window.innerWidth >= 900 ? '30%' : '60%'};
+  width: ${ window.innerWidth >= 900 ? '30%' : '70%'};
   height: ${ window.innerWidth >= 900 ? '5vw' : '12vw'};
   cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#dddddd" : "#FD8E7B")};

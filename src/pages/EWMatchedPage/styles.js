@@ -137,8 +137,8 @@ export const BackgroundContainer = styled.div`
 export const ListText = styled.h4`
   font-style: normal;
   font-weight: normal;
-  font-size: 1em;
-  line-height: 30px;
+  font-size: ${ window.innerWidth >= 900 ? '1em' : '0.9em'};
+  line-height: ${ window.innerWidth >= 900 ? '28px' : '24px'};
   width: 85%;
   display: flex;
   align-items: center;
@@ -162,8 +162,10 @@ export const Donation = styled.h4`
 export const NextSteps = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 1.8em;
+  font-size: ${ window.innerWidth >= 900 ? '1.8em' : '2em'};
   line-height: 24px;
+  margin-top: ${ window.innerWidth >= 900 ? '10px' : '20px'};
+  margin-bottom: ${ window.innerWidth >= 900 ? '10px' : '20px'};
   /* identical to box height */
 
   align-items: center;

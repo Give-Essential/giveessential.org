@@ -28,7 +28,7 @@ import useStep from '../../hooks';
 import EWMatchedPage from '../EWMatchedPage';
 
 const states = [
-  'State',
+  'State*',
   'Alaska',
   'Alabama',
   'Arkansas',
@@ -249,6 +249,13 @@ export default function EssentialWorkerFormPage() {
       proofString = response.data;
     })
 
+    let shareInfo;
+    if (share && share[0] === 'yes') {
+      shareInfo = true;
+    } else {
+      shareInfo = false;
+    }
+
     const newUser = 
     {
       "ews": [
@@ -279,7 +286,7 @@ export default function EssentialWorkerFormPage() {
             "other": "",
             "proof": proofString
           },
-          "share": share
+          "share": shareInfo
         }
       ]
     };
@@ -476,7 +483,7 @@ export default function EssentialWorkerFormPage() {
               <Subtitle>The following questions ask about which items you need. 
                 We will pass this information along to your match so that they are able 
                 to send an appropriate and helpful gift.</Subtitle>
-              <Title>What types of items do you need?</Title>
+              <Title>What types of items do you need?*</Title>
               <RowFlex>
                 <ColumnFlex>
                   <CenteredFlex>
@@ -492,7 +499,7 @@ export default function EssentialWorkerFormPage() {
               </RowFlex>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Please specify what types of specific items would be most helpful for you to receive.</Title>
+              <Title>Please specify what types of specific items would be most helpful for you to receive.*</Title>
               <Input 
                 style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
                 type="textarea"
@@ -504,7 +511,7 @@ export default function EssentialWorkerFormPage() {
               <RedText>{itemDescError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Please provide a description of your circumstances so we can better understand what you might need.</Title>
+              <Title>Please provide a description of your circumstances so we can better understand what you might need.*</Title>
               <Input 
                 style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
                 type="textarea"
@@ -516,7 +523,7 @@ export default function EssentialWorkerFormPage() {
               <RedText>{circumstancesError}</RedText>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Can we anonymously share your story on Give Essential media?</Title>
+              <Title>Can we anonymously share your story on Give Essential media?*</Title>
               <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
             </CenteredFlex>
             <CenteredFlex>
@@ -561,7 +568,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onFirstNameChange}
                     value={firstName}
                     id="setFirstName"
-                    placeholder="First Name"
+                    placeholder="First Name*"
                   />
                 </FormGroup>
               </Col>
@@ -573,7 +580,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onLastNameChange}
                     value={lastName}
                     id="setLastName"
-                    placeholder="Last Name"
+                    placeholder="Last Name*"
                   />
                 </FormGroup>
               </Col>
@@ -588,7 +595,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onEmailChange}
                     value={email}
                     id="email"
-                    placeholder="Email"
+                    placeholder="Email*"
                   />
                 </FormGroup>
               </Col>
@@ -603,7 +610,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onPhoneChange}
                     value={phone}
                     id="phoneNumber"
-                    placeholder="Phone Number"
+                    placeholder="Phone Number*"
                   />
                 </FormGroup>
               </Col>
@@ -618,7 +625,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onStreetChange}
                     value={street}
                     id="mailingAddress"
-                    placeholder="Mailing Address"
+                    placeholder="Mailing Address*"
                   />
                 </FormGroup>
               </Col>
@@ -633,7 +640,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onStreet2Change}
                     value={street2}
                     id="mailingAddress2"
-                    placeholder="Mailing Address 2"
+                    placeholder="Mailing Address 2*"
                   />
                 </FormGroup>
               </Col>
@@ -646,7 +653,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onCityChange}
                     value={city}
                     id="city" 
-                    placeholder="City" />
+                    placeholder="City*" />
                 </FormGroup>
               </Col>
               <Col>
@@ -668,7 +675,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onZipChange}
                     value={zip}
                     id="zip" 
-                    placeholder="Zip Code" />
+                    placeholder="Zip Code*" />
                 </FormGroup>
               </Col>
             </Row>
@@ -677,7 +684,7 @@ export default function EssentialWorkerFormPage() {
             <Row><RedText>{zipError}</RedText></Row>
             <Row>
               <Col className="d-flex">
-                <StyledText htmlFor="other">Do you fall into any of these categories? </StyledText>
+                <StyledText htmlFor="other">Do you fall into any of these categories?* </StyledText>
               </Col>
             </Row>
             <IconButtonGroup
@@ -701,7 +708,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onJobTitleChange}
                     value={jobTitle}
                     id="jobtitle"
-                    placeholder="Job Title"
+                    placeholder="Job Title*"
                   />
                 </FormGroup>
               </Col>
@@ -716,7 +723,7 @@ export default function EssentialWorkerFormPage() {
                     onChange={onEmployerChange}
                     value={employer}
                     id="employer"
-                    placeholder="Employer/Institution"
+                    placeholder="Employer/Institution*"
                   />
                 </FormGroup>
               </Col>
@@ -724,7 +731,7 @@ export default function EssentialWorkerFormPage() {
             <Row><RedText>{employerError}</RedText></Row>
             <Row>
               <Col className="d-flex">
-                <StyledText htmlFor="other">What industry do you work in?</StyledText>
+                <StyledText htmlFor="other">What industry do you work in?*</StyledText>
               </Col>
             </Row>
             <Row>
@@ -738,7 +745,7 @@ export default function EssentialWorkerFormPage() {
             </Row>
             <Row>
               <Col>
-                <StyledText htmlFor="other">Please provide proof that you are an essential worker</StyledText>
+                <StyledText htmlFor="other">Please provide proof that you are an essential worker*</StyledText>
               </Col>
             </Row>
             <Row>
@@ -800,14 +807,14 @@ export default function EssentialWorkerFormPage() {
           <CenteredFlex>
             <Label check style={{ width: "55vw", paddingTop: "2%" }}>
               <Input type="checkbox" onChange={onCheck1Change}/>{' '}
-              <b>I consent to Give Essential to sharing the information I have provided about my circumstances with my donor.</b>
+              <b>I consent to Give Essential to sharing the information I have provided about my circumstances with my donor.*</b>
             </Label>
             <Text>This will help them get a better idea of what types of gifts to send. Company names will be removed, and donors have pledged to only use the information they're given for the sole purpose of sending a gift. In our experience, donors are more likely to send a package when we are allowed to share your story with them</Text>
           </CenteredFlex>
           <CenteredFlex>
             <Label check style={{ width: "55vw", paddingTop: "2%"  }}>
               <Input type="checkbox" onChange={onCheck2Change}/>{' '}
-              <b>I understand that my donor will receive my first and last name, email address, mailing address, and if I consented, the story that I shared. I understand that these items are publicly sourced from un-vetted individuals, including individuals who themselves may be carrying COVID-19, and take full responsibility for the quality, efficacy, and safety of these donations and their use, and full responsibility for the information I have shared. </b>
+              <b>I understand that my donor will receive my first and last name, email address, mailing address, and if I consented, the story that I shared. I understand that these items are publicly sourced from un-vetted individuals, including individuals who themselves may be carrying COVID-19, and take full responsibility for the quality, efficacy, and safety of these donations and their use, and full responsibility for the information I have shared.* </b>
             </Label>
             <Text>Give Essential connects people with publicly crowd-sourced donation items to essential workers during this time of critical shortage and inaccessibility. All items are being donated and are provided without any warranty, guarantee, or certification of fitness for purpose. Nothing in this website or in the course of providing these donations establishes a legal obligation or promise on Give Essential's behalf.</Text>
           </CenteredFlex>
