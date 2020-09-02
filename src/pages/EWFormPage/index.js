@@ -100,25 +100,43 @@ export default function EssentialWorkerFormPage() {
   const [valueState, setValues] = useState([]);
   const [itemState, setItems] = useState([]);
   const [categoryState, setCategories] = useState([]);
+  const [categoryStateError, setcategoryStateError] = useState("");
   const [industryState, setIndustries] = useState([]);
+  const [industryStateError, setindustryStateError] = useState("");
   const [itemDesc, setitemDesc] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
   const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [referrer, setReferrer] = useState("");
+  const [referrerError, setReferrerError] = useState("");
   const [street, setStreet] = useState("");
+  const [streetError, setStreetError] = useState("");
   const [street2, setStreet2] = useState("");
+  const [street2Error, setStreet2Error] = useState("");
   const [city, setCity] = useState("");
+  const [cityError, setCityError] = useState("");
   const [state, setState] = useState("");
+  const [stateError, setStateError] = useState("");
   const [zip, setZip] = useState("");
+  const [zipError, setZipError] = useState("");
   const [circumstances, setCircumstances] = useState("");
   const [jobTitle, setJobTitle] = useState("");
+  const [jobTitleError, setJobTitleError] = useState("");
   const [employer, setEmployer] = useState("");
+  const [employerError, setEmployerError] = useState("");
   const [industry, setIndustry] = useState("");
   const [comments, setComments] = useState("");
   const [proof, setProof] = useState("");
+  const [proofError, setProofError] = useState("");
   const [share, setShare] = useState(true);
+  const [check1, setCheck1] = useState(false);
+  const [check2, setCheck2] = useState(false);
+  const [checkError, setCheckError] = useState("");
   const { currentStep, next } = useStep(0);
 
   const onItemDescChange = (event) => {
@@ -199,6 +217,16 @@ export default function EssentialWorkerFormPage() {
   const onShareChange = (event) => {
     setShare(!share);
     console.log(share);
+  };
+
+  const onCheck1Change = (event) => {
+    setCheck1(!check1);
+    console.log(check1);
+  };
+
+  const onCheck2Change = (event) => {
+    setCheck2(!check2);
+    console.log(check2);
   };
 
   const onProofChange = (event) => {
@@ -320,11 +348,96 @@ export default function EssentialWorkerFormPage() {
     }
   }
 
-  const validateSecondPage = () => {
-    if (firstName === '' || lastName === '' || email === '' || phone === '' || city === '' || state === '') {
-      alert("You must answer all required questions before proceeding!");
+  const validateSecondPage = e => {
+    e.preventDefault();
+    if (firstName === "") {
+      setFirstNameError("Please provide a first name");
     } else {
+      setFirstNameError("");
+    }
+
+    if (lastName === "") {
+      setLastNameError("Please provide a last name");
+    } else {
+      setLastNameError("");
+    }
+
+    if (email === "") {
+      setEmailError("Please provide a valid email");
+    } else {
+      setEmailError("");
+    }
+
+    if (phone === "") {
+      setPhoneError("Please provide a valid phone number");
+    } else {
+      setPhoneError("");
+    }
+
+    if (street === "") {
+      setStreetError("Please provide a valid street");
+    } else {
+      setStreetError("");
+    }
+
+    if (city === "") {
+      setCityError("Please provide a valid city");
+    } else {
+      setCityError("");
+    }
+
+    if (state === "") {
+      setStateError("Please provide a valid state");
+    } else {
+      setStateError("");
+    }
+
+    if (zip === "") {
+      setZipError("Please provide a valid zip");
+    } else {
+      setZipError("");
+    }
+
+    if (categoryState.length === 0) {
+      setcategoryStateError("Please provide a category");
+    } else {
+      setcategoryStateError("");
+    }
+
+    if (jobTitle === "") {
+      setJobTitleError("Please provide a job title or write N/A");
+    } else {
+      setJobTitleError("");
+    }
+
+    if (employer === "") {
+      setEmployerError("Please provide an employer or write N/A");
+    } else {
+      setEmployerError("");
+    }
+
+    if (proof === "") {
+      setProofError("Please upload proof");
+    } else {
+      setProofError("");
+    }
+
+    if (industryState.length === 0) {
+      setindustryStateError("Please provide an industry");
+    } else {
+      setindustryStateError("");
+    }
+
+    if (firstName != "" && lastName != "" && email != "" && phone != "" && street != "" && city != "" && state != "" && zip != "" && categoryState.length > 0 && jobTitle != "" && employer != "" && proof != "" && industryState.length > 0) {
       next();
+    } 
+  }
+
+  const validateThirdPage = () => {
+    if (check1 === false || check2 === false) {
+      setCheckError("You must agree to the conditions in order to submit!");
+    } else {
+      onSubmit();
     }
   }
 
@@ -436,6 +549,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{firstNameError} {lastNameError}</RedText></Row>
             <Row>
               <Col>
                 <FormGroup>
@@ -450,6 +564,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{emailError}</RedText></Row>
             <Row>
               <Col>
                 <FormGroup>
@@ -464,6 +579,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{phoneError}</RedText></Row>
             <Row>
               <Col>
                 <FormGroup>
@@ -478,6 +594,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{streetError}</RedText></Row>
             <Row>
               <Col>
                 <FormGroup>
@@ -526,6 +643,9 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{cityError}</RedText></Row>
+            <Row><RedText>{stateError}</RedText></Row>
+            <Row><RedText>{zipError}</RedText></Row>
             <Row>
               <Col className="d-flex">
                 <StyledText htmlFor="other">Do you fall into any of these categories? </StyledText>
@@ -537,6 +657,7 @@ export default function EssentialWorkerFormPage() {
                     toggle={toggleCategories}
                     state="categoryState"
                   />
+            <Row><Col className="d-flex"><RedText>{categoryStateError}</RedText></Col></Row>
             <Row>
               <Col className="d-flex">
                 <Text htmlFor="other">OCCUPATION </Text>
@@ -556,6 +677,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{jobTitleError}</RedText></Row>
             <Row>
               <Col>
                 <FormGroup>
@@ -570,6 +692,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{employerError}</RedText></Row>
             <Row>
               <Col className="d-flex">
                 <StyledText htmlFor="other">What industry do you work in?</StyledText>
@@ -582,6 +705,7 @@ export default function EssentialWorkerFormPage() {
                     toggle={toggleIndustries}
                     state="industryState"
                   />
+            <Row><RedText>{industryStateError}</RedText></Row>
             </Row>
             <Row>
               <Col>
@@ -606,6 +730,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
+            <Row><RedText>{proofError}</RedText></Row>
             <Row>
               <Col className="d-flex">
                 <Text htmlFor="other">OTHER INFO </Text>
@@ -645,20 +770,21 @@ export default function EssentialWorkerFormPage() {
           </CenteredFlex>
           <CenteredFlex>
             <Label check style={{ width: "55vw", paddingTop: "2%" }}>
-              <Input type="checkbox" />{' '}
+              <Input type="checkbox" onChange={onCheck1Change}/>{' '}
               <b>I consent to Give Essential to sharing the information I have provided about my circumstances with my donor.</b>
             </Label>
             <Text>This will help them get a better idea of what types of gifts to send. Company names will be removed, and donors have pledged to only use the information they're given for the sole purpose of sending a gift. In our experience, donors are more likely to send a package when we are allowed to share your story with them</Text>
           </CenteredFlex>
           <CenteredFlex>
             <Label check style={{ width: "55vw", paddingTop: "2%"  }}>
-              <Input type="checkbox" />{' '}
+              <Input type="checkbox" onChange={onCheck2Change}/>{' '}
               <b>I understand that my donor will receive my first and last name, email address, mailing address, and if I consented, the story that I shared. I understand that these items are publicly sourced from un-vetted individuals, including individuals who themselves may be carrying COVID-19, and take full responsibility for the quality, efficacy, and safety of these donations and their use, and full responsibility for the information I have shared. </b>
             </Label>
             <Text>Give Essential connects people with publicly crowd-sourced donation items to essential workers during this time of critical shortage and inaccessibility. All items are being donated and are provided without any warranty, guarantee, or certification of fitness for purpose. Nothing in this website or in the course of providing these donations establishes a legal obligation or promise on Give Essential's behalf.</Text>
           </CenteredFlex>
           <CenteredFlex>
-            <PinkSubmitButton style={{ marginTop: 40 }} onClick={onSubmit}>
+            <RedText>{checkError}</RedText>
+            <PinkSubmitButton style={{ marginTop: 40 }} onClick={validateThirdPage}>
               <ButtonText>SUBMIT</ButtonText>
             </PinkSubmitButton>
           </CenteredFlex>
