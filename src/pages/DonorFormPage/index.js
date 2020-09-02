@@ -22,6 +22,8 @@ import {
   // RowSeparatedFlex,
   // WrappableHeader,
   // SideMenuText,
+  RedText,
+  Subtext,
 } from './styles';
 import MatchedPage from '../MatchedPage';
 import IconButtonGroup from './components/IconButtonGroup';
@@ -44,19 +46,29 @@ const MAP_GRAY = '#d3d3d3';
 
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
+  const [valueErrorState, setValueError] = useState("");
   const [itemState, setItems] = useState([]);
+  const [itemErrorState, setItemError] = useState("");
   const [regionState, setRegions] = useState([]);
   const [repeatDonationState, setRepeatDonation] = useState([]);
+  const [repeatDonationErrorState, setRepeatDonationError] = useState("");
   const [cashDonationState, setCashDonation] = useState([]);
   const [modalIsOpen, setModalState] = useState(true);
   const [firstNameState, setFirstName] = useState("");
+  const [firstNameErrorState, setFirstNameError] = useState("");
   const [lastNameState, setLastName] = useState("");
+  const [lastNameErrorState, setLastNameError] = useState("");
   const [emailState, setEmail] = useState("");
+  const [emailErrorState, setEmailError] = useState("");
   const [phoneNumberState, setPhoneNumber] = useState("");
+  const [phoneNumberErrorState, setPhoneNumberError] = useState("");
   const [cityState, setCity] = useState("");
+  const [cityErrorState, setCityError] = useState("");
   const [stateState, setState] = useState("");
+  const [stateErrorState, setStateError] = useState("");
   const [referrerState, setReferrer] = useState("");
   const [otherState, setOther] = useState("");
+  const [referrerErrorState, setReferrerError] = useState("");
   const { currentStep, next } = useStep(0);
 
   const toggle = (value, state) => () => {
@@ -107,7 +119,6 @@ export default function DonorFormPage() {
     } else {
       toggle(event.target.value, 'regionState')();
     }
-    console.log('regionState', regionState);
   }
 
   const setFormValue = (value, state) => () => {
@@ -177,12 +188,27 @@ export default function DonorFormPage() {
   }
 
   const validateFirstPage = () => {
-    console.log('itemState', itemState);
-    console.log('itemState === []', itemState.length === 0);
-    console.log('repeatDonationState', repeatDonationState);
-    if (itemState.length === 0 || repeatDonationState.length === 0 || valueState.length < 2) {
-      alert(`You must answer all required questions before proceeding!${valueState.length < 2 ? '\nRemember, you must select at least two values.' : ' '}`);
+    let numErrors = 0;
+    if (itemState.length === 0) {
+      setItemError("Please specify what items you would like to receive");
+      numErrors += 1;
     } else {
+      setItemError("");
+    }
+
+    if (repeatDonationState.length === 0) {
+      setRepeatDonationError("Please indicate whether you'd like to donate repeatedly or just once");
+      numErrors += 1;
+    } else {
+      setRepeatDonationError("");
+    }
+
+    if (valueState.length < 2) {
+      setValueError("Please specify at least two values");
+      numErrors += 1;
+    }
+
+    if (itemState.length > 0 && repeatDonationState.length > 0 && valueState.length >= 2) {
       if (regionState === []) {
         selectAllRegions();
       }
@@ -192,9 +218,57 @@ export default function DonorFormPage() {
 
   const validateSecondPage = (event) => {
     event.preventDefault();
-    if (firstNameState === '' || lastNameState === '' || emailState === '' || phoneNumberState === '' || cityState === '' || stateState === '' || (referrerState === undefined && otherState === '')) {
-      // alert("You must answer all required questions before proceeding!");
+    let numErrors = 0;
+    if (firstNameState === '') {
+      setFirstNameError("Please enter your first name");
+      numErrors += 1;
     } else {
+      setFirstNameError("");
+    }
+
+    if (lastNameState === '') {
+      setLastNameError("Please specify your last name");
+      numErrors += 1;
+    } else {
+      setLastNameError("");
+    }
+
+    if (emailState === '') {
+      setEmailError("Please provide your email");
+      numErrors += 1;
+    } else {
+      setEmailError("");
+    }
+
+    if (phoneNumberState === '') {
+      setPhoneNumberError("Please enter your phone number");
+      numErrors += 1;
+    } else {
+      setPhoneNumberError("");
+    }
+
+    if (cityState === '') {
+      setCityError("Please provide your city");
+      numErrors += 1;
+    } else {
+      setCityError("");
+    }
+
+    if (stateState === '' || stateState === 'State') {
+      setStateError("Please select your state");
+      numErrors += 1;
+    } else {
+      setStateError("");
+    }
+
+    if ((referrerState === '' && otherState === '') || (referrerState === 'How did you hear about us?' && otherState === '')) {
+      setReferrerError("Please specify your referrer by either selecting it in the dropdown or writing it out in the 'Other' input field");
+      numErrors += 1;
+    } else {
+      setReferrerError("");
+    }
+
+    if (firstNameState !== '' && lastNameState !== '' && emailState !== '' && phoneNumberState !== '' && cityState !== '' && stateState !== 'State' && stateState !== '' && ((referrerState !== '' && referrerState !== 'How did you hear about us?') || otherState !== '')) {
       submitForm();
     }
   }
@@ -418,6 +492,7 @@ export default function DonorFormPage() {
                   toggle={toggle}
                   state="valueState"
                 />
+                <RedText>{valueErrorState}</RedText>
               </CenteredFlex>
               <CenteredFlex>
                 <Header>Where in the country would you like to give to?</Header>
@@ -430,14 +505,17 @@ export default function DonorFormPage() {
                   <CapitalizedButton onClick={selectAllRegions}>I Can Donate Anywhere</CapitalizedButton>
                 </LargerScreenAlternative>
                 <SmallerScreenAlternative>
-                  <FormGroup>
-                    <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
-                      <option key="anywhere">Anywhere</option>
-                      {regions.map((region) => (
-                        <option key={region}>{region}</option>
-                      ))}
-                    </StyledInput>
-                  </FormGroup>
+                  <Col>
+                    <FormGroup>
+                      <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
+                        <option key="anywhere">Anywhere</option>
+                        {regions.map((region) => (
+                          <option key={region}>{region}</option>
+                        ))}
+                      </StyledInput>
+                    </FormGroup>
+                    <Subtext>"West" includes Alaska and Hawaii</Subtext>
+                  </Col>
                 </SmallerScreenAlternative>
               </CenteredFlex>
               <CenteredFlex>
@@ -448,6 +526,7 @@ export default function DonorFormPage() {
                   toggle={toggle}
                   state="itemState"
                 />
+                <RedText>{itemErrorState}</RedText>
               </CenteredFlex>
               <CenteredFlex>
               <ColumnFlex>
@@ -465,6 +544,7 @@ export default function DonorFormPage() {
                   toggle={singleSelectToggle}
                   state="repeatDonationState"
                 />
+                <RedText>{repeatDonationErrorState}</RedText>
               </ColumnFlex>
         
                 <StyledButton
@@ -499,6 +579,7 @@ export default function DonorFormPage() {
                     value={firstNameState}
                   />
                 </FormGroup>
+                <RedText>{firstNameErrorState}</RedText>
               </Col>
               <Col>
                 <FormGroup>
@@ -510,6 +591,7 @@ export default function DonorFormPage() {
                     onChange={(event) => { setFormValue(event.target.value, 'lastNameState')(); }}
                   />
                 </FormGroup>
+                <RedText>{lastNameErrorState}</RedText>
               </Col>
             </Row>
             <Row>
@@ -523,6 +605,7 @@ export default function DonorFormPage() {
                     onChange={(event) => { setFormValue(event.target.value, 'emailState')(); }}
                   />
                 </FormGroup>
+                <RedText>{emailErrorState}</RedText>
               </Col>
             </Row>
             <Row>
@@ -536,6 +619,7 @@ export default function DonorFormPage() {
                     onChange={(event) => { setFormValue(event.target.value, 'phoneNumberState')(); }}
                   />
                 </FormGroup>
+                <RedText>{phoneNumberErrorState}</RedText>
               </Col>
             </Row>
             <Row>
@@ -543,6 +627,7 @@ export default function DonorFormPage() {
                 <FormGroup>
                   <StyledInput name="text" id="city" placeholder="City" onChange={(event) => { setFormValue(event.target.value, 'cityState')(); }} />
                 </FormGroup>
+                <RedText>{cityErrorState}</RedText>
               </Col>
               <Col>
                 <StyledInput type="select" name="select" id="state" onChange={(event) => { setFormValue(event.target.value, 'stateState')(); }}>
@@ -550,6 +635,7 @@ export default function DonorFormPage() {
                     <option key={us_state}>{us_state}</option>
                   ))}
                 </StyledInput>
+                <RedText>{stateErrorState}</RedText>
               </Col>
             </Row>
             <Row>
@@ -569,6 +655,7 @@ export default function DonorFormPage() {
                 <StyledInput noBorder underLine name="other" id="other" onChange={(event) => { setFormValue(event.target.value, 'otherState')(); }}/>
               </Col>
             </Row>
+            <RedText>{referrerErrorState}</RedText>
             <ColumnFlex>
                 <StyledText>Legal text here</StyledText>
                 <CenteredFlex>
