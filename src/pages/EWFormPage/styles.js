@@ -6,7 +6,8 @@ export const Flex = styled.div`
 `;
 
 export const RowFlex = styled(Flex)`
-  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
 `;
 
 export const ColumnFlex = styled(Flex)`
@@ -75,8 +76,8 @@ export const SubmitButton = styled.div`
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  width: 30%;
-  height: 5vw;
+  width: ${ window.innerWidth >= 900 ? '30%' : '60%'};
+  height: ${ window.innerWidth >= 900 ? '5vw' : '12vw'};
   cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
   align-items: center;
@@ -89,8 +90,8 @@ export const PinkSubmitButton = styled.div`
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  width: 30%;
-  height: 5vw;
+  width: ${ window.innerWidth >= 900 ? '30%' : '60%'};
+  height: ${ window.innerWidth >= 900 ? '5vw' : '12vw'};
   cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#dddddd" : "#FD8E7B")};
   align-items: center;

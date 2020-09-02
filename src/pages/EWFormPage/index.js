@@ -11,8 +11,6 @@ import {
   ButtonText,
   Text,
   PinkSubmitButton,
-  SmallButton,
-  SmallButtonText,
   StyledInput,
   StyledLabel,
   StyledText,
@@ -24,8 +22,8 @@ import {
 } from "./styles";
 import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
 import IconButtonGroup from "./components/IconButtonGroup";
-import SmallButtonGroup from "./components/SmallButtonGroup";
-import { items, categories, occupations } from "./buttonGroupData";
+import TextButtonGroup from "./components/TextButtonGroup";
+import { items, categories, occupations, yesNo } from "./buttonGroupData";
 import useStep from '../../hooks';
 import EWMatchedPage from '../EWMatchedPage';
 
@@ -137,7 +135,7 @@ export default function EssentialWorkerFormPage() {
   const [comments, setComments] = useState("");
   const [proof, setProof] = useState("");
   const [proofError, setProofError] = useState("");
-  const [share, setShare] = useState(true);
+  const [share, setShare] = useState([]);
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [checkError, setCheckError] = useState("");
@@ -216,11 +214,6 @@ export default function EssentialWorkerFormPage() {
   const onCommentsChange = (event) => {
     setComments(event.target.value);
     console.log(comments);
-  };
-
-  const onShareChange = (event) => {
-    setShare(!share);
-    console.log(share);
   };
 
   const onCheck1Change = (event) => {
@@ -342,6 +335,18 @@ export default function EssentialWorkerFormPage() {
     }
     updateState(updatedState);
     console.log(industryState);
+  };
+
+  const singleSelectToggle = (value, state) => () => {
+    let updateState = state === 'share' ? setShare : setShare;
+    const prevState = state === 'share' ? share : share;
+    let updatedState;
+    if (prevState[0] === value) {
+      updatedState = [];
+    } else {
+      updatedState = [value];
+    }
+    updateState(updatedState);
   };
 
   const validateFirstPage = () => {
@@ -472,13 +477,19 @@ export default function EssentialWorkerFormPage() {
                 We will pass this information along to your match so that they are able 
                 to send an appropriate and helpful gift.</Subtitle>
               <Title>What types of items do you need?</Title>
-                <IconButtonGroup
-                data={items}
-                selected={itemState}
-                toggle={toggle}
-                state="itemState"
-              />
-              <RedText>{itemStateError}</RedText>
+              <RowFlex>
+                <ColumnFlex>
+                  <CenteredFlex>
+                    <IconButtonGroup
+                    data={items}
+                    selected={itemState}
+                    toggle={toggle}
+                    state="itemState"
+                    />
+                    <RedText>{itemStateError}</RedText>
+                  </CenteredFlex>
+                </ColumnFlex>
+              </RowFlex>
             </CenteredFlex>
             <CenteredFlex>
               <Title>Please specify what types of specific items would be most helpful for you to receive.</Title>
@@ -508,19 +519,14 @@ export default function EssentialWorkerFormPage() {
               <Title>Can we anonymously share your story on Give Essential media?</Title>
               <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
             </CenteredFlex>
-            <RowFlex style={{ paddingLeft: "22.5vw" }}>
-              <SmallButton>
-                <SmallButtonText       
-                  toggle={toggle}
-                  state={state}>Yes</SmallButtonText>
-              </SmallButton>
-              <SmallButton>
-                <SmallButtonText 
-                  onClick={onShareChange}
-                  toggle={toggle}
-                  state={state}>No</SmallButtonText>
-              </SmallButton>
-            </RowFlex>
+            <CenteredFlex>
+              <TextButtonGroup
+                data={yesNo}
+                selected={share}
+                toggle={singleSelectToggle}
+                state="share"
+              />
+            </CenteredFlex>
             <CenteredFlex>
               <Title>Any additional notes or comments?</Title>
               <Input 
@@ -572,7 +578,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
-            <Row><RedText>{firstNameError} {lastNameError}</RedText></Row>
+            <Row><Col className="d-flex"><RedText>{firstNameError} {lastNameError}</RedText></Col></Row>
             <Row>
               <Col>
                 <FormGroup>
@@ -587,7 +593,7 @@ export default function EssentialWorkerFormPage() {
                 </FormGroup>
               </Col>
             </Row>
-            <Row><RedText>{emailError}</RedText></Row>
+            <Row><Col className="d-flex"><RedText>{emailError}</RedText></Col></Row>
             <Row>
               <Col>
                 <FormGroup>

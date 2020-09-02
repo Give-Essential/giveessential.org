@@ -70,3 +70,8 @@ export const occupations = [
   { icon: healthcare, id: "healthcare", text: "Healthcare"},
   { icon: other, id: "other", text: "Other"},  
 ];
+
+export const yesNo = [
+  { id: "yes", text: "Yes" },
+  { id: "no", text: "No" },
+];
