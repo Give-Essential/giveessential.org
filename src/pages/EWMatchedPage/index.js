@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 import {
   BackgroundContainer,
   Dot,
@@ -10,7 +10,9 @@ import {
   NextSteps,
 } from './styles';
 
-import { Row, Col } from 'reactstrap';
+import Button from "./components/Button";
+
+import { Row, Col, Container } from 'reactstrap';
 
 
 // SVG Imports
@@ -24,11 +26,11 @@ const nextStepsList = [
     ' When you’re matched, you’ll get an email from matches@giveessential.org with more information and a tracking number.    ',
   ],
   [
-    hand,
+    tracking,
     ' You can check the progress of your package through your tracking number.',
   ],
   [
-    tracking,
+    hand,
     'Enjoy your care package! We appreciate you and all you do so much!',
   ],
 ];
@@ -36,10 +38,6 @@ const nextStepsList = [
 export default function EWMatchedPage() {
   return (
     <BackgroundContainer>
-      <HeaderText>
-        You’ve been matched! Look out for an email from
-        matches@giveessential.org for more information :)
-      </HeaderText>
       <NextSteps>Next Steps</NextSteps>
       <div style={{ padding: '0% 12%' }}>
         {nextStepsList.map((e, i) => (
@@ -47,7 +45,7 @@ export default function EWMatchedPage() {
           <Row style={{ margin: '3% 3%' }} classname="my-auto">
             <Col xs="2">
               <Dot color={'#8CC9BA'}>
-                <h2>{i + 1}</h2>
+                <h3 style={{ margin: '1% 0' }}>{i + 1}</h3>
               </Dot>
             </Col>
             <Col xs="2">
@@ -60,6 +58,14 @@ export default function EWMatchedPage() {
         ))}
       </div>
       <Donation>Thank you!</Donation>
+      <Container className="my-auto" style={{ textAlign: "center" }}>
+        <Link to="/">
+          <Button primary>RETURN TO HOMEPAGE</Button>
+        </Link>
+        <Link>
+          <Button>REFER A FRIEND</Button>
+        </Link>
+      </Container>
     </BackgroundContainer>
   );
 }

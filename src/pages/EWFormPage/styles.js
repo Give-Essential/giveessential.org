@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Input, Label } from 'reactstrap';
 
 export const Flex = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ export const Header = styled.h1`
   margin-top: 48px;
   margin-bottom: 12px;
   color: #8CC9BA;
+  text-align: center;
 `;
 
 export const Title = styled.h1`
@@ -54,45 +56,114 @@ export const Text = styled.h1`
   text-align: left;
 `;
 
+export const SmallText = styled.h1`
+  font-size: 12px;
+  width: 55vw;
+  margin-top: 10px;
+  text-align: left;
+`;
+
 export const SubmitButton = styled.div`
   margin-top: 50px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  width: 40vw;
-  height: 6vw;
+  width: 30%;
+  height: 5vw;
+  cursor: pointer;
   background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
   align-items: center;
   justify-content: center;
+  padding: 15px 0;
+`;
+
+export const PinkSubmitButton = styled.div`
+  margin-top: 50px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 5vw;
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#dddddd" : "#FD8E7B")};
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
 `;
 
 export const SmallButton = styled.div`
   margin-top: 30px;
   border-radius: 6px;
-  border: 3px solid #8CC9BA;
+  border: 2px solid #8CC9BA;
   display: flex;
-  flex-direction: row;
   width: 10vw;
+  cursor: pointer;
   height: 30px;
-  background-color: #f8f9fa;
   align-items: center;
-  justify-content: center;
+  margin-right: 10px;
+  background-color: ${(props) => (props.selected ? "#8CC9BA" : null)};
 `;
 
 export const SmallButtonText = styled.h1`
   font-size: 17px;
   margin-top: 8px;
   width: 55vw;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   color: #8CC9BA;
 `;
 
 
 export const ButtonText = styled.h1`
-  font-size: 20px;
+  font-size: 1.2em;
   margin-top: 8px;
   width: 55vw;
   text-align: center;
   color: ${(props) => (props.disabled ? "#8CC9BA" : "#ffffff")};
+`;
+
+export const StyledInput = styled(Input)`
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #8cc9ba')};
+  border-radius: ${({ noBorder }) => (noBorder ? 0 : '5px')};
+  border-bottom: ${({ underLine }) =>
+    underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
+`;
+
+export const StyledLabel = styled(Label)`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+`;
+
+export const StyledText = styled.p`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 10px;
+`;
+
+export const StyledButton = styled.button`
+  display: block;
+  margin: 22px auto;
+  border: none;
+  border-radius: 12px;
+  width: 50%;
+  background-color: ${(props) => (props.disabled ? '#dddddd' : '#8CC9BA')};
+  color: ${(props) => (props.disabled ? '#8CC9BA' : '#ffffff')};
+  font-size: 20px;
+  padding: 15px 0;
+`;
+
+export const StyledContainer = styled.div`
+  flex-basis: 55%;
+  margin-top: 50px;
 `;
