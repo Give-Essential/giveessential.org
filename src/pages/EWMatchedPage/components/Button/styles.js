@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  width: 28%;
-  height: 5%;
+  width: ${ window.innerWidth >= 900 ? '28%' : '60%'};
+  height: ${ window.innerWidth >= 900 ? '5%' : '3%'};;
   border-radius: 6px;
   border: none;
   text-align: center;
@@ -16,5 +16,5 @@ export const StyledButton = styled.button`
   line-height: 30px;
   align-items: center;
   margin: 2%;
-  margin-bottom: 10%;
+  margin-bottom: 3%;
 `;
