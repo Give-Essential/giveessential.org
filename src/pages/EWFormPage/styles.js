@@ -16,7 +16,6 @@ export const ColumnFlex = styled(Flex)`
 
 export const Screen = styled(ColumnFlex)`
   width: 100vw;
-  
 `;
 
 export const CenteredFlex = styled(ColumnFlex)`
@@ -38,9 +37,10 @@ export const HeaderMobile = styled.h1`
   font-weight: bold;
   font-size: 2.2em;
   margin-top: 30px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   color: #8CC9BA;
   text-align: center;
+  font-size: 31px;
 `;
 
 export const Title = styled.h1`
@@ -51,6 +51,14 @@ export const Title = styled.h1`
   text-align: left;
 `;
 
+export const TitleMobile = styled.h1`
+  font-size: 16px;
+  width: 85vw;
+  font-weight: 800;
+  margin-top: 35px;
+  text-align: center;
+`;
+
 export const Subtitle = styled.h1`
   font-size: 16px;
   font-style: italic;
@@ -59,6 +67,17 @@ export const Subtitle = styled.h1`
   font-weight: 800;
   margin-top: 10px;
   text-align: left;
+`;
+
+export const SubtitleMobile = styled.h1`
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 700;
+  width: 85vw;
+  font-weight: 800;
+  margin-top: 10px;
+  text-align: center;
+  // color: #2c3e50;
 `;
 
 export const Text = styled.h1`
