@@ -5,8 +5,8 @@ import {
   Screen,
   CenteredFlex,
   Header, HeaderMobile,
-  Title,
-  Subtitle,
+  Title, TitleMobile,
+  Subtitle, SubtitleMobile,
   SubmitButton,
   ButtonText,
   Text,
@@ -507,8 +507,6 @@ export default function EssentialWorkerFormPage() {
 
   const {height, width} = useWindowDimensions();
 
-
-
   const renderStep = () => {
     if (width < 420) {
       switch (currentStep) {
@@ -518,10 +516,10 @@ export default function EssentialWorkerFormPage() {
                 <div>Mobile Screen</div>
                 <CenteredFlex>
                   <HeaderMobile style={{paddingRight: "0px"}}>Essential Worker Form</HeaderMobile>
-                  <Subtitle>The following questions ask about which items you need.
+                  <SubtitleMobile>The following questions ask about which items you need.
                     We will pass this information along to your match so that they are able
-                    to send an appropriate and helpful gift.</Subtitle>
-                  <Title>What types of items do you need?*</Title>
+                    to send an appropriate and helpful gift.</SubtitleMobile>
+                  <TitleMobile>What types of items do you need?*</TitleMobile>
                   <RowFlex>
                     <ColumnFlex>
                       <CenteredFlex>
