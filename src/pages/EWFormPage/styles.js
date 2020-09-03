@@ -16,6 +16,7 @@ export const ColumnFlex = styled(Flex)`
 
 export const Screen = styled(ColumnFlex)`
   width: 100vw;
+  
 `;
 
 export const CenteredFlex = styled(ColumnFlex)`
@@ -27,6 +28,16 @@ export const Header = styled.h1`
   font-weight: bold;
   font-size: 2.2em;
   margin-top: 48px;
+  margin-bottom: 12px;
+  color: #8CC9BA;
+  text-align: center;
+`;
+
+export const HeaderMobile = styled.h1`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.2em;
+  margin-top: 30px;
   margin-bottom: 12px;
   color: #8CC9BA;
   text-align: center;
