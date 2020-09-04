@@ -594,7 +594,7 @@ export default function EssentialWorkerFormPage() {
                   <TitleMobile>Can we anonymously share your story on Give Essential media?*</TitleMobile>
                   <TextMobile>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
                 </CenteredFlex>
-                <CenteredFlex>
+                <CenteredFlex style={{paddingBottom: "10px"}}>
                   <TextButtonGroup
                       data={yesNo}
                       selected={share}
