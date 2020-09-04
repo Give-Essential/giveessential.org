@@ -66,16 +66,16 @@ export default function WhatWeDo() {
             How does this work?
           </Header>
         </ColumnFlex>
-        <ColumnFlex>
-          {infoList.map((e, i) => (
-            <RowFlex style={{ marginBottom: 15 }}>
-              <Dot color={e[1]}>
-                <DotText>{i + 1}</DotText>
-              </Dot>
-              <ListItem color={e[1]}>{e[0]}</ListItem>
-            </RowFlex>
-          ))}
-        </ColumnFlex>
+        {/*<ColumnFlex>*/}
+        {/*  {infoList.map((e, i) => (*/}
+        {/*    <RowFlex style={{ marginBottom: 15 }}>*/}
+        {/*      <Dot color={e[1]}>*/}
+        {/*        <DotText>{i + 1}</DotText>*/}
+        {/*      </Dot>*/}
+        {/*      <ListItem color={e[1]}>{e[0]}</ListItem>*/}
+        {/*    </RowFlex>*/}
+        {/*  ))}*/}
+        {/*</ColumnFlex>*/}
       </RowFlex>
     </ColumnFlex>
   );
