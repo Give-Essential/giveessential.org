@@ -515,17 +515,7 @@ export default function EssentialWorkerFormPage() {
 
   const useWindowDimensions = () => {
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-    // useEffect(() => {
-    //   // function handleResize() {
-    //   //   setWindowDimensions(getWindowDimensions());
-    //   // }
-    //   //
-    //   // window.addEventListener('resize', handleResize);
-    //   // return () => window.removeEventListener('resize', handleResize);
-    //   // }, []);
-    //   //
-    //   // return windowDimensions;
-    // }
+
     useEffect(() => {
       function handleResize() {
         setWindowDimensions(getWindowDimensions());
@@ -538,6 +528,8 @@ export default function EssentialWorkerFormPage() {
   }
 
   const {height, width} = useWindowDimensions();
+
+  // add if case for ipad
 
   const renderStep = () => {
     if (width < 420) {
@@ -901,14 +893,15 @@ export default function EssentialWorkerFormPage() {
       // if (width > height) {
       // later for horizontal orientation
       // }
-    } else {
+    }
+    else {
       switch (currentStep) {
         case 0:
           return (
             <Screen style={{ paddingBottom: 10 }}>
-              <div>
-                width: {width}; height: {height}
-              </div>
+              {/*<div>*/}
+              {/*  width: {width}; height: {height}*/}
+              {/*</div>*/}
               <CenteredFlex>
                 <Header>Essential Worker Form</Header>
                 <Subtitle>The following questions ask about which items you need.
