@@ -18,7 +18,7 @@ import {
   RowFlex,
   ColumnFlex,
   SmallText,
-  RedText
+  RedText, RedTextMobile
 } from "./styles";
 import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
 import IconButtonGroup from "./components/IconButtonGroup";
@@ -562,7 +562,7 @@ export default function EssentialWorkerFormPage() {
                             toggle={toggle}
                             state="itemState"
                         />
-                        <RedText>{itemStateError}</RedText>
+                        <RedTextMobile>{itemStateError}</RedTextMobile>
                       </CenteredFlex>
                     </ColumnFlex>
                   </RowFlex>
@@ -577,7 +577,7 @@ export default function EssentialWorkerFormPage() {
                       value={itemDesc}
                       placeholder="Please specify products or brands or write N/A if not applicable."
                   />
-                  <RedText>{itemDescError}</RedText>
+                  <RedTextMobile>{itemDescError}</RedTextMobile>
                 </CenteredFlex>
                 <CenteredFlex>
                   <TitleMobile>Please provide a description of your circumstances so we can better understand what you might need.*</TitleMobile>
@@ -589,11 +589,11 @@ export default function EssentialWorkerFormPage() {
                       value={circumstances}
                       placeholder="Are you a grocery shopper who needs help with gas? Are you a single mother who needs activities for her kids? Feel free to tell us anything about your situation and the items that you need so that we can better help you."
                   />
-                  <RedText>{circumstancesError}</RedText>
+                  <RedTextMobile>{circumstancesError}</RedTextMobile>
                 </CenteredFlex>
                 <CenteredFlex>
                   <TitleMobile>Can we anonymously share your story on Give Essential media?*</TitleMobile>
-                  <TextMobile>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
+                  <TextMobile style={ {color: "#6c757d"}}>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
                 </CenteredFlex>
                 <CenteredFlex style={{paddingBottom: "10px"}}>
                   <TextButtonGroup
@@ -654,7 +654,7 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><Col className="d-flex"><RedText>{firstNameError} {lastNameError}</RedText></Col></Row>
+                  <Row><Col className="d-flex"><RedTextMobile>{firstNameError} {lastNameError}</RedTextMobile></Col></Row>
                   <Row>
                     <Col>
                       <FormGroup>

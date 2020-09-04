@@ -44,17 +44,6 @@ export const HeaderMobile = styled.h1`
   font-family: "Montserrat"
 `;
 
-export const HeaderMobile = styled.h1`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 2.2em;
-  margin-top: 35px;
-  margin-bottom: 8px;
-  color: #8CC9BA;
-  text-align: center;
-  font-size: 31px;
-`;
-
 export const Title = styled.h1`
   font-size: 16px;
   width: 55vw;
@@ -72,15 +61,6 @@ export const TitleMobile = styled.h1`
   margin-bottom: 16px;
   text-align: center;
   font-family: "Montserrat";
-`;
-
-export const TitleMobile = styled.h1`
-  font-size: 16px;
-  width: 84vw;
-  font-weight: 800;
-  margin-top: 22px;
-  margin-bottom: 16px;
-  text-align: center;
 `;
 
 export const Subtitle = styled.h1`
@@ -105,16 +85,6 @@ export const SubtitleMobile = styled.h1`
   color: #6c757d;
 `;
 
-export const SubtitleMobile = styled.h1`
-  font-size: 14px;
-  font-style: italic;
-  font-weight: 535;
-  width: 85vw;
-  margin-top: 10px;
-  text-align: center;
-  // color: #2c3e50;
-`;
-
 export const Text = styled.h1`
   font-size: 14px;
   width: 55vw;
@@ -130,16 +100,8 @@ export const TextMobile = styled.h1`
   margin-top: 0px;
   margin-bottom: 15px;
   text-align: center;
-  font-family: "Montserrat";
-  color: "#6c757d";
-`;
-
-export const TextMobile = styled.h1`
-  font-size: 14px;
-  width: 80vw;
-  margin-top: 0px;
-  margin-bottom: 15px;
-  text-align: center;
+  font-family: Montserrat;
+  color: #6c757d;
 `;
 
 export const SmallText = styled.h1`
@@ -154,6 +116,16 @@ export const RedText = styled.h1`
   width: 55vw;
   color: red;
   text-align: left;
+  font-family: Montserrat;
+  padding-top: 10px
+`;
+
+export const RedTextMobile = styled.h1`
+  font-size: 12px;
+  width: 80vw;
+  color: red;
+  text-align: center;
+  font-family: Montserrat;
 `;
 
 export const SubmitButton = styled.div`
