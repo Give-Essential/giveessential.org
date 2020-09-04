@@ -36,7 +36,7 @@ export const HeaderMobile = styled.h1`
   font-style: normal;
   font-weight: bold;
   font-size: 2.2em;
-  margin-top: 30px;
+  margin-top: 35px;
   margin-bottom: 8px;
   color: #8CC9BA;
   text-align: center;
@@ -53,9 +53,10 @@ export const Title = styled.h1`
 
 export const TitleMobile = styled.h1`
   font-size: 16px;
-  width: 85vw;
+  width: 84vw;
   font-weight: 800;
-  margin-top: 35px;
+  margin-top: 20px;
+  margin-bottom: 16px;
   text-align: center;
 `;
 
@@ -72,9 +73,8 @@ export const Subtitle = styled.h1`
 export const SubtitleMobile = styled.h1`
   font-size: 14px;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 535;
   width: 85vw;
-  font-weight: 800;
   margin-top: 10px;
   text-align: center;
   // color: #2c3e50;
@@ -85,6 +85,14 @@ export const Text = styled.h1`
   width: 55vw;
   margin-top: 10px;
   text-align: left;
+`;
+
+export const TextMobile = styled.h1`
+  font-size: 14px;
+  width: 80vw;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  text-align: center;
 `;
 
 export const SmallText = styled.h1`
@@ -113,6 +121,21 @@ export const SubmitButton = styled.div`
   align-items: center;
   justify-content: center;
   padding: 15px 0;
+`;
+
+export const SubmitButtonMobile = styled.div`
+  margin-top: 50px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: ${ window.innerWidth >= 900 ? '30%' : '74%'};
+  height: ${ window.innerWidth >= 900 ? '5vw' : '8vw'};
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#dddddd" : "#8CC9BA")};
+  align-items: center;
+  justify-content: center;
+  // padding: 15px 0;
+  font-size: 13px;
 `;
 
 export const PinkSubmitButton = styled.div`
