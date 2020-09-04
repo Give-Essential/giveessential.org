@@ -111,7 +111,7 @@ export const RedText = styled.h1`
 
 export const SubmitButton = styled.div`
   margin-top: 50px;
-  border-radius: 12px;
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   width: ${ window.innerWidth >= 900 ? '30%' : '60%'};
