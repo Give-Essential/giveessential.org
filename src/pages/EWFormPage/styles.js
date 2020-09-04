@@ -28,8 +28,8 @@ export const Header = styled.h1`
   font-size: 2.2em;
   margin-top: 48px;
   margin-bottom: 12px;
-  color: #F3D04E;
   text-align: center;
+  color: #8CC9BA;
 `;
 
 export const HeaderMobile = styled.h1`
@@ -114,18 +114,19 @@ export const SmallText = styled.h1`
 export const RedText = styled.h1`
   font-size: 14px;
   width: 55vw;
-  color: red;
+  color: #FD8E7B;
   text-align: left;
   font-family: Montserrat;
-  padding-top: 10px
+  font-style: italic;
 `;
 
 export const RedTextMobile = styled.h1`
-  font-size: 12px;
+  font-size: 11px;
   width: 80vw;
-  color: red;
+  color: #FD8E7B;
   text-align: center;
   font-family: Montserrat;
+  font-style: italic;
 `;
 
 export const SubmitButton = styled.div`
