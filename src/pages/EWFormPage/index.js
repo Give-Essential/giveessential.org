@@ -593,7 +593,7 @@ export default function EssentialWorkerFormPage() {
                 </CenteredFlex>
                 <CenteredFlex>
                   <TitleMobile>Can we anonymously share your story on Give Essential media?*</TitleMobile>
-                  <TextMobile style={{color: "#6c757d"}}>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
+                  <TextMobile>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
                 </CenteredFlex>
                 <CenteredFlex style={{paddingBottom: "10px"}}>
                   <TextButtonGroup
@@ -614,7 +614,7 @@ export default function EssentialWorkerFormPage() {
                       placeholder="Comments"
                   />
                   {" "}
-                  <SubmitButtonMobile style={{ marginTop: 40, fontFamily: "Montserrat"}} onClick={validateFirstPage}>
+                  <SubmitButtonMobile style={{ marginTop: 40}} onClick={validateFirstPage}>
                     <ButtonText>CONTINUE</ButtonText>
                   </SubmitButtonMobile>
                 </CenteredFlex>
