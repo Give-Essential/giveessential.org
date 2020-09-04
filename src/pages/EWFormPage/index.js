@@ -26,6 +26,13 @@ import TextButtonGroup from "./components/TextButtonGroup";
 import { items, categories, occupations, yesNo } from "./buttonGroupData";
 import useStep from '../../hooks';
 import EWMatchedPage from '../EWMatchedPage';
+import  WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Montserrat:thin', 'open-serif'],
+  }
+});
 
 const states = [
   'State*',
@@ -109,7 +116,8 @@ const inputMobileStyle = {
   border: "2px solid #8CC9BA",
   backgroundColor: "#FFF",
   height: "14vh",
-  fontSize: "12px"
+  fontSize: "12px",
+  fontFamily: "Montserrat",
 }
 
 const inputMobileStyle1 = {
@@ -120,6 +128,7 @@ const inputMobileStyle1 = {
   backgroundColor: "#FFF",
   height: "19vh",
   fontSize: "11.5px",
+  fontFamily: "Montserrat",
   // textAlign: "center"
 }
 
@@ -131,7 +140,8 @@ const inputMobileStyle2 = {
   backgroundColor: "#FFF",
   height: "10vh",
   fontSize: "12px",
-  marginTop: "0px"
+  marginTop: "0px",
+  fontFamily: "Montserrat",
   // textAlign: "center"
 }
 
@@ -583,7 +593,7 @@ export default function EssentialWorkerFormPage() {
                 </CenteredFlex>
                 <CenteredFlex>
                   <TitleMobile>Can we anonymously share your story on Give Essential media?*</TitleMobile>
-                  <TextMobile>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
+                  <TextMobile style={{color: "#6c757d"}}>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
                 </CenteredFlex>
                 <CenteredFlex style={{paddingBottom: "10px"}}>
                   <TextButtonGroup
@@ -604,7 +614,7 @@ export default function EssentialWorkerFormPage() {
                       placeholder="Comments"
                   />
                   {" "}
-                  <SubmitButtonMobile style={{ marginTop: 40}} onClick={validateFirstPage}>
+                  <SubmitButtonMobile style={{ marginTop: 40, fontFamily: "Montserrat"}} onClick={validateFirstPage}>
                     <ButtonText>CONTINUE</ButtonText>
                   </SubmitButtonMobile>
                 </CenteredFlex>

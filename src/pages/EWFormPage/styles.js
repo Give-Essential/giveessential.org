@@ -28,7 +28,7 @@ export const Header = styled.h1`
   font-size: 2.2em;
   margin-top: 48px;
   margin-bottom: 12px;
-  color: #8CC9BA;
+  color: #F3D04E;
   text-align: center;
 `;
 
@@ -41,6 +41,7 @@ export const HeaderMobile = styled.h1`
   color: #8CC9BA;
   text-align: center;
   font-size: 31px;
+  font-family: "Montserrat"
 `;
 
 export const Title = styled.h1`
@@ -49,15 +50,17 @@ export const Title = styled.h1`
   font-weight: 800;
   margin-top: 30px;
   text-align: left;
+  font-family: "Montserrat";
 `;
 
 export const TitleMobile = styled.h1`
   font-size: 16px;
   width: 84vw;
-  font-weight: 800;
+  font-weight: bold;
   margin-top: 22px;
   margin-bottom: 16px;
   text-align: center;
+  font-family: "Montserrat";
 `;
 
 export const Subtitle = styled.h1`
@@ -68,16 +71,18 @@ export const Subtitle = styled.h1`
   font-weight: 800;
   margin-top: 10px;
   text-align: left;
+  font-family: "Montserrat";
 `;
 
 export const SubtitleMobile = styled.h1`
   font-size: 14px;
-  font-style: italic;
-  font-weight: 535;
+  // font-style: italic;
+  font-weight: 400;
   width: 85vw;
   margin-top: 10px;
   text-align: center;
-  // color: #2c3e50;
+  font-family: "Montserrat";
+  color: #6c757d;
 `;
 
 export const Text = styled.h1`
@@ -85,14 +90,18 @@ export const Text = styled.h1`
   width: 55vw;
   margin-top: 10px;
   text-align: left;
+  font-family: "Montserrat";
+  color: "#6c757d";
 `;
 
 export const TextMobile = styled.h1`
-  font-size: 14px;
+  font-size: 13px;
   width: 80vw;
   margin-top: 0px;
   margin-bottom: 15px;
   text-align: center;
+  font-family: "Montserrat";
+  color: "#6c757d";
 `;
 
 export const SmallText = styled.h1`
