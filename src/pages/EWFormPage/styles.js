@@ -55,7 +55,7 @@ export const TitleMobile = styled.h1`
   font-size: 16px;
   width: 84vw;
   font-weight: 800;
-  margin-top: 20px;
+  margin-top: 22px;
   margin-bottom: 16px;
   text-align: center;
 `;
