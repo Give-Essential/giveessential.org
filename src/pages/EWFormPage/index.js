@@ -545,7 +545,6 @@ export default function EssentialWorkerFormPage() {
         case 0:
           return (
               <Screen style={{ paddingBottom: 10 }}>
-                {/*<div>Mobile Screen</div>*/}
                 <CenteredFlex>
                   <HeaderMobile style={{paddingRight: "0px"}}>Essential Worker Form</HeaderMobile>
                   <SubtitleMobile>The following questions ask about which items you need.
@@ -622,9 +621,9 @@ export default function EssentialWorkerFormPage() {
         case 1:
           return (
               <Container className="hi" style={{ paddingTop: 50, paddingLeft: "12%", paddingRight: "12%" }}>
-                <Subtitle>
+                <SubtitleMobile>
                   The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
-                </Subtitle>
+                </SubtitleMobile>
                 <Form style={{ paddingTop: 10 }} >
                   <Text>BASIC INFO</Text>
                   <Row>
@@ -870,7 +869,7 @@ export default function EssentialWorkerFormPage() {
           return (
               <Screen style={{ paddingTop: 50 }}>
                 <CenteredFlex>
-                  <Subtitle>Some final disclaimers before we match you!</Subtitle>
+                  <SubtitleMobile>Some final disclaimers before we match you!</SubtitleMobile>
                 </CenteredFlex>
                 <CenteredFlex>
                   <Label check style={{ width: "55vw", paddingTop: "2%" }}>
@@ -900,7 +899,7 @@ export default function EssentialWorkerFormPage() {
           return <p>WIP</p>;
       }
       // if (width > height) {
-      //
+      // later for horizontal orientation
       // }
     } else {
       switch (currentStep) {
