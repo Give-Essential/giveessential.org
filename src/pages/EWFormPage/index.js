@@ -7,9 +7,9 @@ import {
   Header, HeaderMobile,
   Title, TitleMobile,
   Subtitle, SubtitleMobile,
-  SubmitButton,
+  SubmitButton, SubmitButtonMobile,
   ButtonText,
-  Text,
+  Text, TextMobile,
   PinkSubmitButton,
   StyledInput,
   StyledLabel,
@@ -102,6 +102,38 @@ function getWindowDimensions() {
   };
 }
 
+const inputMobileStyle = {
+  width: "74vw",
+  color: "#8CC9BA",
+  borderRadius: 10,
+  border: "2px solid #8CC9BA",
+  backgroundColor: "#FFF",
+  height: "14vh",
+  fontSize: "12px"
+}
+
+const inputMobileStyle1 = {
+  width: "74vw",
+  color: "#8CC9BA",
+  borderRadius: 10,
+  border: "2px solid #8CC9BA",
+  backgroundColor: "#FFF",
+  height: "19vh",
+  fontSize: "11.5px",
+  // textAlign: "center"
+}
+
+const inputMobileStyle2 = {
+  width: "74vw",
+  color: "#8CC9BA",
+  borderRadius: 10,
+  border: "2px solid #8CC9BA",
+  backgroundColor: "#FFF",
+  height: "10vh",
+  fontSize: "12px",
+  marginTop: "0px"
+  // textAlign: "center"
+}
 
 export default function EssentialWorkerFormPage() {
   const [valueState, setValues] = useState([]);
@@ -513,7 +545,7 @@ export default function EssentialWorkerFormPage() {
         case 0:
           return (
               <Screen style={{ paddingBottom: 10 }}>
-                <div>Mobile Screen</div>
+                {/*<div>Mobile Screen</div>*/}
                 <CenteredFlex>
                   <HeaderMobile style={{paddingRight: "0px"}}>Essential Worker Form</HeaderMobile>
                   <SubtitleMobile>The following questions ask about which items you need.
@@ -522,7 +554,7 @@ export default function EssentialWorkerFormPage() {
                   <TitleMobile>What types of items do you need?*</TitleMobile>
                   <RowFlex>
                     <ColumnFlex>
-                      <CenteredFlex>
+                      <CenteredFlex style={{paddingLeft: "8px"}}>
                         <IconButtonGroup
                             data={items}
                             selected={itemState}
@@ -535,9 +567,9 @@ export default function EssentialWorkerFormPage() {
                   </RowFlex>
                 </CenteredFlex>
                 <CenteredFlex>
-                  <Title>Please specify what types of specific items would be most helpful for you to receive.*</Title>
+                  <TitleMobile>Please specify what types of specific items would be most helpful for you to receive.*</TitleMobile>
                   <Input
-                      style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }}
+                      style={inputMobileStyle}
                       type="textarea"
                       name="circumstances"
                       onChange={onItemDescChange}
@@ -547,9 +579,9 @@ export default function EssentialWorkerFormPage() {
                   <RedText>{itemDescError}</RedText>
                 </CenteredFlex>
                 <CenteredFlex>
-                  <Title>Please provide a description of your circumstances so we can better understand what you might need.*</Title>
+                  <TitleMobile>Please provide a description of your circumstances so we can better understand what you might need.*</TitleMobile>
                   <Input
-                      style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }}
+                      style={inputMobileStyle1}
                       type="textarea"
                       name="circumstances"
                       onChange={onCircumstancesChange}
@@ -559,8 +591,8 @@ export default function EssentialWorkerFormPage() {
                   <RedText>{circumstancesError}</RedText>
                 </CenteredFlex>
                 <CenteredFlex>
-                  <Title>Can we anonymously share your story on Give Essential media?*</Title>
-                  <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
+                  <TitleMobile>Can we anonymously share your story on Give Essential media?*</TitleMobile>
+                  <TextMobile>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
                 </CenteredFlex>
                 <CenteredFlex>
                   <TextButtonGroup
@@ -571,9 +603,9 @@ export default function EssentialWorkerFormPage() {
                   />
                 </CenteredFlex>
                 <CenteredFlex>
-                  <Title>Any additional notes or comments?</Title>
+                  <TitleMobile>Any additional notes or comments?</TitleMobile>
                   <Input
-                      style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF" }}
+                      style={inputMobileStyle2}
                       type="comments"
                       name="comments"
                       onChange={onCommentsChange}
@@ -581,9 +613,9 @@ export default function EssentialWorkerFormPage() {
                       placeholder="Comments"
                   />
                   {" "}
-                  <SubmitButton style={{ marginTop: 40}} onClick={validateFirstPage}>
+                  <SubmitButtonMobile style={{ marginTop: 40}} onClick={validateFirstPage}>
                     <ButtonText>CONTINUE</ButtonText>
-                  </SubmitButton>
+                  </SubmitButtonMobile>
                 </CenteredFlex>
               </Screen>
           );
