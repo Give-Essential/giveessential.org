@@ -14,7 +14,7 @@ import {
   StyledInput,StyledInputMobile,
   StyledLabel,
   StyledText, StyledTextMobile,
-  StyledButton,
+  StyledButton,StyledButtonMobile,
   RowFlex,
   ColumnFlex,
   SmallText, SmallTextMobile,
@@ -549,7 +549,7 @@ export default function EssentialWorkerFormPage() {
               <Screen style={{ paddingBottom: 10 }}>
                 <CenteredFlex>
                   <HeaderMobile style={{paddingRight: "0px"}}>Essential Worker Form</HeaderMobile>
-                  <SubtitleMobile>The following questions ask about which items you need.
+                  <SubtitleMobile style={ {marginBottom: "15px"}}>The following questions ask about which items you need.
                     We will pass this information along to your match so that they are able
                     to send an appropriate and helpful gift.</SubtitleMobile>
                   <TitleMobile>What types of items do you need?*</TitleMobile>
@@ -802,39 +802,43 @@ export default function EssentialWorkerFormPage() {
                   <Row><RedTextMobile>{employerError}</RedTextMobile></Row>
                   <Row>
                     <Col className="d-flex">
-                      <StyledTextMobile htmlFor="other">What industry do you work in?*</StyledTextMobile>
+                      <StyledTextMobile style={{paddingLeft: "14px"}} htmlFor="other">What industry do you work in?*</StyledTextMobile>
                     </Col>
                   </Row>
-                  <Row>
                     <IconButtonGroup
+                        style={{paddingLeft: "10px"}}
                         data={occupations}
                         selected={industryState}
                         toggle={toggleIndustries}
                         state="industryState"
                     />
                     <Row><RedTextMobile>{industryStateError}</RedTextMobile></Row>
-                  </Row>
                   <Row>
                     <Col>
-                      <StyledTextMobile htmlFor="other">Please provide proof that you are an essential worker*</StyledTextMobile>
+                      <StyledTextMobile style={{marginBottom: "10px", marginTop: "21px"}} htmlFor="other">Please provide proof that you are an essential worker*</StyledTextMobile>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
-                      <SmallTextMobile>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status.
+                      <SmallTextMobile style={{width: "74vw", paddingBottom: "0px"}}>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status.
                         We must have proof in order to match you with a donor.</SmallTextMobile>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
-                      <FormGroup>
-                        <Input
-                            type="file"
-                            name="file"
-                            id="proofFile"
-                            onChange={onProofChange}
-                        />
-                      </FormGroup>
+                        <FormGroup>
+                          <Input
+                              type="file"
+                              name="file"
+                              id="proofFile"
+                              size="sm"
+                              style={{
+                                padding: "0.2rem 4rem",
+                                fontSize: "11px"
+                              }}
+                              onChange={onProofChange}
+                          />
+                        </FormGroup>
                     </Col>
                   </Row>
                   <Row><RedTextMobile>{proofError}</RedTextMobile></Row>
@@ -859,8 +863,8 @@ export default function EssentialWorkerFormPage() {
                   </Row>
                   <RowFlex>
                     <Container>
-                      <SubmitButtonMobile onClick={validateSecondPage}>CONTINUE</SubmitButtonMobile>
-                      <StyledTextMobile>
+                      <StyledButtonMobile style= {{}} onClick={validateSecondPage}>CONTINUE</StyledButtonMobile>
+                      <StyledTextMobile style={{fontSize: "12px", fontWeight: "normal"}}>
                         By continuing, you agree to our{' '}
                         <strong>terms and conditions</strong>
                       </StyledTextMobile>
@@ -1167,7 +1171,7 @@ export default function EssentialWorkerFormPage() {
               <Row><RedText>{employerError}</RedText></Row>
               <Row>
                 <Col className="d-flex">
-                  <StyledTextMobile htmlFor="other">What industry do you work in?*</StyledTextMobile>
+                  <StyledText htmlFor="other">What industry do you work in?*</StyledText>
                 </Col>
               </Row>
               <Row>
@@ -1181,7 +1185,7 @@ export default function EssentialWorkerFormPage() {
               </Row>
               <Row>
                 <Col>
-                  <StyledTextMobile htmlFor="other">Please provide proof that you are an essential worker*</StyledTextMobile>
+                  <StyledText htmlFor="other">Please provide proof that you are an essential worker*</StyledText>
                 </Col>
               </Row>
               <Row>
@@ -1197,6 +1201,7 @@ export default function EssentialWorkerFormPage() {
                       type="file"
                       name="file"
                       id="proofFile"
+                      style={{fontFamily: "Montserrat"}}
                       onChange={onProofChange}
                       />
                   </FormGroup>
@@ -1225,10 +1230,10 @@ export default function EssentialWorkerFormPage() {
               <RowFlex>
                 <Container>
                   <StyledButton onClick={validateSecondPage}>CONTINUE</StyledButton>
-                  <StyledTextMobile>
+                  <StyledText>
                     By continuing, you agree to our{' '}
                     <strong>terms and conditions</strong>
-                  </StyledTextMobile>
+                  </StyledText>
                 </Container>
               </RowFlex>
             </Form>

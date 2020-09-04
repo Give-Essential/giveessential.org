@@ -79,7 +79,7 @@ export const SubtitleMobile = styled.h1`
   // font-style: italic;
   font-weight: 400;
   width: 85vw;
-  margin-top: 10px;
+  margin-top: 8px;
   margin-bottom: 0px;
   text-align: center;
   font-family: "Montserrat";
@@ -291,6 +291,21 @@ export const StyledButton = styled.button`
   color: ${(props) => (props.disabled ? '#8CC9BA' : '#ffffff')};
   font-size: 20px;
   padding: 15px 0;
+`;
+
+export const StyledButtonMobile = styled.button`
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 12px;
+  // width: 50%;
+  width: 69vw;
+  height: ${ window.innerWidth >= 900 ? '5vw' : '8vw'};
+  background-color: ${(props) => (props.disabled ? '#dddddd' : '#8CC9BA')};
+  color: ${(props) => (props.disabled ? '#8CC9BA' : '#ffffff')};
+  font-size: 12px;
+  // padding: 5px 10px;
 `;
 
 export const StyledContainer = styled.div`
