@@ -80,6 +80,18 @@ export const SubtitleMobile = styled.h1`
   font-weight: 400;
   width: 85vw;
   margin-top: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-family: "Montserrat";
+  color: #6c757d;
+`;
+
+export const SubtitleMobile2 = styled.h1`
+  font-size: 14px;
+  // font-style: italic;
+  font-weight: 400;
+  width: 85vw;
+  margin-top: -10px;
   text-align: center;
   font-family: "Montserrat";
   color: #6c757d;
@@ -92,13 +104,16 @@ export const Text = styled.h1`
   text-align: left;
   font-family: "Montserrat";
   color: "#6c757d";
+  font-weight: bold;
 `;
 
 export const TextMobile = styled.h1`
   font-size: 13px;
   width: 80vw;
-  margin-top: 0px;
-  margin-bottom: 15px;
+  // margin-top: 0px;
+  // margin-bottom: 15px;
+  margin-top: 14px 
+  margin-bottom: 10px
   text-align: center;
   font-family: Montserrat;
   color: #6c757d;
@@ -109,6 +124,15 @@ export const SmallText = styled.h1`
   width: 55vw;
   margin-top: 10px;
   text-align: left;
+`;
+
+export const SmallTextMobile = styled.h1`
+  font-size: 12px;
+  width: 85vw;
+  // margin-top: 10px;
+  text-align: center;
+  color: #6c757d;
+  font-family: "Montserrat";
 `;
 
 export const RedText = styled.h1`
@@ -214,6 +238,19 @@ export const StyledInput = styled(Input)`
     underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
 `;
 
+export const StyledInputMobile = styled(Input)`
+  font-family: 'Montserrat', open-sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #8cc9ba')};
+  border-radius: ${({ noBorder }) => (noBorder ? 0 : '5px')};
+  border-bottom: ${({ underLine }) =>
+    underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
+  padding-right: 2px;
+  padding-left: 8px;
+`;
+
 export const StyledLabel = styled(Label)`
   font-style: normal;
   font-weight: normal;
@@ -230,6 +267,18 @@ export const StyledText = styled.p`
   font-size: 16px;
   line-height: 20px;
   margin-top: 10px;
+`;
+
+export const StyledTextMobile = styled.p`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 20px;
+  // margin-top: 2px;
+  margin-bottom: 12px;
+  // width: 84vw;
+  font-family: "Montserrat";
+  text-align: center;
 `;
 
 export const StyledButton = styled.button`

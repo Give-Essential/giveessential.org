@@ -6,18 +6,18 @@ import {
   CenteredFlex,
   Header, HeaderMobile,
   Title, TitleMobile,
-  Subtitle, SubtitleMobile,
+  Subtitle, SubtitleMobile, SubtitleMobile2,
   SubmitButton, SubmitButtonMobile,
   ButtonText,
   Text, TextMobile,
   PinkSubmitButton,
-  StyledInput,
+  StyledInput,StyledInputMobile,
   StyledLabel,
-  StyledText,
+  StyledText, StyledTextMobile,
   StyledButton,
   RowFlex,
   ColumnFlex,
-  SmallText,
+  SmallText, SmallTextMobile,
   RedText, RedTextMobile
 } from "./styles";
 import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
@@ -623,15 +623,17 @@ export default function EssentialWorkerFormPage() {
         case 1:
           return (
               <Container className="hi" style={{ paddingTop: 50, paddingLeft: "12%", paddingRight: "12%" }}>
-                <SubtitleMobile>
-                  The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
-                </SubtitleMobile>
+                <CenteredFlex>
+                  <SubtitleMobile2>
+                    The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
+                  </SubtitleMobile2>
+                </CenteredFlex>
                 <Form style={{ paddingTop: 10 }} >
                   <Text>BASIC INFO</Text>
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="name"
                             name="name"
                             onChange={onFirstNameChange}
@@ -643,7 +645,7 @@ export default function EssentialWorkerFormPage() {
                     </Col>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="name"
                             name="name"
                             onChange={onLastNameChange}
@@ -658,7 +660,7 @@ export default function EssentialWorkerFormPage() {
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="email"
                             name="email"
                             onChange={onEmailChange}
@@ -673,7 +675,7 @@ export default function EssentialWorkerFormPage() {
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="number"
                             name="number"
                             onChange={onPhoneChange}
@@ -684,11 +686,11 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><RedText>{phoneError}</RedText></Row>
+                  <Row><RedTextMobile>{phoneError}</RedTextMobile></Row>
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="mailingaddress"
                             name="mailingaddress"
                             onChange={onStreetChange}
@@ -699,11 +701,11 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><RedText>{streetError}</RedText></Row>
+                  <Row><RedTextMobile>{streetError}</RedTextMobile></Row>
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="mailingaddress2"
                             name="mailingaddress2"
                             onChange={onStreet2Change}
@@ -717,7 +719,7 @@ export default function EssentialWorkerFormPage() {
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             name="text"
                             onChange={onCityChange}
                             value={city}
@@ -726,7 +728,7 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                     <Col>
-                      <StyledInput
+                      <StyledInputMobile
                           type="select"
                           name="select"
                           onChange={onStateChange}
@@ -735,11 +737,11 @@ export default function EssentialWorkerFormPage() {
                         {states.map((us_state) => (
                             <option key={us_state}>{us_state}</option>
                         ))}
-                      </StyledInput>
+                      </StyledInputMobile>
                     </Col>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             name="text"
                             onChange={onZipChange}
                             value={zip}
@@ -748,12 +750,12 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><RedText>{cityError}</RedText></Row>
-                  <Row><RedText>{stateError}</RedText></Row>
-                  <Row><RedText>{zipError}</RedText></Row>
+                  <Row><RedTextMobile>{cityError}</RedTextMobile></Row>
+                  <Row><RedTextMobile>{stateError}</RedTextMobile></Row>
+                  <Row><RedTextMobile>{zipError}</RedTextMobile></Row>
                   <Row>
                     <Col className="d-flex">
-                      <StyledText htmlFor="other">Do you fall into any of these categories?* </StyledText>
+                      <StyledTextMobile htmlFor="other">Do you fall into any of these categories?* </StyledTextMobile>
                     </Col>
                   </Row>
                   <IconButtonGroup
@@ -771,7 +773,7 @@ export default function EssentialWorkerFormPage() {
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="jobtitle"
                             name="jobtitle"
                             onChange={onJobTitleChange}
@@ -782,11 +784,11 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><RedText>{jobTitleError}</RedText></Row>
+                  <Row><RedTextMobile>{jobTitleError}</RedTextMobile></Row>
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="employer"
                             name="employer"
                             onChange={onEmployerChange}
@@ -797,10 +799,10 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><RedText>{employerError}</RedText></Row>
+                  <Row><RedTextMobile>{employerError}</RedTextMobile></Row>
                   <Row>
                     <Col className="d-flex">
-                      <StyledText htmlFor="other">What industry do you work in?*</StyledText>
+                      <StyledTextMobile htmlFor="other">What industry do you work in?*</StyledTextMobile>
                     </Col>
                   </Row>
                   <Row>
@@ -810,17 +812,17 @@ export default function EssentialWorkerFormPage() {
                         toggle={toggleIndustries}
                         state="industryState"
                     />
-                    <Row><RedText>{industryStateError}</RedText></Row>
+                    <Row><RedTextMobile>{industryStateError}</RedTextMobile></Row>
                   </Row>
                   <Row>
                     <Col>
-                      <StyledText htmlFor="other">Please provide proof that you are an essential worker*</StyledText>
+                      <StyledTextMobile htmlFor="other">Please provide proof that you are an essential worker*</StyledTextMobile>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
-                      <SmallText>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status.
-                        We must have proof in order to match you with a donor.</SmallText>
+                      <SmallTextMobile>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status.
+                        We must have proof in order to match you with a donor.</SmallTextMobile>
                     </Col>
                   </Row>
                   <Row>
@@ -835,7 +837,7 @@ export default function EssentialWorkerFormPage() {
                       </FormGroup>
                     </Col>
                   </Row>
-                  <Row><RedText>{proofError}</RedText></Row>
+                  <Row><RedTextMobile>{proofError}</RedTextMobile></Row>
                   <Row>
                     <Col className="d-flex">
                       <Text htmlFor="other">OTHER INFO </Text>
@@ -844,7 +846,7 @@ export default function EssentialWorkerFormPage() {
                   <Row>
                     <Col>
                       <FormGroup>
-                        <StyledInput
+                        <StyledInputMobile
                             type="hear"
                             name="hear"
                             onChange={onReferrerChange}
@@ -857,11 +859,11 @@ export default function EssentialWorkerFormPage() {
                   </Row>
                   <RowFlex>
                     <Container>
-                      <StyledButton onClick={validateSecondPage}>CONTINUE</StyledButton>
-                      <StyledText>
+                      <SubmitButtonMobile onClick={validateSecondPage}>CONTINUE</SubmitButtonMobile>
+                      <StyledTextMobile>
                         By continuing, you agree to our{' '}
                         <strong>terms and conditions</strong>
-                      </StyledText>
+                      </StyledTextMobile>
                     </Container>
                   </RowFlex>
                 </Form>
@@ -1165,7 +1167,7 @@ export default function EssentialWorkerFormPage() {
               <Row><RedText>{employerError}</RedText></Row>
               <Row>
                 <Col className="d-flex">
-                  <StyledText htmlFor="other">What industry do you work in?*</StyledText>
+                  <StyledTextMobile htmlFor="other">What industry do you work in?*</StyledTextMobile>
                 </Col>
               </Row>
               <Row>
@@ -1179,7 +1181,7 @@ export default function EssentialWorkerFormPage() {
               </Row>
               <Row>
                 <Col>
-                  <StyledText htmlFor="other">Please provide proof that you are an essential worker*</StyledText>
+                  <StyledTextMobile htmlFor="other">Please provide proof that you are an essential worker*</StyledTextMobile>
                 </Col>
               </Row>
               <Row>
@@ -1223,10 +1225,10 @@ export default function EssentialWorkerFormPage() {
               <RowFlex>
                 <Container>
                   <StyledButton onClick={validateSecondPage}>CONTINUE</StyledButton>
-                  <StyledText>
+                  <StyledTextMobile>
                     By continuing, you agree to our{' '}
                     <strong>terms and conditions</strong>
-                  </StyledText>
+                  </StyledTextMobile>
                 </Container>
               </RowFlex>
             </Form>
