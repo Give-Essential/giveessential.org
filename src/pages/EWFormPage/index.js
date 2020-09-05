@@ -1,24 +1,24 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import axios, { post } from "axios";
 import { Link } from "react-router-dom";
 import {
   Screen,
   CenteredFlex,
-  Header,
-  Title,
-  Subtitle,
-  SubmitButton,
+  Header, HeaderMobile,
+  Title, TitleMobile,
+  Subtitle, SubtitleMobile, SubtitleMobile2,
+  SubmitButton, SubmitButtonMobile,
   ButtonText,
-  Text,
-  PinkSubmitButton,
-  StyledInput,
+  Text, TextMobile,
+  PinkSubmitButton, PinkSubmitButtonMobile,
+  StyledInput,StyledInputMobile,
   StyledLabel,
-  StyledText,
-  StyledButton,
+  StyledText, StyledTextMobile,
+  StyledButton,StyledButtonMobile,
   RowFlex,
   ColumnFlex,
-  SmallText, 
-  RedText
+  SmallText, SmallTextMobile,
+  RedText, RedTextMobile
 } from "./styles";
 import { Form, FormGroup, Container, Row, Col, Label, Input } from 'reactstrap';
 import IconButtonGroup from "./components/IconButtonGroup";
@@ -26,6 +26,13 @@ import TextButtonGroup from "./components/TextButtonGroup";
 import { items, categories, occupations, yesNo } from "./buttonGroupData";
 import useStep from '../../hooks';
 import EWMatchedPage from '../EWMatchedPage';
+import  WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Montserrat:thin', 'open-serif'],
+  }
+});
 
 const states = [
   'State*',
@@ -94,6 +101,49 @@ const referrals = [
   'Other',
 ];
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+const inputMobileStyle = {
+  width: "74vw",
+  color: "#8CC9BA",
+  borderRadius: 10,
+  border: "2px solid #8CC9BA",
+  backgroundColor: "#FFF",
+  height: "14vh",
+  fontSize: "12px",
+  fontFamily: "Montserrat",
+}
+
+const inputMobileStyle1 = {
+  width: "74vw",
+  color: "#8CC9BA",
+  borderRadius: 10,
+  border: "2px solid #8CC9BA",
+  backgroundColor: "#FFF",
+  height: "19vh",
+  fontSize: "11.5px",
+  fontFamily: "Montserrat",
+  // textAlign: "center"
+}
+
+const inputMobileStyle2 = {
+  width: "74vw",
+  color: "#8CC9BA",
+  borderRadius: 10,
+  border: "2px solid #8CC9BA",
+  backgroundColor: "#FFF",
+  height: "10vh",
+  fontSize: "12px",
+  marginTop: "0px",
+  fontFamily: "Montserrat",
+  // textAlign: "center"
+}
 
 export default function EssentialWorkerFormPage() {
   const [valueState, setValues] = useState([]);
@@ -473,364 +523,755 @@ export default function EssentialWorkerFormPage() {
     }
   }
 
+  const useWindowDimensions = () => {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return windowDimensions;
+  }
+
+  const {height, width} = useWindowDimensions();
+
+  // add if case for ipad
+
   const renderStep = () => {
-    switch (currentStep) {
-      case 0:
-        return (
-          <Screen style={{ paddingBottom: 10 }}>
-            <CenteredFlex>
-              <Header>Essential Worker Form</Header>
-              <Subtitle>The following questions ask about which items you need. 
-                We will pass this information along to your match so that they are able 
-                to send an appropriate and helpful gift.</Subtitle>
-              <Title>What types of items do you need?*</Title>
-              <RowFlex>
-                <ColumnFlex>
-                  <CenteredFlex>
+    if (width < 420) {
+      switch (currentStep) {
+        case 0:
+          return (
+              <Screen style={{ paddingBottom: 10 }}>
+                <CenteredFlex>
+                  <HeaderMobile style={{paddingRight: "0px"}}>Essential Worker Form</HeaderMobile>
+                  <SubtitleMobile style={ {marginBottom: "15px"}}>The following questions ask about which items you need.
+                    We will pass this information along to your match so that they are able
+                    to send an appropriate and helpful gift.</SubtitleMobile>
+                  <TitleMobile>What types of items do you need?*</TitleMobile>
+                  <RowFlex>
+                    <ColumnFlex>
+                      <CenteredFlex style={{paddingLeft: "8px"}}>
+                        <IconButtonGroup
+                            data={items}
+                            selected={itemState}
+                            toggle={toggle}
+                            state="itemState"
+                        />
+                        <RedTextMobile>{itemStateError}</RedTextMobile>
+                      </CenteredFlex>
+                    </ColumnFlex>
+                  </RowFlex>
+                </CenteredFlex>
+                <CenteredFlex>
+                  <TitleMobile>Please specify what types of specific items would be most helpful for you to receive.*</TitleMobile>
+                  <Input
+                      style={inputMobileStyle}
+                      type="textarea"
+                      name="circumstances"
+                      onChange={onItemDescChange}
+                      value={itemDesc}
+                      placeholder="Please specify products or brands or write N/A if not applicable."
+                  />
+                  <RedTextMobile>{itemDescError}</RedTextMobile>
+                </CenteredFlex>
+                <CenteredFlex>
+                  <TitleMobile>Please provide a description of your circumstances so we can better understand what you might need.*</TitleMobile>
+                  <Input
+                      style={inputMobileStyle1}
+                      type="textarea"
+                      name="circumstances"
+                      onChange={onCircumstancesChange}
+                      value={circumstances}
+                      placeholder="Are you a grocery shopper who needs help with gas? Are you a single mother who needs activities for her kids? Feel free to tell us anything about your situation and the items that you need so that we can better help you."
+                  />
+                  <RedTextMobile>{circumstancesError}</RedTextMobile>
+                </CenteredFlex>
+                <CenteredFlex>
+                  <TitleMobile>Can we anonymously share your story on Give Essential media?*</TitleMobile>
+                  <TextMobile style={ {color: "#6c757d"}}>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</TextMobile>
+                </CenteredFlex>
+                <CenteredFlex style={{paddingBottom: "10px"}}>
+                  <TextButtonGroup
+                      data={yesNo}
+                      selected={share}
+                      toggle={singleSelectToggle}
+                      state="share"
+                  />
+                </CenteredFlex>
+                <CenteredFlex>
+                  <TitleMobile>Any additional notes or comments?</TitleMobile>
+                  <Input
+                      style={inputMobileStyle2}
+                      type="comments"
+                      name="comments"
+                      onChange={onCommentsChange}
+                      value={comments}
+                      placeholder="Comments"
+                  />
+                  {" "}
+                  <SubmitButtonMobile style={{ marginTop: 40}} onClick={validateFirstPage}>
+                    <ButtonText>CONTINUE</ButtonText>
+                  </SubmitButtonMobile>
+                </CenteredFlex>
+              </Screen>
+          );
+        case 1:
+          return (
+              <Container className="hi" style={{ paddingTop: 50, paddingLeft: "12%", paddingRight: "12%" }}>
+                <CenteredFlex>
+                  <SubtitleMobile2>
+                    The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
+                  </SubtitleMobile2>
+                </CenteredFlex>
+                <Form style={{ paddingTop: 10 }} >
+                  <Text>BASIC INFO</Text>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="name"
+                            name="name"
+                            onChange={onFirstNameChange}
+                            value={firstName}
+                            id="setFirstName"
+                            placeholder="First Name*"
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="name"
+                            name="name"
+                            onChange={onLastNameChange}
+                            value={lastName}
+                            id="setLastName"
+                            placeholder="Last Name*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><Col className="d-flex"><RedTextMobile>{firstNameError} {lastNameError}</RedTextMobile></Col></Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="email"
+                            name="email"
+                            onChange={onEmailChange}
+                            value={email}
+                            id="email"
+                            placeholder="Email*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><Col className="d-flex"><RedText>{emailError}</RedText></Col></Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="number"
+                            name="number"
+                            onChange={onPhoneChange}
+                            value={phone}
+                            id="phoneNumber"
+                            placeholder="Phone Number*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><RedTextMobile>{phoneError}</RedTextMobile></Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="mailingaddress"
+                            name="mailingaddress"
+                            onChange={onStreetChange}
+                            value={street}
+                            id="mailingAddress"
+                            placeholder="Mailing Address*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><RedTextMobile>{streetError}</RedTextMobile></Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="mailingaddress2"
+                            name="mailingaddress2"
+                            onChange={onStreet2Change}
+                            value={street2}
+                            id="mailingAddress2"
+                            placeholder="Mailing Address 2*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            name="text"
+                            onChange={onCityChange}
+                            value={city}
+                            id="city"
+                            placeholder="City*" />
+                      </FormGroup>
+                    </Col>
+                    <Col>
+                      <StyledInputMobile
+                          type="select"
+                          name="select"
+                          onChange={onStateChange}
+                          value={state}
+                          id="state">
+                        {states.map((us_state) => (
+                            <option key={us_state}>{us_state}</option>
+                        ))}
+                      </StyledInputMobile>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            name="text"
+                            onChange={onZipChange}
+                            value={zip}
+                            id="zip"
+                            placeholder="Zip Code*" />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><RedTextMobile>{cityError}</RedTextMobile></Row>
+                  <Row><RedTextMobile>{stateError}</RedTextMobile></Row>
+                  <Row><RedTextMobile>{zipError}</RedTextMobile></Row>
+                  <Row>
+                    <Col className="d-flex">
+                      <StyledTextMobile htmlFor="other">Do you fall into any of these categories?* </StyledTextMobile>
+                    </Col>
+                  </Row>
+                  <IconButtonGroup
+                      data={categories}
+                      selected={categoryState}
+                      toggle={toggleCategories}
+                      state="categoryState"
+                  />
+                  <Row><Col className="d-flex"><RedText>{categoryStateError}</RedText></Col></Row>
+                  <Row>
+                    <Col className="d-flex">
+                      <Text htmlFor="other">OCCUPATION </Text>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="jobtitle"
+                            name="jobtitle"
+                            onChange={onJobTitleChange}
+                            value={jobTitle}
+                            id="jobtitle"
+                            placeholder="Job Title*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><RedTextMobile>{jobTitleError}</RedTextMobile></Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="employer"
+                            name="employer"
+                            onChange={onEmployerChange}
+                            value={employer}
+                            id="employer"
+                            placeholder="Employer/Institution*"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><RedTextMobile>{employerError}</RedTextMobile></Row>
+                  <Row>
+                    <Col className="d-flex">
+                      <StyledTextMobile style={{paddingLeft: "14px"}} htmlFor="other">What industry do you work in?*</StyledTextMobile>
+                    </Col>
+                  </Row>
                     <IconButtonGroup
-                    data={items}
-                    selected={itemState}
-                    toggle={toggle}
-                    state="itemState"
+                        style={{paddingLeft: "10px"}}
+                        data={occupations}
+                        selected={industryState}
+                        toggle={toggleIndustries}
+                        state="industryState"
                     />
-                    <RedText>{itemStateError}</RedText>
-                  </CenteredFlex>
-                </ColumnFlex>
+                    <Row><RedTextMobile>{industryStateError}</RedTextMobile></Row>
+                  <Row>
+                    <Col>
+                      <StyledTextMobile style={{marginBottom: "10px", marginTop: "21px"}} htmlFor="other">Please provide proof that you are an essential worker*</StyledTextMobile>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <SmallTextMobile style={{width: "74vw", paddingBottom: "0px"}}>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status.
+                        We must have proof in order to match you with a donor.</SmallTextMobile>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                        <FormGroup>
+                          <Input
+                              type="file"
+                              name="file"
+                              id="proofFile"
+                              size="sm"
+                              style={{
+                                padding: "0.2rem 4rem",
+                                fontSize: "11px"
+                              }}
+                              onChange={onProofChange}
+                          />
+                        </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row><RedTextMobile>{proofError}</RedTextMobile></Row>
+                  <Row>
+                    <Col className="d-flex">
+                      <Text htmlFor="other">OTHER INFO </Text>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInputMobile
+                            type="hear"
+                            name="hear"
+                            onChange={onReferrerChange}
+                            value={referrer}
+                            id="hear"
+                            placeholder="How did you hear about us?"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <RowFlex>
+                    <Container>
+                      <StyledButtonMobile style= {{}} onClick={validateSecondPage}>CONTINUE</StyledButtonMobile>
+                      <StyledTextMobile style={{fontSize: "12px", fontWeight: "normal"}}>
+                        By continuing, you agree to our{' '}
+                        <strong>terms and conditions</strong>
+                      </StyledTextMobile>
+                    </Container>
+                  </RowFlex>
+                </Form>
+              </Container>
+          );
+        case 2:
+          return (
+              <Screen style={{ paddingTop: 50 }}>
+                <CenteredFlex>
+                  <SubtitleMobile style={{fontSize: "17px", fontWeight: "400", color: "#8CC9BA", marginTop: "0px", marginBottom: "5px"}}>Some final disclaimers before we match you!</SubtitleMobile>
+                </CenteredFlex>
+                <CenteredFlex>
+                  <Label check style={{ width: "auto", paddingTop: "2%" }}>
+                    <Input style={{marginTop: "10px", marginLeft: "-10px"}} type="checkbox" onChange={onCheck1Change}/>{' '}
+                    <SubtitleMobile style={{fontSize: "13px", marginBottom: "1px", fontWeight: "bold"}}>I consent to Give Essential to sharing the information I have provided about my circumstances with my donor.*</SubtitleMobile>
+                  </Label>
+                  <TextMobile style={{fontWeight: "300", fontSize: "12px", textAlign: "center", paddingTop: "5px"}}>This will help them get a better idea of what types of gifts to send. Company names will be removed, and donors have pledged to only use the information they're given for the sole purpose of sending a gift. In our experience, donors are more likely to send a package when we are allowed to share your story with them</TextMobile>
+                </CenteredFlex>
+                <CenteredFlex>
+                  <Label check style={{ width: "auto", paddingTop: "2%"  }}>
+                    <Input style={{marginTop: "10px", marginLeft: "-10px"}} type="checkbox" onChange={onCheck2Change}/>{' '}
+                    <SubtitleMobile style={{fontSize: "13px", marginBottom: "1px", fontWeight: "bold"}}>I understand that my donor will receive my first and last name, email address, mailing address, and if I consented, the story that I shared. I understand that these items are publicly sourced from un-vetted individuals, including individuals who themselves may be carrying COVID-19, and take full responsibility for the quality, efficacy, and safety of these donations and their use, and full responsibility for the information I have shared.* </SubtitleMobile>
+                  </Label>
+                  <TextMobile style={{fontWeight: "300", fontSize: "12px", textAlign: "center", paddingTop: "5px"}}>Give Essential connects people with publicly crowd-sourced donation items to essential workers during this time of critical shortage and inaccessibility. All items are being donated and are provided without any warranty, guarantee, or certification of fitness for purpose. Nothing in this website or in the course of providing these donations establishes a legal obligation or promise on Give Essential's behalf.</TextMobile>
+                </CenteredFlex>
+                <CenteredFlex>
+                  <RedTextMobile>{checkError}</RedTextMobile>
+                  <PinkSubmitButtonMobile style={{ marginTop: "8px", fontSize: "13px" }} onClick={validateThirdPage}>
+                    <ButtonText>SUBMIT</ButtonText>
+                  </PinkSubmitButtonMobile>
+                </CenteredFlex>
+              </Screen>
+          );
+        case 3:
+          return <EWMatchedPage />;
+        default:
+          return <p>WIP</p>;
+      }
+      // if (width > height) {
+      // later for horizontal orientation
+      // }
+    }
+    else {
+      switch (currentStep) {
+        case 0:
+          return (
+            <Screen style={{ paddingBottom: 10 }}>
+              {/*<div>*/}
+              {/*  width: {width}; height: {height}*/}
+              {/*</div>*/}
+              <CenteredFlex>
+                <Header>Essential Worker Form</Header>
+                <Subtitle>The following questions ask about which items you need.
+                  We will pass this information along to your match so that they are able
+                  to send an appropriate and helpful gift.</Subtitle>
+                <Title>What types of items do you need?*</Title>
+                <RowFlex>
+                  <ColumnFlex>
+                    <CenteredFlex>
+                      <IconButtonGroup
+                      data={items}
+                      selected={itemState}
+                      toggle={toggle}
+                      state="itemState"
+                      />
+                      <RedText>{itemStateError}</RedText>
+                    </CenteredFlex>
+                  </ColumnFlex>
+                </RowFlex>
+              </CenteredFlex>
+              <CenteredFlex>
+                <Title>Please specify what types of specific items would be most helpful for you to receive.*</Title>
+                <Input
+                  style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }}
+                  type="textarea"
+                  name="circumstances"
+                  onChange={onItemDescChange}
+                  value={itemDesc}
+                  placeholder="Please specify products or brands or write N/A if not applicable."
+                  />
+                <RedText>{itemDescError}</RedText>
+              </CenteredFlex>
+              <CenteredFlex>
+                <Title>Please provide a description of your circumstances so we can better understand what you might need.*</Title>
+                <Input
+                  style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }}
+                  type="textarea"
+                  name="circumstances"
+                  onChange={onCircumstancesChange}
+                  value={circumstances}
+                  placeholder="Are you a grocery shopper who needs help with gas? Are you a single mother who needs activities for her kids? Feel free to tell us anything about your situation and the items that you need so that we can better help you."
+                  />
+                <RedText>{circumstancesError}</RedText>
+              </CenteredFlex>
+              <CenteredFlex>
+                <Title>Can we anonymously share your story on Give Essential media?*</Title>
+                <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
+              </CenteredFlex>
+              <CenteredFlex>
+                <TextButtonGroup
+                  data={yesNo}
+                  selected={share}
+                  toggle={singleSelectToggle}
+                  state="share"
+                />
+              </CenteredFlex>
+              <CenteredFlex>
+                <Title>Any additional notes or comments?</Title>
+                <Input
+                  style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF" }}
+                  type="comments"
+                  name="comments"
+                  onChange={onCommentsChange}
+                  value={comments}
+                  placeholder="Comments"
+                />
+        {" "}
+                <SubmitButton style={{ marginTop: 40}} onClick={validateFirstPage}>
+                  <ButtonText>CONTINUE</ButtonText>
+                </SubmitButton>
+              </CenteredFlex>
+            </Screen>
+      );
+        case 1:
+          return (
+            <Container className="hi" style={{ paddingTop: 50, paddingLeft: "12%", paddingRight: "12%" }}>
+            <Subtitle>
+            The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
+            </Subtitle>
+            <Form style={{ paddingTop: 10 }} >
+              <Text>BASIC INFO</Text>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="name"
+                      name="name"
+                      onChange={onFirstNameChange}
+                      value={firstName}
+                      id="setFirstName"
+                      placeholder="First Name*"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="name"
+                      name="name"
+                      onChange={onLastNameChange}
+                      value={lastName}
+                      id="setLastName"
+                      placeholder="Last Name*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><Col className="d-flex"><RedText>{firstNameError} {lastNameError}</RedText></Col></Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="email"
+                      name="email"
+                      onChange={onEmailChange}
+                      value={email}
+                      id="email"
+                      placeholder="Email*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><Col className="d-flex"><RedText>{emailError}</RedText></Col></Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="number"
+                      name="number"
+                      onChange={onPhoneChange}
+                      value={phone}
+                      id="phoneNumber"
+                      placeholder="Phone Number*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><RedText>{phoneError}</RedText></Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="mailingaddress"
+                      name="mailingaddress"
+                      onChange={onStreetChange}
+                      value={street}
+                      id="mailingAddress"
+                      placeholder="Mailing Address*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><RedText>{streetError}</RedText></Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="mailingaddress2"
+                      name="mailingaddress2"
+                      onChange={onStreet2Change}
+                      value={street2}
+                      id="mailingAddress2"
+                      placeholder="Mailing Address 2*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      name="text"
+                      onChange={onCityChange}
+                      value={city}
+                      id="city"
+                      placeholder="City*" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <StyledInput
+                    type="select"
+                    name="select"
+                    onChange={onStateChange}
+                    value={state}
+                    id="state">
+                    {states.map((us_state) => (
+                      <option key={us_state}>{us_state}</option>
+                    ))}
+                  </StyledInput>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      name="text"
+                      onChange={onZipChange}
+                      value={zip}
+                      id="zip"
+                      placeholder="Zip Code*" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><RedText>{cityError}</RedText></Row>
+              <Row><RedText>{stateError}</RedText></Row>
+              <Row><RedText>{zipError}</RedText></Row>
+              <Row>
+                <Col className="d-flex">
+                  <StyledText htmlFor="other">Do you fall into any of these categories?* </StyledText>
+                </Col>
+              </Row>
+              <IconButtonGroup
+                      data={categories}
+                      selected={categoryState}
+                      toggle={toggleCategories}
+                      state="categoryState"
+                    />
+              <Row><Col className="d-flex"><RedText>{categoryStateError}</RedText></Col></Row>
+              <Row>
+                <Col className="d-flex">
+                  <Text htmlFor="other">OCCUPATION </Text>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="jobtitle"
+                      name="jobtitle"
+                      onChange={onJobTitleChange}
+                      value={jobTitle}
+                      id="jobtitle"
+                      placeholder="Job Title*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><RedText>{jobTitleError}</RedText></Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="employer"
+                      name="employer"
+                      onChange={onEmployerChange}
+                      value={employer}
+                      id="employer"
+                      placeholder="Employer/Institution*"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><RedText>{employerError}</RedText></Row>
+              <Row>
+                <Col className="d-flex">
+                  <StyledText htmlFor="other">What industry do you work in?*</StyledText>
+                </Col>
+              </Row>
+                <IconButtonGroup
+                      data={occupations}
+                      selected={industryState}
+                      toggle={toggleIndustries}
+                      state="industryState"
+                    />
+              <Row><RedText>{industryStateError}</RedText></Row>
+              <Row>
+                <Col>
+                  <StyledText htmlFor="other">Please provide proof that you are an essential worker*</StyledText>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <SmallText>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status.
+                      We must have proof in order to match you with a donor.</SmallText>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <Input
+                      type="file"
+                      name="file"
+                      id="proofFile"
+                      style={{fontFamily: "Montserrat"}}
+                      onChange={onProofChange}
+                      />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row><RedText>{proofError}</RedText></Row>
+              <Row>
+                <Col className="d-flex">
+                  <Text htmlFor="other">OTHER INFO </Text>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <StyledInput
+                      type="hear"
+                      name="hear"
+                      onChange={onReferrerChange}
+                      value={referrer}
+                      id="hear"
+                      placeholder="How did you hear about us?"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <RowFlex>
+                <Container>
+                  <StyledButton onClick={validateSecondPage}>CONTINUE</StyledButton>
+                  <StyledText>
+                    By continuing, you agree to our{' '}
+                    <strong>terms and conditions</strong>
+                  </StyledText>
+                </Container>
               </RowFlex>
+            </Form>
+          </Container>
+        );
+        case 2:
+          return (
+            <Screen style={{ paddingTop: 50 }}>
+            <CenteredFlex>
+              <Subtitle>Some final disclaimers before we match you!</Subtitle>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Please specify what types of specific items would be most helpful for you to receive.*</Title>
-              <Input 
-                style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
-                type="textarea"
-                name="circumstances"
-                onChange={onItemDescChange}
-                value={itemDesc}
-                placeholder="Please specify products or brands or write N/A if not applicable."
-                />
-              <RedText>{itemDescError}</RedText>
+              <Label check style={{ width: "55vw", paddingTop: "2%" }}>
+                <Input type="checkbox" onChange={onCheck1Change}/>{' '}
+                <b>I consent to Give Essential to sharing the information I have provided about my circumstances with my donor.*</b>
+              </Label>
+              <Text>This will help them get a better idea of what types of gifts to send. Company names will be removed, and donors have pledged to only use the information they're given for the sole purpose of sending a gift. In our experience, donors are more likely to send a package when we are allowed to share your story with them</Text>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Please provide a description of your circumstances so we can better understand what you might need.*</Title>
-              <Input 
-                style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF", height: "15vh" }} 
-                type="textarea"
-                name="circumstances"
-                onChange={onCircumstancesChange}
-                value={circumstances}
-                placeholder="Are you a grocery shopper who needs help with gas? Are you a single mother who needs activities for her kids? Feel free to tell us anything about your situation and the items that you need so that we can better help you."
-                />
-              <RedText>{circumstancesError}</RedText>
+              <Label check style={{ width: "55vw", paddingTop: "2%"  }}>
+                <Input type="checkbox" onChange={onCheck2Change}/>{' '}
+                <b>I understand that my donor will receive my first and last name, email address, mailing address, and if I consented, the story that I shared. I understand that these items are publicly sourced from un-vetted individuals, including individuals who themselves may be carrying COVID-19, and take full responsibility for the quality, efficacy, and safety of these donations and their use, and full responsibility for the information I have shared.* </b>
+              </Label>
+              <Text>Give Essential connects people with publicly crowd-sourced donation items to essential workers during this time of critical shortage and inaccessibility. All items are being donated and are provided without any warranty, guarantee, or certification of fitness for purpose. Nothing in this website or in the course of providing these donations establishes a legal obligation or promise on Give Essential's behalf.</Text>
             </CenteredFlex>
             <CenteredFlex>
-              <Title>Can we anonymously share your story on Give Essential media?*</Title>
-              <Text>We want to share stories to help reach donors. Stories will be completely anonymous on our public media; all personal identification information will be removed (name, company name, address, etc).</Text>
-            </CenteredFlex>
-            <CenteredFlex>
-              <TextButtonGroup
-                data={yesNo}
-                selected={share}
-                toggle={singleSelectToggle}
-                state="share"
-              />
-            </CenteredFlex>
-            <CenteredFlex>
-              <Title>Any additional notes or comments?</Title>
-              <Input 
-                style={{ width: "55vw", color: "#8CC9BA", borderRadius: 10, border: "2px solid #8CC9BA", backgroundColor: "#FFF" }} 
-                type="comments"
-                name="comments"
-                onChange={onCommentsChange}
-                value={comments}
-                placeholder="Comments"
-              />
-      {" "}
-              <SubmitButton style={{ marginTop: 40}} onClick={validateFirstPage}>
-                <ButtonText>CONTINUE</ButtonText>
-              </SubmitButton>
+              <RedText>{checkError}</RedText>
+              <PinkSubmitButton style={{ marginTop: 40 }} onClick={validateThirdPage}>
+                <ButtonText>SUBMIT</ButtonText>
+              </PinkSubmitButton>
             </CenteredFlex>
           </Screen>
-    );
-      case 1:
-        return (
-          <Container className="hi" style={{ paddingTop: 50, paddingLeft: "12%", paddingRight: "12%" }}>
-          <Subtitle>
-          The following questions ask for your contact information and about your background. Your contact information is used to facilitate the match. Your background is used to create a more meaningful match between you and your donor — we've found this results in more personalized donations!
-          </Subtitle>
-          <Form style={{ paddingTop: 10 }} >
-            <Text>BASIC INFO</Text>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="name"
-                    name="name"
-                    onChange={onFirstNameChange}
-                    value={firstName}
-                    id="setFirstName"
-                    placeholder="First Name*"
-                  />
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="name"
-                    name="name"
-                    onChange={onLastNameChange}
-                    value={lastName}
-                    id="setLastName"
-                    placeholder="Last Name*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><Col className="d-flex"><RedText>{firstNameError} {lastNameError}</RedText></Col></Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="email"
-                    name="email"
-                    onChange={onEmailChange}
-                    value={email}
-                    id="email"
-                    placeholder="Email*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><Col className="d-flex"><RedText>{emailError}</RedText></Col></Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="number"
-                    name="number"
-                    onChange={onPhoneChange}
-                    value={phone}
-                    id="phoneNumber"
-                    placeholder="Phone Number*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><RedText>{phoneError}</RedText></Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="mailingaddress"
-                    name="mailingaddress"
-                    onChange={onStreetChange}
-                    value={street}
-                    id="mailingAddress"
-                    placeholder="Mailing Address*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><RedText>{streetError}</RedText></Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="mailingaddress2"
-                    name="mailingaddress2"
-                    onChange={onStreet2Change}
-                    value={street2}
-                    id="mailingAddress2"
-                    placeholder="Mailing Address 2*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput 
-                    name="text" 
-                    onChange={onCityChange}
-                    value={city}
-                    id="city" 
-                    placeholder="City*" />
-                </FormGroup>
-              </Col>
-              <Col>
-                <StyledInput 
-                  type="select" 
-                  name="select" 
-                  onChange={onStateChange}
-                  value={state}
-                  id="state">
-                  {states.map((us_state) => (
-                    <option key={us_state}>{us_state}</option>
-                  ))}
-                </StyledInput>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <StyledInput 
-                    name="text" 
-                    onChange={onZipChange}
-                    value={zip}
-                    id="zip" 
-                    placeholder="Zip Code*" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><RedText>{cityError}</RedText></Row>
-            <Row><RedText>{stateError}</RedText></Row>
-            <Row><RedText>{zipError}</RedText></Row>
-            <Row>
-              <Col className="d-flex">
-                <StyledText htmlFor="other">Do you fall into any of these categories?* </StyledText>
-              </Col>
-            </Row>
-            <IconButtonGroup
-                    data={categories}
-                    selected={categoryState}
-                    toggle={toggleCategories}
-                    state="categoryState"
-                  />
-            <Row><Col className="d-flex"><RedText>{categoryStateError}</RedText></Col></Row>
-            <Row>
-              <Col className="d-flex">
-                <Text htmlFor="other">OCCUPATION </Text>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="jobtitle"
-                    name="jobtitle"
-                    onChange={onJobTitleChange}
-                    value={jobTitle}
-                    id="jobtitle"
-                    placeholder="Job Title*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><RedText>{jobTitleError}</RedText></Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="employer"
-                    name="employer"
-                    onChange={onEmployerChange}
-                    value={employer}
-                    id="employer"
-                    placeholder="Employer/Institution*"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><RedText>{employerError}</RedText></Row>
-            <Row>
-              <Col className="d-flex">
-                <StyledText htmlFor="other">What industry do you work in?*</StyledText>
-              </Col>
-            </Row>
-            <Row>
-              <IconButtonGroup
-                    data={occupations}
-                    selected={industryState}
-                    toggle={toggleIndustries}
-                    state="industryState"
-                  />
-            <Row><RedText>{industryStateError}</RedText></Row>
-            </Row>
-            <Row>
-              <Col>
-                <StyledText htmlFor="other">Please provide proof that you are an essential worker*</StyledText>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <SmallText>Examples: a screenshot of an email from your manager (with a date and name), your last paycheck, screenshots from an employee app (your name must be included in the picture), or any other documentation that will help us verify your status. 
-                    We must have proof in order to match you with a donor.</SmallText>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <Input 
-                    type="file" 
-                    name="file" 
-                    id="proofFile" 
-                    onChange={onProofChange}
-                    />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row><RedText>{proofError}</RedText></Row>
-            <Row>
-              <Col className="d-flex">
-                <Text htmlFor="other">OTHER INFO </Text>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="hear"
-                    name="hear"
-                    onChange={onReferrerChange}
-                    value={referrer}
-                    id="hear"
-                    placeholder="How did you hear about us?"
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <RowFlex>
-              <Container>
-                <StyledButton onClick={validateSecondPage}>CONTINUE</StyledButton>
-                <StyledText>
-                  By continuing, you agree to our{' '}
-                  <strong>terms and conditions</strong>
-                </StyledText>
-              </Container>
-            </RowFlex>
-          </Form>
-        </Container>
-      );
-      case 2:
-        return (
-          <Screen style={{ paddingTop: 50 }}>
-          <CenteredFlex>
-            <Subtitle>Some final disclaimers before we match you!</Subtitle>
-          </CenteredFlex>
-          <CenteredFlex>
-            <Label check style={{ width: "55vw", paddingTop: "2%" }}>
-              <Input type="checkbox" onChange={onCheck1Change}/>{' '}
-              <b>I consent to Give Essential to sharing the information I have provided about my circumstances with my donor.*</b>
-            </Label>
-            <Text>This will help them get a better idea of what types of gifts to send. Company names will be removed, and donors have pledged to only use the information they're given for the sole purpose of sending a gift. In our experience, donors are more likely to send a package when we are allowed to share your story with them</Text>
-          </CenteredFlex>
-          <CenteredFlex>
-            <Label check style={{ width: "55vw", paddingTop: "2%"  }}>
-              <Input type="checkbox" onChange={onCheck2Change}/>{' '}
-              <b>I understand that my donor will receive my first and last name, email address, mailing address, and if I consented, the story that I shared. I understand that these items are publicly sourced from un-vetted individuals, including individuals who themselves may be carrying COVID-19, and take full responsibility for the quality, efficacy, and safety of these donations and their use, and full responsibility for the information I have shared.* </b>
-            </Label>
-            <Text>Give Essential connects people with publicly crowd-sourced donation items to essential workers during this time of critical shortage and inaccessibility. All items are being donated and are provided without any warranty, guarantee, or certification of fitness for purpose. Nothing in this website or in the course of providing these donations establishes a legal obligation or promise on Give Essential's behalf.</Text>
-          </CenteredFlex>
-          <CenteredFlex>
-            <RedText>{checkError}</RedText>
-            <PinkSubmitButton style={{ marginTop: 40 }} onClick={validateThirdPage}>
-              <ButtonText>SUBMIT</ButtonText>
-            </PinkSubmitButton>
-          </CenteredFlex>
-        </Screen>
-        );
-      case 3:
-        return <EWMatchedPage />;
-      default:
-        return <p>WIP</p>;
+          );
+        case 3:
+          return <EWMatchedPage />;
+        default:
+          return <p>WIP</p>;
+      }
     }
+
   };
   
   return (
