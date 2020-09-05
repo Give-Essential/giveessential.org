@@ -80,7 +80,7 @@ export const ButtonText = styled.h1`
 `;
 
 export const StyledTitle = styled.h1`
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Montserrat', open-sans;
   font-style: normal;
   font-weight: bold;
   font-size: 40px;
@@ -93,7 +93,7 @@ export const StyledTitle = styled.h1`
 `;
 
 export const StyledInput = styled(Input)`
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', open-sans;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Screen,
@@ -40,9 +40,25 @@ import USAMap from 'react-usa-map';
 import useStep from '../../hooks';
 // import closeIcon from '../../assets/icons/close.png';
 // import { renderIntoDocument } from 'react-dom/test-utils';
+import  WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Montserrat:thin', 'open-serif'],
+  }
+});
 
 const MAP_GREEN = '#8CC9BA';
 const MAP_GRAY = '#d3d3d3';
+
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
 
 export default function DonorFormPage() {
   const [valueState, setValues] = useState([]);
@@ -462,13 +478,35 @@ export default function DonorFormPage() {
       'WY': fillConfig('West'),
   };
 
+  const useWindowDimensions = () => {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return windowDimensions;
+  }
+
+  const {height, width} = useWindowDimensions();
+
   const renderStep = () => {
-    switch (currentStep) {
-      case 0:
-        return (
-          <Screen>
-            <CenteredFlex>
-            {/* <ModalContainer>
+    if (width <420) {
+      return (
+          <div> ey </div>
+      );
+
+    } else {
+      switch (currentStep) {
+        case 0:
+          return (
+              <Screen>
+                <CenteredFlex>
+                  {/* <ModalContainer>
               <RowSeparatedFlex>
                 <WrappableHeader>Prefer to make a cash donation to an essential worker?</WrappableHeader>
                 <img src={closeIcon} alt="Close Buttom" onClick={toggle(false, 'modalIsOpen')}/>
@@ -481,199 +519,201 @@ export default function DonorFormPage() {
                   state="cashDonationState"
               />
             </ModalContainer> */}
-          <RowFlex>
-            <ColumnFlex>
-              <CenteredFlex>
-                <Header>What do you care about?</Header>
-                <Subtitle>Select all that apply (minimum 2)</Subtitle>
-                <IconButtonGroup
-                  data={values}
-                  selected={valueState}
-                  toggle={toggle}
-                  state="valueState"
-                />
-                <RedText>{valueErrorState}</RedText>
-              </CenteredFlex>
-              <CenteredFlex>
-                <Header>Where in the country would you like to give to?</Header>
-                <Subtitle>
-                  If no region is selected, we’ll match you with someone from
-                  anywhere in the US.
-                </Subtitle>
-                <LargerScreenAlternative>
-                  <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
-                  <CapitalizedButton onClick={selectAllRegions}>I Can Donate Anywhere</CapitalizedButton>
-                </LargerScreenAlternative>
-                <SmallerScreenAlternative>
-                  <Col>
-                    <FormGroup>
-                      <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
-                        <option key="anywhere">Anywhere</option>
-                        {regions.map((region) => (
-                          <option key={region}>{region}</option>
+                  <RowFlex>
+                    <ColumnFlex>
+                      <CenteredFlex>
+                        <Header>What do you care about?</Header>
+                        <Subtitle>Select all that apply (minimum 2)</Subtitle>
+                        <IconButtonGroup
+                            data={values}
+                            selected={valueState}
+                            toggle={toggle}
+                            state="valueState"
+                        />
+                        <RedText>{valueErrorState}</RedText>
+                      </CenteredFlex>
+                      <CenteredFlex>
+                        <Header>Where in the country would you like to give to?</Header>
+                        <Subtitle>
+                          If no region is selected, we’ll match you with someone from
+                          anywhere in the US.
+                        </Subtitle>
+                        <LargerScreenAlternative>
+                          <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
+                          <CapitalizedButton onClick={selectAllRegions}>I Can Donate Anywhere</CapitalizedButton>
+                        </LargerScreenAlternative>
+                        <SmallerScreenAlternative>
+                          <Col>
+                            <FormGroup>
+                              <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
+                                <option key="anywhere">Anywhere</option>
+                                {regions.map((region) => (
+                                    <option key={region}>{region}</option>
+                                ))}
+                              </StyledInput>
+                            </FormGroup>
+                            <Subtext>"West" includes Alaska and Hawaii</Subtext>
+                          </Col>
+                        </SmallerScreenAlternative>
+                      </CenteredFlex>
+                      <CenteredFlex>
+                        <Header>What can you give?</Header>
+                        <IconButtonGroup
+                            data={items}
+                            selected={itemState}
+                            toggle={toggle}
+                            state="itemState"
+                        />
+                        <RedText>{itemErrorState}</RedText>
+                      </CenteredFlex>
+                      <CenteredFlex>
+                        <ColumnFlex>
+                          <Header>
+                            Would you like to donate monthly?
+                          </Header>
+                          <Subtitle>
+                            This is a one-time donation to a single essential worker. If you would
+                            like to be matched with more essential workers, we would love for you
+                            to fill out another form when you're ready to give again!
+                          </Subtitle>
+                          <TextButtonGroup
+                              data={yesNo}
+                              selected={repeatDonationState}
+                              toggle={singleSelectToggle}
+                              state="repeatDonationState"
+                          />
+                          <RedText>{repeatDonationErrorState}</RedText>
+                        </ColumnFlex>
+
+                        <StyledButton
+                            onClick={validateFirstPage}
+                            style={{ marginTop: 40, width: '40%' }}
+                        >
+                          CONTINUE
+                        </StyledButton>
+                      </CenteredFlex>
+                    </ColumnFlex>
+                  </RowFlex>
+                </CenteredFlex>
+              </Screen>
+          );
+        case 1:
+          return (
+              <Container className="hi">
+                <StyledTitle>
+                  <span>Please fill out your contact info so we can</span>
+                  <span>send your match to you!</span>
+                </StyledTitle>
+                <Form>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInput
+                            type="name"
+                            name="name"
+                            id="firstName"
+                            placeholder="First Name"
+                            onChange={(event) => { setFormValue(event.target.value, 'firstNameState')(); }}
+                            value={firstNameState}
+                        />
+                      </FormGroup>
+                      <RedText>{firstNameErrorState}</RedText>
+                    </Col>
+                    <Col>
+                      <FormGroup>
+                        <StyledInput
+                            type="name"
+                            name="name"
+                            id="lastName"
+                            placeholder="Last Name"
+                            onChange={(event) => { setFormValue(event.target.value, 'lastNameState')(); }}
+                        />
+                      </FormGroup>
+                      <RedText>{lastNameErrorState}</RedText>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInput
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Email"
+                            onChange={(event) => { setFormValue(event.target.value, 'emailState')(); }}
+                        />
+                      </FormGroup>
+                      <RedText>{emailErrorState}</RedText>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInput
+                            type="number"
+                            name="number"
+                            id="phoneNumber"
+                            placeholder="Phone Number"
+                            onChange={(event) => { setFormValue(event.target.value, 'phoneNumberState')(); }}
+                        />
+                      </FormGroup>
+                      <RedText>{phoneNumberErrorState}</RedText>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInput name="text" id="city" placeholder="City" onChange={(event) => { setFormValue(event.target.value, 'cityState')(); }} />
+                      </FormGroup>
+                      <RedText>{cityErrorState}</RedText>
+                    </Col>
+                    <Col>
+                      <StyledInput type="select" name="select" id="state" onChange={(event) => { setFormValue(event.target.value, 'stateState')(); }}>
+                        {states.map((us_state) => (
+                            <option key={us_state}>{us_state}</option>
                         ))}
                       </StyledInput>
-                    </FormGroup>
-                    <Subtext>"West" includes Alaska and Hawaii</Subtext>
-                  </Col>
-                </SmallerScreenAlternative>
-              </CenteredFlex>
-              <CenteredFlex>
-                <Header>What can you give?</Header>
-                <IconButtonGroup
-                  data={items}
-                  selected={itemState}
-                  toggle={toggle}
-                  state="itemState"
-                />
-                <RedText>{itemErrorState}</RedText>
-              </CenteredFlex>
-              <CenteredFlex>
-              <ColumnFlex>
-                <Header>
-                  Would you like to donate monthly?
-                </Header>
-                <Subtitle>
-                This is a one-time donation to a single essential worker. If you would 
-                like to be matched with more essential workers, we would love for you 
-                to fill out another form when you're ready to give again!
-                </Subtitle>
-                <TextButtonGroup
-                  data={yesNo}
-                  selected={repeatDonationState}
-                  toggle={singleSelectToggle}
-                  state="repeatDonationState"
-                />
-                <RedText>{repeatDonationErrorState}</RedText>
-              </ColumnFlex>
-        
-                <StyledButton
-                  onClick={validateFirstPage}
-                  style={{ marginTop: 40, width: '40%' }}
-                >
-                  CONTINUE
-                </StyledButton>
-                </CenteredFlex>
-            </ColumnFlex>
-            </RowFlex>
-            </CenteredFlex>
-          </Screen>
-        );
-      case 1:
-        return (
-          <Container className="hi">
-          <StyledTitle>
-            <span>Please fill out your contact info so we can</span>
-            <span>send your match to you!</span>
-          </StyledTitle>
-          <Form>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="name"
-                    name="name"
-                    id="firstName"
-                    placeholder="First Name"
-                    onChange={(event) => { setFormValue(event.target.value, 'firstNameState')(); }}
-                    value={firstNameState}
-                  />
-                </FormGroup>
-                <RedText>{firstNameErrorState}</RedText>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="name"
-                    name="name"
-                    id="lastName"
-                    placeholder="Last Name"
-                    onChange={(event) => { setFormValue(event.target.value, 'lastNameState')(); }}
-                  />
-                </FormGroup>
-                <RedText>{lastNameErrorState}</RedText>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    onChange={(event) => { setFormValue(event.target.value, 'emailState')(); }}
-                  />
-                </FormGroup>
-                <RedText>{emailErrorState}</RedText>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput
-                    type="number"
-                    name="number"
-                    id="phoneNumber"
-                    placeholder="Phone Number"
-                    onChange={(event) => { setFormValue(event.target.value, 'phoneNumberState')(); }}
-                  />
-                </FormGroup>
-                <RedText>{phoneNumberErrorState}</RedText>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput name="text" id="city" placeholder="City" onChange={(event) => { setFormValue(event.target.value, 'cityState')(); }} />
-                </FormGroup>
-                <RedText>{cityErrorState}</RedText>
-              </Col>
-              <Col>
-                <StyledInput type="select" name="select" id="state" onChange={(event) => { setFormValue(event.target.value, 'stateState')(); }}>
-                  {states.map((us_state) => (
-                    <option key={us_state}>{us_state}</option>
-                  ))}
-                </StyledInput>
-                <RedText>{stateErrorState}</RedText>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <StyledInput type="select" name="select" id="network" onChange={(event) => { setFormValue(event.target.value, 'referrerState')(); }}>
-                    {referrals.map((ref) => (
-                      <option key={ref}>{ref}</option>
-                    ))}
-                  </StyledInput>
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="d-flex">
-                <StyledLabel htmlFor="other">Other: </StyledLabel>
-                <StyledInput noBorder underLine name="other" id="other" onChange={(event) => { setFormValue(event.target.value, 'otherState')(); }}/>
-              </Col>
-            </Row>
-            <RedText>{referrerErrorState}</RedText>
-            <ColumnFlex>
-                <StyledText>Legal text here</StyledText>
-                <CenteredFlex>
-                  <StyledButton onClick={validateSecondPage}>SUBMIT</StyledButton>
-                </CenteredFlex>
-                <StyledText>
-                  By submitting, you agree to our{' '}
-                  <strong>terms and conditions</strong>
-                </StyledText>
-            </ColumnFlex>
-          </Form>
-        </Container>
-        );
-      case 2:
-        return <MatchedPage />;
-      default:
-        return <p>An error occurred.</p>;
+                      <RedText>{stateErrorState}</RedText>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <FormGroup>
+                        <StyledInput type="select" name="select" id="network" onChange={(event) => { setFormValue(event.target.value, 'referrerState')(); }}>
+                          {referrals.map((ref) => (
+                              <option key={ref}>{ref}</option>
+                          ))}
+                        </StyledInput>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="d-flex">
+                      <StyledLabel htmlFor="other">Other: </StyledLabel>
+                      <StyledInput noBorder underLine name="other" id="other" onChange={(event) => { setFormValue(event.target.value, 'otherState')(); }}/>
+                    </Col>
+                  </Row>
+                  <RedText>{referrerErrorState}</RedText>
+                  <ColumnFlex>
+                    <StyledText>Legal text here</StyledText>
+                    <CenteredFlex>
+                      <StyledButton onClick={validateSecondPage}>SUBMIT</StyledButton>
+                    </CenteredFlex>
+                    <StyledText>
+                      By submitting, you agree to our{' '}
+                      <strong>terms and conditions</strong>
+                    </StyledText>
+                  </ColumnFlex>
+                </Form>
+              </Container>
+          );
+        case 2:
+          return <MatchedPage />;
+        default:
+          return <p>An error occurred.</p>;
+      }
     }
+
   };
   return <Screen style={{ paddingBottom: 20 }}>{renderStep()}</Screen>;
 }
