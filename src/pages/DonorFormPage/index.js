@@ -565,12 +565,15 @@ export default function DonorFormPage() {
                   </CenteredFlex>
                   <CenteredFlex>
                     <DonorPageTitleMobile>What can you give?</DonorPageTitleMobile>
-                    <IconButtonGroup
-                        data={items}
-                        selected={itemState}
-                        toggle={toggle}
-                        state="itemState"
-                    />
+
+                      <IconButtonGroup
+                          data={items}
+                          selected={itemState}
+                          toggle={toggle}
+                          state="itemState"
+                          style={{}}
+                      />
+
                     <RedTextMobile>{itemErrorState}</RedTextMobile>
                   </CenteredFlex>
                   <CenteredFlex>
