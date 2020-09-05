@@ -40,6 +40,8 @@ import USAMap from 'react-usa-map';
 import useStep from '../../hooks';
 // import closeIcon from '../../assets/icons/close.png';
 // import { renderIntoDocument } from 'react-dom/test-utils';
+// import {}
+
 import  WebFont from 'webfontloader';
 
 WebFont.load({
@@ -497,7 +499,98 @@ export default function DonorFormPage() {
   const renderStep = () => {
     if (width <420) {
       return (
-          <div> ey </div>
+          <Screen>
+            <CenteredFlex>
+              {/* <ModalContainer>
+              <RowSeparatedFlex>
+                <WrappableHeader>Prefer to make a cash donation to an essential worker?</WrappableHeader>
+                <img src={closeIcon} alt="Close Buttom" onClick={toggle(false, 'modalIsOpen')}/>
+              </RowSeparatedFlex>
+              <Subtitle>Your donation will go directly to an essential worker! Additional info text here</Subtitle>
+              <TextButtonGroup
+                  data={donationOptions}
+                  selected={cashDonationState}
+                  toggle={singleSelectToggle}
+                  state="cashDonationState"
+              />
+            </ModalContainer> */}
+              <RowFlex>
+                <ColumnFlex>
+                  <CenteredFlex>
+                    <Header>What do you care about?</Header>
+                    <Subtitle>Select all that apply (minimum 2)</Subtitle>
+                    <IconButtonGroup
+                        data={values}
+                        selected={valueState}
+                        toggle={toggle}
+                        state="valueState"
+                    />
+                    <RedText>{valueErrorState}</RedText>
+                  </CenteredFlex>
+                  <CenteredFlex>
+                    <Header>Where in the country would you like to give to?</Header>
+                    <Subtitle>
+                      If no region is selected, we’ll match you with someone from
+                      anywhere in the US.
+                    </Subtitle>
+                    <LargerScreenAlternative>
+                      <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
+                      <CapitalizedButton onClick={selectAllRegions}>I Can Donate Anywhere</CapitalizedButton>
+                    </LargerScreenAlternative>
+                    <SmallerScreenAlternative>
+                      <Col>
+                        <FormGroup>
+                          <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
+                            <option key="anywhere">Anywhere</option>
+                            {regions.map((region) => (
+                                <option key={region}>{region}</option>
+                            ))}
+                          </StyledInput>
+                        </FormGroup>
+                        <Subtext>"West" includes Alaska and Hawaii</Subtext>
+                      </Col>
+                    </SmallerScreenAlternative>
+                  </CenteredFlex>
+                  <CenteredFlex>
+                    <Header>What can you give?</Header>
+                    <IconButtonGroup
+                        data={items}
+                        selected={itemState}
+                        toggle={toggle}
+                        state="itemState"
+                    />
+                    <RedText>{itemErrorState}</RedText>
+                  </CenteredFlex>
+                  <CenteredFlex>
+                    <ColumnFlex>
+                      <Header>
+                        Would you like to donate monthly?
+                      </Header>
+                      <Subtitle>
+                        This is a one-time donation to a single essential worker. If you would
+                        like to be matched with more essential workers, we would love for you
+                        to fill out another form when you're ready to give again!
+                      </Subtitle>
+                      <TextButtonGroup
+                          data={yesNo}
+                          selected={repeatDonationState}
+                          toggle={singleSelectToggle}
+                          state="repeatDonationState"
+                      />
+                      <RedText>{repeatDonationErrorState}</RedText>
+                    </ColumnFlex>
+
+                    <StyledButton
+                        onClick={validateFirstPage}
+                        style={{ marginTop: 40, width: '40%' }}
+                    >
+                      CONTINUE
+                    </StyledButton>
+                  </CenteredFlex>
+                </ColumnFlex>
+              </RowFlex>
+            </CenteredFlex>
+          </Screen>
       );
 
     } else {
