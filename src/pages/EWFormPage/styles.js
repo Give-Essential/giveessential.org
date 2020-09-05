@@ -196,6 +196,22 @@ export const PinkSubmitButton = styled.div`
   padding: 15px 0;
 `;
 
+export const PinkSubmitButtonMobile = styled.div`
+  margin-top: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: ${ window.innerWidth >= 900 ? '30%' : '70%'};
+  height: ${ window.innerWidth >= 900 ? '5vw' : '8vw'};
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#dddddd" : "#FD8E7B")};
+  align-items: center;
+  justify-content: center;
+  // padding: 15px 0;
+  font-size: 13px;
+`;
+
+
 export const SmallButton = styled.div`
   margin-top: 30px;
   border-radius: 6px;
