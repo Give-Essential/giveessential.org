@@ -6,7 +6,7 @@ import {
   Subtitle,
   // SubmitButton,
   // ButtonText,
-  StyledInput,
+  StyledInput, StyledInputMobile,
   StyledLabel,
   StyledTitle,
   StyledText,
@@ -24,6 +24,10 @@ import {
   // SideMenuText,
   RedText,
   Subtext,
+  DonorPageHeaderMobile,
+  DonorPageSubtitleMobile,
+  DonorPageTitleMobile,
+  SubtextMobile
 } from './styles';
 import MatchedPage from '../MatchedPage';
 import IconButtonGroup from './components/IconButtonGroup';
@@ -40,7 +44,14 @@ import USAMap from 'react-usa-map';
 import useStep from '../../hooks';
 // import closeIcon from '../../assets/icons/close.png';
 // import { renderIntoDocument } from 'react-dom/test-utils';
-// import {}
+import {
+  HeaderMobile,
+  SubmitButtonMobile,
+  SubtitleMobile,
+  TitleMobile,
+  RedTextMobile,
+    ButtonText
+} from "../EWFormPage/styles";
 
 import  WebFont from 'webfontloader';
 
@@ -517,22 +528,23 @@ export default function DonorFormPage() {
               <RowFlex>
                 <ColumnFlex>
                   <CenteredFlex>
-                    <Header>What do you care about?</Header>
-                    <Subtitle>Select all that apply (minimum 2)</Subtitle>
+                    <DonorPageHeaderMobile>Donor Form</DonorPageHeaderMobile>
+                    <DonorPageTitleMobile style={{marginTop: "15px"}}>What do you care about?</DonorPageTitleMobile>
+                    <DonorPageSubtitleMobile>Select all that apply (minimum 2)</DonorPageSubtitleMobile>
                     <IconButtonGroup
                         data={values}
                         selected={valueState}
                         toggle={toggle}
                         state="valueState"
                     />
-                    <RedText>{valueErrorState}</RedText>
+                    <RedTextMobile>{valueErrorState}</RedTextMobile>
                   </CenteredFlex>
                   <CenteredFlex>
-                    <Header>Where in the country would you like to give to?</Header>
-                    <Subtitle>
+                    <DonorPageTitleMobile>Where in the country would you like to give to?</DonorPageTitleMobile>
+                    <DonorPageSubtitleMobile>
                       If no region is selected, we’ll match you with someone from
                       anywhere in the US.
-                    </Subtitle>
+                    </DonorPageSubtitleMobile>
                     <LargerScreenAlternative>
                       <USAMap customize={statesCustomConfig} onClick={mapHandler} width={window.innerWidth * 0.9}/>
                       <CapitalizedButton onClick={selectAllRegions}>I Can Donate Anywhere</CapitalizedButton>
@@ -540,52 +552,55 @@ export default function DonorFormPage() {
                     <SmallerScreenAlternative>
                       <Col>
                         <FormGroup>
-                          <StyledInput type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
+                          <StyledInputMobile type="select" name="select" id="region" onChange={(event) => { selectRegion(event); }}>
                             <option key="anywhere">Anywhere</option>
                             {regions.map((region) => (
                                 <option key={region}>{region}</option>
                             ))}
-                          </StyledInput>
+                          </StyledInputMobile>
                         </FormGroup>
-                        <Subtext>"West" includes Alaska and Hawaii</Subtext>
+                        <SubtitleMobile style={{fontSize: "12px"}}>"West" includes Alaska and Hawaii</SubtitleMobile>
                       </Col>
                     </SmallerScreenAlternative>
                   </CenteredFlex>
                   <CenteredFlex>
-                    <Header>What can you give?</Header>
+                    <DonorPageTitleMobile>What can you give?</DonorPageTitleMobile>
                     <IconButtonGroup
                         data={items}
                         selected={itemState}
                         toggle={toggle}
                         state="itemState"
                     />
-                    <RedText>{itemErrorState}</RedText>
+                    <RedTextMobile>{itemErrorState}</RedTextMobile>
                   </CenteredFlex>
                   <CenteredFlex>
                     <ColumnFlex>
-                      <Header>
+                      <DonorPageTitleMobile>
                         Would you like to donate monthly?
-                      </Header>
-                      <Subtitle>
+                      </DonorPageTitleMobile>
+                      <DonorPageSubtitleMobile>
                         This is a one-time donation to a single essential worker. If you would
                         like to be matched with more essential workers, we would love for you
                         to fill out another form when you're ready to give again!
-                      </Subtitle>
-                      <TextButtonGroup
-                          data={yesNo}
-                          selected={repeatDonationState}
-                          toggle={singleSelectToggle}
-                          state="repeatDonationState"
-                      />
-                      <RedText>{repeatDonationErrorState}</RedText>
+                      </DonorPageSubtitleMobile>
+                      <CenteredFlex style={{marginTop: "-7.5vw", marginBottom: "-13vw"}}>
+                        <TextButtonGroup
+                            data={yesNo}
+                            selected={repeatDonationState}
+                            toggle={singleSelectToggle}
+                            state="repeatDonationState"
+                        />
+                      </CenteredFlex>
+
+                      <RedTextMobile>{repeatDonationErrorState}</RedTextMobile>
                     </ColumnFlex>
 
-                    <StyledButton
+                    <SubmitButtonMobile
                         onClick={validateFirstPage}
-                        style={{ marginTop: 40, width: '40%' }}
+                        // style={{ marginTop: 40, width: '40%' }}
                     >
-                      CONTINUE
-                    </StyledButton>
+                      <ButtonText>CONTINUE</ButtonText>
+                    </SubmitButtonMobile>
                   </CenteredFlex>
                 </ColumnFlex>
               </RowFlex>

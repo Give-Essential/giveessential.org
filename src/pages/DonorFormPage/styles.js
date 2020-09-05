@@ -45,6 +45,39 @@ export const WrappableHeader = styled.h1`
   flex-wrap: wrap;
 `;
 
+export const DonorPageHeaderMobile = styled.h1`
+  font-style: normal;
+  font-weight: bold;
+  margin-top: -42px;
+  margin-bottom: 8px;
+  color: #8CC9BA;
+  text-align: center;
+  font-size: 35px;
+  font-family: "Montserrat"
+`;
+
+export const DonorPageSubtitleMobile = styled.h1`
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  width: 85vw;
+  margin-top: 0px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-family: "Montserrat";
+  color: #6c757d;   
+`;
+
+export const DonorPageTitleMobile = styled.h1 `
+  font-size: 17px;
+  width: 84vw;
+  font-weight: bold;
+  margin-top: -33px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-family: "Montserrat";
+`
+
 export const Subtitle = styled.h1`
   font-size: 20px;
   width: 100%;
@@ -56,6 +89,15 @@ export const Subtext = styled.h1`
   width: 100%;
   text-align: left;
   font-style: italic;
+`;
+
+export const SubtextMobile = styled.h1`
+  // font-size: 20px;
+  // width: 100%;
+  text-align: center;
+  // font-style: italic;
+  fontFamily: "Montserrat",
+  fontSize: "14px"
 `;
 
 export const SubmitButton = styled.div`
@@ -101,6 +143,18 @@ export const StyledInput = styled(Input)`
   border-radius: ${({ noBorder }) => (noBorder ? 0 : '5px')};
   border-bottom: ${({ underLine }) =>
     underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
+`;
+
+export const StyledInputMobile = styled(Input)`
+  font-family: 'Montserrat', open-sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #8cc9ba')};
+  border-radius: ${({ noBorder }) => (noBorder ? 0 : '5px')};
+  border-bottom: ${({ underLine }) =>
+    underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
+  margin-bottom: -6px;
 `;
 
 export const StyledLabel = styled(Label)`
