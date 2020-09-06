@@ -157,6 +157,19 @@ export const StyledInputMobile = styled(Input)`
   margin-bottom: -6px;
 `;
 
+export const StyledInputMobile2 = styled(Input)`
+  font-family: 'Montserrat', open-sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  border: ${({ noBorder }) => (noBorder ? 'none' : '1px solid #8cc9ba')};
+  border-radius: ${({ noBorder }) => (noBorder ? 0 : '5px')};
+  border-bottom: ${({ underLine }) =>
+    underLine ? '1px solid #8CC9BA' : '1px solid #8CC9BA'};
+  margin-bottom: -6px;
+  color: #6c757d
+`;
+
 export const StyledLabel = styled(Label)`
   font-style: normal;
   font-weight: normal;
