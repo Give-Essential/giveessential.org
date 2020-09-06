@@ -27,12 +27,13 @@ export const CenteredFlex = styled(ColumnFlex)`
 export const Header = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 26px;
-  margin-top: 48px;
-  margin-bottom: 12px;
+  font-size: 22px;
+  margin-top: -33px;
+  margin-bottom: 4px;
   width: 100%;
   text-align: left;
   flex-wrap: wrap;
+  font-family: Montserrat;
 `;
 
 export const WrappableHeader = styled.h1`
@@ -79,9 +80,11 @@ export const DonorPageTitleMobile = styled.h1 `
 `
 
 export const Subtitle = styled.h1`
-  font-size: 20px;
+  font-size: 15px;
   width: 100%;
   text-align: left;
+  font-family: Montserrat;
+  margin-bottom: 10px;
 `;
 
 export const Subtext = styled.h1`
@@ -210,6 +213,7 @@ export const CapitalizedButton = styled.h2`
   width: 100%;
   color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
   cursor: pointer;
+  font-family: Montserrat;
 `;
 
 export const SideMenuText = styled.h3`

@@ -51,7 +51,7 @@ import {
   SubtitleMobile,
   TitleMobile,
   RedTextMobile,
-    ButtonText
+  ButtonText, Title
 } from "../EWFormPage/styles";
 
 import  WebFont from 'webfontloader';
@@ -753,7 +753,8 @@ export default function DonorFormPage() {
                   <RowFlex>
                     <ColumnFlex>
                       <CenteredFlex>
-                        <Header>What do you care about?</Header>
+                        <DonorPageHeaderMobile style={{marginTop: "-25px", marginBottom: "2px", fontSize: "40px"}}>Donor Form</DonorPageHeaderMobile>
+                        <Header style={{marginTop: "19px"}}>What do you care about?</Header>
                         <Subtitle>Select all that apply (minimum 2)</Subtitle>
                         <IconButtonGroup
                             data={values}
@@ -807,18 +808,20 @@ export default function DonorFormPage() {
                             like to be matched with more essential workers, we would love for you
                             to fill out another form when you're ready to give again!
                           </Subtitle>
-                          <TextButtonGroup
-                              data={yesNo}
-                              selected={repeatDonationState}
-                              toggle={singleSelectToggle}
-                              state="repeatDonationState"
-                          />
+                          <CenteredFlex>
+                            <TextButtonGroup
+                                data={yesNo}
+                                selected={repeatDonationState}
+                                toggle={singleSelectToggle}
+                                state="repeatDonationState"
+                            />
+                          </CenteredFlex>
                           <RedText>{repeatDonationErrorState}</RedText>
                         </ColumnFlex>
 
                         <StyledButton
                             onClick={validateFirstPage}
-                            style={{ marginTop: 40, width: '40%' }}
+                            style={{ marginTop: "-13px", width: '40%' }}
                         >
                           CONTINUE
                         </StyledButton>
@@ -831,10 +834,15 @@ export default function DonorFormPage() {
         case 1:
           return (
               <Container className="hi">
-                <StyledTitle>
-                  <span>Please fill out your contact info so we can</span>
-                  <span>send your match to you!</span>
-                </StyledTitle>
+                {/*<CenteredFlex>*/}
+                  <StyledTitle style={{fontSize: "28px", marginBottom: "16px"}}>
+                    Please fill out your contact info so we can send your match to you!
+                  </StyledTitle>
+                {/*</CenteredFlex>*/}
+                {/*<StyledTitle>*/}
+                {/*  <span>Please fill out your contact info so we can</span>*/}
+                {/*  <span>send your match to you!</span>*/}
+                {/*</StyledTitle>*/}
                 <Form>
                   <Row>
                     <Col>
