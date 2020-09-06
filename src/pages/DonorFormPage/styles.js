@@ -49,7 +49,7 @@ export const DonorPageHeaderMobile = styled.h1`
   font-style: normal;
   font-weight: bold;
   margin-top: -42px;
-  margin-bottom: 8px;
+  margin-bottom: 1px;
   color: #8CC9BA;
   text-align: center;
   font-size: 35px;

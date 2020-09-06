@@ -531,12 +531,15 @@ export default function DonorFormPage() {
                     <DonorPageHeaderMobile>Donor Form</DonorPageHeaderMobile>
                     <DonorPageTitleMobile style={{marginTop: "15px"}}>What do you care about?</DonorPageTitleMobile>
                     <DonorPageSubtitleMobile>Select all that apply (minimum 2)</DonorPageSubtitleMobile>
-                    <IconButtonGroup
-                        data={values}
-                        selected={valueState}
-                        toggle={toggle}
-                        state="valueState"
-                    />
+                    <div style={{paddingLeft: "25px"}}>
+                      <IconButtonGroup
+                          data={values}
+                          selected={valueState}
+                          toggle={toggle}
+                          state="valueState"
+                      />
+                    </div>
+
                     <RedTextMobile>{valueErrorState}</RedTextMobile>
                   </CenteredFlex>
                   <CenteredFlex>
@@ -565,15 +568,14 @@ export default function DonorFormPage() {
                   </CenteredFlex>
                   <CenteredFlex>
                     <DonorPageTitleMobile>What can you give?</DonorPageTitleMobile>
-
-                      <IconButtonGroup
-                          data={items}
-                          selected={itemState}
-                          toggle={toggle}
-                          state="itemState"
-                          style={{}}
-                      />
-
+                      <div style={{paddingLeft: "24px", paddingTop: "5px"}}>
+                        <IconButtonGroup
+                            data={items}
+                            selected={itemState}
+                            toggle={toggle}
+                            state="itemState"
+                        />
+                      </div>
                     <RedTextMobile>{itemErrorState}</RedTextMobile>
                   </CenteredFlex>
                   <CenteredFlex>
