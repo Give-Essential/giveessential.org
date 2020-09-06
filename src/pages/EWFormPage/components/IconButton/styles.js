@@ -23,7 +23,7 @@ export const Box = styled.div`
 `;
 
 export const Text = styled.h1`
-  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", open-sans;
   font-size: ${ window.innerWidth >= 900 ? '1em' : '12px'};
   text-align: center;
   color: ${(props) => (props.selected ? "#ffffff" : "#8cc9ba")};
