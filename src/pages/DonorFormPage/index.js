@@ -816,7 +816,7 @@ export default function DonorFormPage() {
                                 state="repeatDonationState"
                             />
                           </CenteredFlex>
-                          <RedText>{repeatDonationErrorState}</RedText>
+                          <RedText style={{marginTop: "-24px", marginBottom: "35px"}}>{repeatDonationErrorState}</RedText>
                         </ColumnFlex>
 
                         <StyledButton

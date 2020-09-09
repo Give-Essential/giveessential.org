@@ -252,7 +252,7 @@ export const SmallerScreenAlternative = styled.div`
 export const RedText = styled.h1`
   font-size: 14px;
   width: 55vw;
-  color: red;
+  color: #FD8E7B;
   margin-top: 10px;
   margin-bottom: 20px;
   text-align: left;
