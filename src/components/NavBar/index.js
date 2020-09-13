@@ -61,6 +61,27 @@ WebFont.load({
   }
 });
 
+// var Link = React.createClass({
+//   getInitialState: function(){
+//     return {hover: false}
+//   },
+//   toggleHover: function(){
+//     this.setState({hover: !this.state.hover})
+//   },
+//   render: function() {
+//     var linkStyle;
+//     if (this.state.hover) {
+//       linkStyle = {backgroundColor: 'red'}
+//     } else {
+//       linkStyle = {backgroundColor: 'blue'}
+//     }
+//     return(
+//         <div>
+//           <a style={linkStyle} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Link</a>
+//         </div>
+//     )
+//   }
+
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -71,15 +92,15 @@ export function NavBar() {
   return (
     <div style={{ boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)", backgroundColor: "#8CC9BA" }}>
       <div style={{backgroundColor: "#C5D7BF"}}>
-        <a style={{
-          color: "#fff",
-          fontFamily: "Montserrat",
-          fontSize: "15px",
-          textDecoration: "none",
-          justifyContent:'center', alignItems:'center', height: '9.5vh',
-          display: "flex",
-          fontWeight: "400"
-        }} href="https://www.giveessential.org/labor-month">Join us as we celebraate the frontline this September!</a>
+          <a style={{
+            color: "#fff",
+            fontFamily: "Montserrat",
+            fontSize: "14px",
+            textDecoration: "none",
+            justifyContent:'center', alignItems:'center', height: '9.5vh',
+            display: "flex",
+            fontWeight: "400"
+          }} href="https://www.giveessential.org/labor-month">Join us as we celebrate the frontline this September!</a>
       </div>
 
       <Navbar light expand="md">
@@ -96,14 +117,17 @@ export function NavBar() {
             <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/how-can-i-help">How Can I Help?</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/our-team">Our Team</NavLink>
+            <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/labor-month">Labor Month</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/team">Our Family</NavLink>
           </NavItem>
           <NavItem>
             <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/merch">Merch</NavLink>
           </NavItem>
-          {/*<NavItem>*/}
-          {/*  <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/contact">Contact Us</NavLink>*/}
-          {/*</NavItem>*/}
+          <NavItem>
+            <NavLink style={{color: "#fff"}} href="https://www.giveessential.org/contact">Contact Us</NavLink>
+          </NavItem>
         </Nav>
 
         <Nav style={{}}>
