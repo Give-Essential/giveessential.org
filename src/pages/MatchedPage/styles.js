@@ -173,11 +173,15 @@ export const ListTextMobile = styled.h4`
   // width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 45px;
 `;
 export const StyledIcon = styled.img`
   width: 50px;
   margin-left: 6px;
+`;
+export const StyledIconMobile = styled.img`
+  width: 35px;
+  margin-top: 5px;
 `;
 export const Donation = styled.h4`
   // font-style: italic;
@@ -220,6 +224,6 @@ export const NextStepsMobile = styled.h1`
   /* identical to box height */
   align-items: center;
   text-align: center;
-  margin-top: 22px;
-  margin-bottom: 23px;
+  margin-top: 25px;
+  margin-bottom: 32px;
 `;

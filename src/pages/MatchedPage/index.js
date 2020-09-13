@@ -9,7 +9,7 @@ import {
   DotText, DotTextMobile,
   HeaderText, HeaderTextMobile,
   ListText, ListTextMobile,
-  StyledIcon,
+  StyledIcon, StyledIconMobile,
   Donation, DonationMobile,
   NextSteps, NextStepsMobile,
   CenteredFlex,
@@ -84,19 +84,19 @@ export default function MatchedPage() {
           </HeaderTextMobile>
 
           <NextStepsMobile>Next Steps</NextStepsMobile>
-          <div style={{ padding: "0% 8%" }}>
+          <div style={{ padding: "0% 6%" }}>
             {nextStepsList.map((e, i) => (
                 // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
-                <Row style={{ margin: "-3%" }} classname="my-auto" key={i}>
+                <Row style={{ margin: "-4%" }} classname="my-auto" key={i}>
                   {/*<RowFlexMobile>*/}
                     <Col xs="2">
                       <DotMobile color={"#8CC9BA"}>
                         <DotTextMobile>{i + 1}</DotTextMobile>
                       </DotMobile>
                     </Col>
-                    {/*<Col xs="2">*/}
-                    {/*  <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />*/}
-                    {/*</Col>*/}
+                    <Col xs="2">
+                      <StyledIconMobile src={e[0]} alt="Logo for corresponding Icon" />
+                    </Col>
                   {/*</RowFlexMobile>*/}
                   <Col>
                     <ListTextMobile>{e[1]}</ListTextMobile>
