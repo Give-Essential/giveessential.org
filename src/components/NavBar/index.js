@@ -10,7 +10,8 @@ import {
   // DropdownToggle,
   // DropdownMenu,
   // DropdownItem,
-  Collapse
+  Collapse,
+  Alert
 } from "reactstrap";
 import  WebFont from 'webfontloader';
 // import { Link } from 'react-router-dom';
@@ -62,12 +63,25 @@ WebFont.load({
 
 export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
 
+  const [visible, setVisible] = useState(true);
+  const onDismiss = () => setVisible(false);
 
   return (
     <div style={{ boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)", backgroundColor: "#8CC9BA" }}>
+      <div style={{backgroundColor: "#C5D7BF"}}>
+        <a style={{
+          color: "#fff",
+          fontFamily: "Montserrat",
+          fontSize: "15px",
+          textDecoration: "none",
+          justifyContent:'center', alignItems:'center', height: '9.5vh',
+          display: "flex",
+          fontWeight: "400"
+        }} href="https://www.giveessential.org/labor-month">Join us as we celebraate the frontline this September!</a>
+      </div>
+
       <Navbar light expand="md">
         <NavbarBrand href="/" >
           <LogoPic src={Logo} alt="Logo" />
