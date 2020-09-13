@@ -5,6 +5,10 @@ export const Flex = styled.div`
 export const RowFlex = styled(Flex)`
   align-items: center;
 `;
+export const RowFlexMobile = styled(Flex)`
+  align-items: center;
+  width: 85vh;
+`;
 export const ColumnFlex = styled(Flex)`
   flex-direction: column;
 `;
@@ -94,21 +98,57 @@ export const Dot = styled.div`
   color: white;
   margin-right: 5%;
 `;
+export const DotMobile = styled.div`
+  height: 30px;
+  width: 30px;
+  background-color: ${(props) => (props.color ? props.color : "black")};
+  margin-left: 25%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-right: 5%;
+`;
 export const DotText = styled.h1`
   font-weight: 400;
   font-size: 2em;
   margin-top: 10px;
 `;
+export const DotTextMobile = styled.h1`
+  font-weight: 300;
+  font-size: 20px;
+  margin-top: 10px;
+  
+`;
 export const HeaderText = styled.h1`
   font-style: normal;
   font-weight: bold;
-  font-size: 1.3em;
+  font-family: Montserrat;
+  font-size: 30px;
   line-height: 40px;
   display: flex;
   align-items: center;
   text-align: center;
   color: #8CC9BA;
-  padding: 3% 14%;
+  padding: 3% 36%;
+  font-family: Montserrat;
+`;
+export const HeaderTextMobile = styled.h1`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 27px;
+  font-family: Montserrat;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #8CC9BA;
+  // height: '100vh';
+  // padding: 5% 20%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: 44px;
 `;
 export const BackgroundContainer = styled.div`
   height: 100%;
@@ -116,24 +156,51 @@ export const BackgroundContainer = styled.div`
 export const ListText = styled.h4`
   font-style: normal;
   font-weight: normal;
+  font-family: Montserrat;
   font-size: 1em;
   line-height: 30px;
   width: 85%;
   display: flex;
   align-items: center;
+  padding-bottom: 31px;
+`;
+export const ListTextMobile = styled.h4`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15.5px;
+  font-family: Montserrat;
+  line-height: 25px;
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 28px;
 `;
 export const StyledIcon = styled.img`
-  width: 55%;
+  width: 50px;
+  margin-left: 6px;
 `;
 export const Donation = styled.h4`
-  font-style: italic;
-  font-weight: bold;
+  // font-style: italic;
+  // font-weight: bold;
   font-size: 1.5em;
+  font-family: Montserrat;
   line-height: 44px;
   /* identical to box height */
   align-items: center;
   text-align: center;
 `;
+export const DonationMobile = styled.h4`
+  // font-style: italic;
+  // font-weight: bold;
+  font-size: 22px;
+  font-family: Montserrat;
+  line-height: 44px;
+  /* identical to box height */
+  align-items: center;
+  text-align: center;
+  width: 57vh;
+`;
+
 export const NextSteps = styled.h1`
   font-style: normal;
   font-weight: bold;
@@ -142,4 +209,17 @@ export const NextSteps = styled.h1`
   /* identical to box height */
   align-items: center;
   text-align: center;
+  font-family: Montserrat;
+`;
+export const NextStepsMobile = styled.h1`
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 1.8em;
+  font-family: Montserrat;
+  line-height: 24px;
+  /* identical to box height */
+  align-items: center;
+  text-align: center;
+  margin-top: 22px;
+  margin-bottom: 23px;
 `;

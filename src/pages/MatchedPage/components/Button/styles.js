@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  width: 28%;
+  width: 32%;
   height: 5%;
   border-radius: 6px;
   border: none;
   text-align: center;
-  padding: 15px 32px;
+  padding: 15px 8px;
   background-color: ${(props) => (props.primary ? "#fd8e7b" : "#f3d04e")};
   color: #ffffff;
-  font-family: "Archivo", sans-serif;
+  font-family: Montserrat;
   font-weight: 500;
-  margin: 12, 47, 11, 47;
-  font-size: 1.3em;
+  // margin: 12, 47, 11, 40;
+  font-size: 16px;
   line-height: 30px;
   align-items: center;
   margin: 2%;

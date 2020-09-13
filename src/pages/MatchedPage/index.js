@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 import {
   BackgroundContainer,
-  RowFlex,
-  Dot,
-  DotText,
-  HeaderText,
-  ListText,
+  RowFlex, RowFlexMobile,
+  Dot, DotMobile,
+  DotText, DotTextMobile,
+  HeaderText, HeaderTextMobile,
+  ListText, ListTextMobile,
   StyledIcon,
-  Donation,
-  NextSteps,
+  Donation, DonationMobile,
+  NextSteps, NextStepsMobile,
   CenteredFlex,
 } from "./styles";
 
@@ -29,7 +29,7 @@ import  WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Montserrat:thin', 'open-serif'],
+    families: ['Montserrat', 'open-serif'],
   }
 });
 
@@ -57,70 +57,103 @@ const nextStepsList = [
   ],
 ];
 
-const useWindowDimensions = () => {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+export default function MatchedPage() {
+  const useWindowDimensions = () => {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
-  return windowDimensions;
-}
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
-const {height, width} = useWindowDimensions();
+    return windowDimensions;
+  }
 
-// export default function MatchedPage() {
-//   if (width < 420) {
-//     return (
-//         <div>Hello</div>
-//     )
-//   } else {
-//     return (
-//         <BackgroundContainer>
-//           <HeaderText>
-//             You’ve been matched!
-//           </HeaderText>
-//
-//           <NextSteps>Next Steps</NextSteps>
-//           <div style={{ padding: "0% 12%" }}>
-//             {nextStepsList.map((e, i) => (
-//                 // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
-//                 <Row style={{ margin: "3% 5%" }} classname="my-auto" key={i}>
-//                   <RowFlex>
-//                     <Col xs="2">
-//                       <Dot color={"#8CC9BA"}>
-//                         <DotText>{i + 1}</DotText>
-//                       </Dot>
-//                     </Col>
-//                     <Col xs="2">
-//                       <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />
-//                     </Col>
-//                   </RowFlex>
-//                   <Col>
-//                     <ListText>{e[1]}</ListText>
-//                   </Col>
-//                 </Row>
-//             ))}
-//           </div>
-//           <Donation>Thank you for your donation!</Donation>
-//           <Container className="my-auto" style={{ textAlign: "center" }}>
-//             <Link to="/">
-//               <Button primary>Return to homepage</Button>
-//             </Link>
-//             <Link>
-//               <Button>Refer a friend</Button>
-//             </Link>
-//           </Container>
-//         </BackgroundContainer>
-//     );
-//   }
-//
-// }
+  const {height, width} = useWindowDimensions();
 
-const renderStep = () => {
+  if (width < 420) {
+    return (
+        // <div>Mobile</div>
+        <BackgroundContainer>
+          <HeaderTextMobile>
+            You’ve been matched!
+          </HeaderTextMobile>
+
+          <NextStepsMobile>Next Steps</NextStepsMobile>
+          <div style={{ padding: "0% 8%" }}>
+            {nextStepsList.map((e, i) => (
+                // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
+                <Row style={{ margin: "-3%" }} classname="my-auto" key={i}>
+                  {/*<RowFlexMobile>*/}
+                    <Col xs="2">
+                      <DotMobile color={"#8CC9BA"}>
+                        <DotTextMobile>{i + 1}</DotTextMobile>
+                      </DotMobile>
+                    </Col>
+                    {/*<Col xs="2">*/}
+                    {/*  <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />*/}
+                    {/*</Col>*/}
+                  {/*</RowFlexMobile>*/}
+                  <Col>
+                    <ListTextMobile>{e[1]}</ListTextMobile>
+                  </Col>
+                </Row>
+            ))}
+          </div>
+          <DonationMobile>Thank you for your donation!</DonationMobile>
+          <Container className="my-auto" style={{ textAlign: "center" }}>
+            <Link to="/">
+              <Button primary>Return to homepage</Button>
+            </Link>
+            <Link>
+              <Button>Refer a friend</Button>
+            </Link>
+          </Container>
+        </BackgroundContainer>
+    )
+  } else {
+    return (
+        <BackgroundContainer>
+          <HeaderText>
+            You’ve been matched!
+          </HeaderText>
+
+          <NextSteps>Next Steps</NextSteps>
+          <div style={{ padding: "0% 12%" }}>
+            {nextStepsList.map((e, i) => (
+                // <RowFlex style={{ display: "flex", margin: "2% 6%" }}>
+                <Row style={{ margin: "3% 5%" }} classname="my-auto" key={i}>
+                  {/*<RowFlex>*/}
+                    <Col xs="2">
+                      <Dot color={"#8CC9BA"}>
+                        <DotText>{i + 1}</DotText>
+                      </Dot>
+                    </Col>
+                    <Col xs="2">
+                      <StyledIcon src={e[0]} alt="Logo for corresponding Icon" />
+                    </Col>
+                  {/*</RowFlex>*/}
+                  <Col>
+                    <ListText>{e[1]}</ListText>
+                  </Col>
+                </Row>
+            ))}
+          </div>
+          <Donation>Thank you for your donation!</Donation>
+          <Container className="my-auto" style={{ textAlign: "center" }}>
+            <Link to="/">
+              <Button primary>Return to homepage</Button>
+            </Link>
+            <Link>
+              <Button>Refer a friend</Button>
+            </Link>
+          </Container>
+        </BackgroundContainer>
+    );
+  }
 
 }
