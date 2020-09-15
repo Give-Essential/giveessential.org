@@ -13,6 +13,7 @@ import {
   Donation, DonationMobile,
   NextSteps, NextStepsMobile,
   CenteredFlex,
+    HomepageBtnMobile, ReferBtnMobile
 } from "./styles";
 
 import { Row, Col, Container } from "reactstrap";
@@ -106,12 +107,17 @@ export default function MatchedPage() {
           </div>
           <DonationMobile>Thank you for your donation!</DonationMobile>
           <Container className="my-auto" style={{ textAlign: "center" }}>
-            <Link to="/">
-              <Button primary>Return to homepage</Button>
-            </Link>
-            <Link>
-              <Button>Refer a friend</Button>
-            </Link>
+              <HomepageBtnMobile>
+                  <Link to="/" style={{color: "#fff"}}>
+                      Return to homepage
+                  </Link>
+              </HomepageBtnMobile>
+              <ReferBtnMobile>
+                  <Link style={{color: "#fff"}}>
+                      Refer a friend
+                  </Link>
+              </ReferBtnMobile>
+
           </Container>
         </BackgroundContainer>
     )

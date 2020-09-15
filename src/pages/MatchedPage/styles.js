@@ -227,3 +227,35 @@ export const NextStepsMobile = styled.h1`
   margin-top: 25px;
   margin-bottom: 32px;
 `;
+
+export const HomepageBtnMobile = styled.div`
+  margin-top: 5px;
+  margin-left: 50px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: ${ window.innerWidth >= 900 ? '30%' : '74%'};
+  height: ${ window.innerWidth >= 900 ? '5vw' : '8vw'};
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#dddddd" : "#FD8E7B")};
+  align-items: center;
+  justify-content: center;
+  // padding: 15px 0;
+  font-size: 15px;
+`;
+export const ReferBtnMobile = styled.div`
+  margin-top: 10px;
+  margin-bottom: 25px;
+  margin-left: 50px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  width: ${ window.innerWidth >= 900 ? '30%' : '74%'};
+  height: ${ window.innerWidth >= 900 ? '5vw' : '8vw'};
+  cursor: pointer;
+  background-color: ${(props) => (props.disabled ? "#dddddd" : "#F3D04E")};
+  align-items: center;
+  justify-content: center;
+  // padding: 15px 0;
+  font-size: 15px;
+`;
